@@ -1,0 +1,73 @@
+# Fastlane — iOS lanes for Engage MT.
+# Run from `mobile/ios/`:
+#   fastlane ios beta     → TestFlight build
+#   fastlane ios release  → App Store Connect (drafted, NOT submitted)
+#
+# Auth: API key set in `mobile/ios/fastlane/AuthKey.p8` (gitignored) +
+# `fastlane/Appfile` (also gitignored — see Appfile.example).
+# Match: signing certificates checked into a private Match repo.
+#
+# Phase I deploy automation. The first lane to run end-to-end will
+# require:
+#   1. Apple Developer Program enrollment (Jamie / FWP).
+#   2. App Store Connect record for gov.mt.fwp.engagemt.
+#   3. Match repo URL populated in Matchfile.
+#   4. AuthKey_<keyid>.p8 dropped at the path Appfile expects.
+
+default_platform(:ios)
+
+platform :ios do
+  before_all do
+    setup_ci if ENV['CI']
+  end
+
+  desc "Push a new build to TestFlight"
+  lane :beta do
+    # Build number from the caller's pipeline (BUILD_NUMBER) when provided,
+    # else a timestamp for local builds.
+    build = ENV['BUILD_NUMBER'] || Time.now.strftime("%Y%m%d%H%M")
+    increment_build_number(build_number: build)
+
+    # Build the web first so the wwwroot bundle is fresh.
+    sh("cd ../.. && npm run build --workspace web")
+    sh("cd ../.. && cd mobile && npx cap sync ios")
+
+    match(type: "appstore", readonly: true)
+    build_app(
+      workspace: "App/App.xcworkspace",
+      scheme: "App",
+      configuration: "Release",
+      export_method: "app-store"
+    )
+    upload_to_testflight(
+      skip_waiting_for_build_processing: true,
+      skip_submission: true,
+      changelog: ENV['RELEASE_NOTES'] || "Internal build."
+    )
+  end
+
+  desc "Draft an App Store release (does NOT submit for review)"
+  lane :release do
+    build = ENV['GITHUB_RUN_NUMBER'] || Time.now.strftime("%Y%m%d%H%M")
+    increment_build_number(build_number: build)
+
+    sh("cd ../.. && npm run build --workspace web")
+    sh("cd ../.. && cd mobile && npx cap sync ios")
+
+    match(type: "appstore", readonly: true)
+    build_app(
+      workspace: "App/App.xcworkspace",
+      scheme: "App",
+      configuration: "Release",
+      export_method: "app-store"
+    )
+    upload_to_app_store(
+      submit_for_review: false,
+      automatic_release: false,
+      force: true,
+      skip_metadata: false,
+      skip_screenshots: false,
+      precheck_include_in_app_purchases: false
+    )
+  end
+end

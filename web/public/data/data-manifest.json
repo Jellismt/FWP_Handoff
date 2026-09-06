@@ -1,0 +1,37 @@
+{
+  "version": "2026.5-dev",
+  "generatedAt": "2026-09-06T16:46:17.230Z",
+  "manifestSchemaVersion": "1.2",
+  "appVersion": "1.0.0",
+  "datasets": [
+    {
+      "id": "hunting-district-facts",
+      "file": "/data/hunting-district-facts.json",
+      "format": "json",
+      "schemaVersion": "3.2",
+      "effectiveDate": "2026-04-01",
+      "expiresDate": "2027-03-31",
+      "rowCount": 139,
+      "sizeBytes": 24606,
+      "sha256": "0f8c59fd092de574fb12485c3b1335e85a7240f3fc905a2e24fa8ee679a5ba5c",
+      "source": "FWP Wildlife — 139 big-game districts; names, acreage, counties, region + weapon-restriction-area flag authoritative (FWP-GIS + per-district legal descriptions)",
+      "provenanceTier": "extracted",
+      "license": "Public domain"
+    },
+    {
+      "id": "usgs-gages",
+      "file": "/data/usgs-gages.json",
+      "format": "json",
+      "schemaVersion": "1.0",
+      "effectiveDate": "2026-09-06",
+      "expiresDate": "2027-09-06",
+      "rowCount": 226,
+      "sizeBytes": 40896,
+      "sha256": "bed0dd9075cdcb9cf5248e44bb16bfb4ad774425c4a1466cab8d0351875ecdc2",
+      "source": "USGS NWIS Site Service — active Montana stream gages reporting instantaneous discharge",
+      "provenanceTier": "extracted",
+      "license": "Public domain",
+      "upstreamUrl": "https://waterservices.usgs.gov/"
+    }
+  ]
+}

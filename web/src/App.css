@@ -1,0 +1,160 @@
+/**
+ * @file App.css
+ * @module engage-mt/shared
+ * @description Layout shell: header on top, sidebar + main row, bottom tab bar on mobile.
+ * @author Jamie Ellis / Engage MT
+ * @created 2026-05-29
+ * @updated 2026-07-03
+ * @version 1.0.0
+ *
+ * FWP Engage MT — Montana's Official Gateway to the Outdoors
+ * Licensed under the MIT License.
+ */
+
+.app-shell {
+  display: flex;
+  flex: 1 1 auto;
+  min-height: 0;
+  /* Positioning context for the floating <ScrollCue>. .app-shell spans the
+     area between the header and the (in-flow) bottom tab bar, so a bottom-
+     anchored absolute child clears the tab bar without hardcoding its height. */
+  position: relative;
+}
+
+.app-shell__main {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  /* Make MAIN the scroll container so its content scrolls inside the viewport
+     instead of overflowing under the bottom tab bar. Pages opt into bottom
+     safe-area via .fwp-mobile-safe-bottom on their root section. */
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.app-shell__main:focus {
+  outline: none;
+}
+
+/* Page roots are flex-column children of MAIN. Most use the centered-column
+   idiom `max-width: <cap>; margin: 0 auto` — but `auto` side-margins on a
+   flex item SUPPRESS the default stretch, so without an explicit width the
+   section sizes to its max-content. One long unbreakable token (a
+   freshness-chip source URL, a raw SQL error string) then blows the section
+   past the viewport, where MAIN's overflow-x:hidden silently clips it.
+   `width: 100%` restores stretch (capped by each page's own max-width on wide
+   screens); `min-width: 0` lets internal handling (text wrap, ellipsis,
+   .fwp-table-scroll) own any remaining overflow instead of forcing the box
+   wide. Fixes the whole class of tool-page roots in one rule. */
+.app-shell__main > * {
+  width: 100%;
+  min-width: 0;
+}
+
+.route-suspense {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 auto;
+  min-height: 200px;
+  padding: var(--fwp-space-5);
+}
+
+/* Field mode — applied by App.tsx when fieldModeStore.active is true.
+   Visual changes are scoped to body[data-field-mode="true"] so they're easy to find
+   and easy to roll back. Easy to roll back. */
+body[data-field-mode="true"] {
+  --fwp-touch-min: 56px;
+}
+
+body[data-field-mode="true"] .app-shell__main {
+  font-size: var(--fwp-text-lg);
+}
+
+body[data-field-mode="true"] calcite-button,
+body[data-field-mode="true"] .fwp-field__input,
+body[data-field-mode="true"] .fwp-field__select,
+body[data-field-mode="true"] .fwp-field__textarea {
+  min-height: var(--fwp-touch-min);
+}
+
+/* Bottom tab bar grows for glove-friendly tap targets. */
+body[data-field-mode="true"] .bottom-tab-bar {
+  min-height: 72px;
+  padding-top: var(--fwp-space-2);
+  padding-bottom: calc(var(--fwp-space-2) + env(safe-area-inset-bottom));
+}
+
+body[data-field-mode="true"] .bottom-tab-bar__item {
+  padding: var(--fwp-space-3) var(--fwp-space-2);
+}
+
+/* Dim ancillary chrome: the module-landing intros, the FreshnessChips. */
+body[data-field-mode="true"] .module-landing-shell__intro,
+body[data-field-mode="true"] .freshness-chip {
+  opacity: 0.7;
+}
+
+/* Field mode: keep the LayerPanel visible — earlier `display: none` here was a
+   regression that hid every layer toggle whenever field mode was on. We just
+   narrow the panel a touch so the map gets more real estate; the user can
+   still close it via the panel's Calcite close action. */
+body[data-field-mode="true"] .layer-panel {
+  width: 280px;
+}
+
+/* Elevate the locate-me action floating button on the map. */
+body[data-field-mode="true"] .map-page__overlay--top-right calcite-action-pad {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  border-radius: 12px;
+}
+
+body[data-field-mode="true"] .map-page__overlay--top-right calcite-action {
+  --calcite-action-background-color: var(--fwp-cream);
+}
+
+/* Toasts move to the bottom-third (thumb-reach). */
+body[data-field-mode="true"] .toast-viewport {
+  top: auto;
+  bottom: 100px;
+}
+
+/* Outdoor readability sweep. Persona Kevin (and any user
+   pulling the app out at -10°F or in direct sun) reads cards and chips
+   at arm's length; the default light-weight borders + subtle shadows
+   wash out. Field mode boosts the visual weight of every surface so
+   contrast holds in glove + sunlight conditions. Scoped to the body
+   attribute so all overrides are easy to find and roll back. */
+body[data-field-mode="true"] .fwp-list-card,
+body[data-field-mode="true"] .map-hint-coach {
+  box-shadow: var(--fwp-shadow-3);
+  border: 2px solid var(--fwp-border-strong);
+}
+
+/* Module accent stripes thicken from 4px → 6px so they're scannable
+   from arm's length without leaning in. */
+body[data-field-mode="true"] .fwp-list-card {
+  border-left-width: 6px;
+}
+
+/* Text floors: bump primary body copy up the ramp so prose reads
+   without zooming in. Headings already bold; left as-is. */
+body[data-field-mode="true"] .fwp-list-card__title {
+  font-size: var(--fwp-text-xl);
+}
+
+body[data-field-mode="true"] .fwp-list-card__meta dd {
+  font-size: var(--fwp-text-md);
+}
+
+/* Freshness chip is dimmed by default in field mode (line 78) — restore
+   its full color when it's in the offline-cached or stale state so the
+   user can still spot a "data isn't fresh" warning when reading at a
+   distance. */
+body[data-field-mode="true"] .freshness-chip--offline,
+body[data-field-mode="true"] .freshness-chip--stale {
+  opacity: 1;
+}

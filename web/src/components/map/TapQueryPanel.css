@@ -1,0 +1,296 @@
+/**
+ * @file TapQueryPanel.css
+ * @module engage-mt/map
+ * @description Takeover overlay for tap-to-query
+ *              results. Occupies the full viewport between the top
+ *              FWP-Blue AppHeader and the bottom FWP-Blue BottomTabBar,
+ *              with a backdrop + scrollable inner card. Mobile is
+ *              full-bleed; desktop is a centered 720-px modal.
+ * @author Jamie Ellis / Engage MT
+ * @created 2026-05-29
+ * @updated 2026-07-07
+ * @version 2.4.0
+ *
+ * FWP Engage MT — Montana's Official Gateway to the Outdoors
+ * Licensed under the MIT License.
+ */
+
+/* Outer shell. The 64-px top / 56-px bottom values match the AppHeader
+   min-height and BottomTabBar min-height. Desktop >= 1024px has no
+   bottom tab bar so the bottom inset collapses there. */
+.tap-query-shell {
+  position: fixed;
+  top: var(--fwp-app-header-h, 64px);
+  left: 0;
+  right: 0;
+  bottom: calc(var(--fwp-bottom-tab-h, 56px) + env(safe-area-inset-bottom, 0));
+  z-index: 40;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  padding: var(--fwp-space-4);
+  pointer-events: none;
+}
+
+@media (min-width: 1024px) {
+  .tap-query-shell {
+    bottom: 0;
+  }
+}
+
+.tap-query-shell__backdrop {
+  position: fixed;
+  top: var(--fwp-app-header-h, 64px);
+  left: 0;
+  right: 0;
+  bottom: calc(var(--fwp-bottom-tab-h, 56px) + env(safe-area-inset-bottom, 0));
+  /* No backdrop-filter here: blur(3px) caused a 2-4 s compositor stall on
+     close. DO NOT introduce any
+     `backdrop-filter` / `filter` rule on this surface.
+     Opacity is 0.25 to avoid the residual
+     "map takes a beat to come back after I close the popup" perception
+     bug. At 0.55 the backdrop fully occluded the map; the user lost
+     visual continuity, so the reveal on close *read* as the map
+     reloading even though the MapView never unmounted. At 0.25 the map
+     is faintly visible underneath the popup the whole time, the card
+     still reads with full WCAG contrast against its own
+     `--fwp-bg-surface` + `--fwp-shadow-5` (the backdrop carries no
+     text), and the close transition becomes a no-op for perception. */
+  background: rgba(11, 25, 41, 0.25);
+  pointer-events: auto;
+  cursor: pointer;
+  z-index: 0;
+}
+
+@media (min-width: 1024px) {
+  .tap-query-shell__backdrop {
+    bottom: 0;
+  }
+}
+
+.tap-query-shell__card {
+  position: relative;
+  z-index: 1;
+  width: min(720px, 100%);
+  /* `height: 100%` (not just `max-height`) so the
+     card always exactly fills the shell's vertical space. Combined with
+     the grid layout below, this gives the body row a definite finite
+     height regardless of how tall its content is, which is what makes
+     `overflow-y: auto` engage scroll. Previously the card relied on
+     `align-items: stretch` from the parent shell, and on Safari + some
+     Chrome versions the card could grow past `max-height: 100%` when
+     the body's content was significantly taller — pushing the body out
+     past the viewport bottom with no scrollbar. */
+  height: 100%;
+  max-height: 100%;
+  background: var(--fwp-bg-surface);
+  border-radius: var(--fwp-radius-xl);
+  box-shadow: var(--fwp-shadow-5);
+  border: 1px solid var(--fwp-border-subtle);
+  /* CSS grid (not flex) is the reliable way to give the body row exactly
+     "card height minus header height". `auto 1fr` means header takes its
+     natural height and body takes everything left. Compared to flex
+     column, grid eliminates the rare-but-real cases where flex-basis +
+     min-height interact badly with deeply nested content. */
+  display: grid;
+  grid-template-rows: auto 1fr;
+  overflow: hidden;
+  pointer-events: auto;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .tap-query-shell__card {
+    /* Soft overshoot entrance replaces the linear-ish
+       emphasis ease; the card now settles like a sheet of paper. */
+    animation: tap-query-in var(--fwp-motion-soft) both;
+  }
+  @keyframes tap-query-in {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .tap-query-shell {
+    padding: 0;
+  }
+  .tap-query-shell__card {
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    border-radius: 0;
+    border: none;
+  }
+}
+
+/* At >= 768px the panel docks as a right rail beside
+   a fully-interactive map (no backdrop, non-modal). The shell already sets
+   pointer-events: none, so only the card catches events and map pan/tap to the
+   left keep working. This implements the responsive-layouts rule's "tap-query
+   results = right rail on desktop" instead of the prior centered modal. */
+@media (min-width: 768px) {
+  .tap-query-shell--rail {
+    justify-content: flex-end;
+    padding: 0;
+  }
+  .tap-query-shell--rail .tap-query-shell__card {
+    width: clamp(340px, 40%, 420px);
+    height: 100%;
+    max-height: 100%;
+    border-radius: 0;
+    border: none;
+    border-left: 1px solid var(--fwp-border-subtle);
+    box-shadow: var(--fwp-shadow-5);
+  }
+}
+
+@media (min-width: 1024px) {
+  .tap-query-shell--rail .tap-query-shell__card {
+    width: 380px;
+  }
+}
+
+/* Rail slides in from the right edge, not up from the bottom. */
+@media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
+  .tap-query-shell--rail .tap-query-shell__card {
+    animation: tap-query-rail-in var(--fwp-motion-soft) both;
+  }
+  @keyframes tap-query-rail-in {
+    from {
+      opacity: 0;
+      transform: translateX(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+}
+
+.tap-query-shell__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--fwp-space-3);
+  padding: var(--fwp-space-4) var(--fwp-space-5);
+  border-bottom: 1px solid var(--fwp-border-subtle);
+  background: var(--fwp-bg-surface);
+  flex-shrink: 0;
+}
+
+.tap-query-shell__title-block {
+  min-width: 0;
+}
+
+.tap-query-shell__title {
+  margin: 0 0 var(--fwp-space-1);
+  font-size: var(--fwp-text-lg);
+  font-weight: var(--fwp-weight-bold);
+  letter-spacing: var(--fwp-letter-spacing-heading);
+  color: var(--fwp-text-primary);
+  line-height: 1.2;
+}
+
+.tap-query-shell__subtitle {
+  margin: 0;
+  font-size: var(--fwp-text-sm);
+  color: var(--fwp-text-secondary);
+  line-height: 1.4;
+}
+
+/* Close button appearance is the shared .fwp-icon-close utility (global.css). */
+
+.tap-query-shell__body {
+  /* Grid-row child. The parent card uses
+     `grid-template-rows: auto 1fr`, so this row gets exactly the card's
+     height minus the header's natural height. That's a definite finite
+     height, which is what `overflow-y: auto` needs in order to engage
+     scroll when content overflows.
+
+     `min-height: 0` is still required because grid rows default to
+     `min-content` sizing, which would refuse to shrink below the
+     content's intrinsic height — defeating the whole point. With
+     `min-height: 0` the row honors its `1fr` track size even when the
+     content is much taller. `-webkit-overflow-scrolling: touch` restores
+     momentum scroll on older iOS Safari. */
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: var(--fwp-space-4) var(--fwp-space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--fwp-space-3);
+  overscroll-behavior: contain;
+}
+
+/* `flex-shrink: 0` on the body's direct
+   children is the bug fix that finally made the popup scrollable for
+   tall content (e.g. the Canyon Ferry survey: 30 species +
+   K bars + monthly heatmap + per-species records, ~5000 px tall).
+   The body is `display: flex; flex-direction: column`, so its children
+   are flex items. With the default `flex-shrink: 1`, when the sum of
+   children's natural heights exceeded the body's allotted height, the
+   flex algorithm SHRANK each child to fit — collapsing 5000 px of
+   content into a 800 px body and reporting `scrollHeight ===
+   clientHeight` (i.e. nothing to scroll). Symptom: the popup card
+   visually clipped mid-list with no scrollbar engaged.
+
+   Pinning shrink to 0 forces children to keep their natural height;
+   the sum overflows the body, and `overflow-y: auto` engages scroll
+   the way the rest of the layout expected. */
+.tap-query-shell__body > * {
+  flex-shrink: 0;
+}
+
+.tap-query-shell__failure-notice {
+  margin-bottom: var(--fwp-space-3);
+}
+
+/* "N more features here" affordance. A full-width,
+   clearly-tappable row under the topmost card. */
+.tap-query-shell__more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--fwp-space-2);
+  width: 100%;
+  min-height: var(--fwp-touch-min, 44px);
+  margin-top: var(--fwp-space-2);
+  padding: var(--fwp-space-2) var(--fwp-space-4);
+  background: var(--fwp-bg-surface-sunken);
+  border: 1px solid var(--fwp-border-subtle);
+  border-radius: var(--fwp-radius-md);
+  color: var(--fwp-text-primary);
+  font-family: inherit;
+  font-size: var(--fwp-text-sm);
+  font-weight: var(--fwp-weight-medium);
+  cursor: pointer;
+}
+
+.tap-query-shell__more:hover:not(:disabled) {
+  background: var(--fwp-state-hover-overlay);
+}
+
+.tap-query-shell__more:disabled {
+  cursor: default;
+  opacity: 0.75;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .tap-query-shell__more-spin {
+    animation: spin 1s linear infinite;
+  }
+}
+
+.tap-query-shell__more-empty {
+  margin: var(--fwp-space-2) 0 0;
+  font-size: var(--fwp-text-sm);
+  color: var(--fwp-text-secondary);
+  text-align: center;
+}

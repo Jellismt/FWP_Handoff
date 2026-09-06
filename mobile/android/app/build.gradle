@@ -1,0 +1,91 @@
+apply plugin: 'com.android.application'
+
+// Q.23.P1.4 — Read signing config + versionCode from a gitignored
+// keystore.properties file (template at keystore.properties.example).
+// CI passes via -PsigningKeystore=... etc. or env. Missing file →
+// release builds are unsigned (still build, debug-signable for local).
+def keystoreProps = new Properties()
+def keystorePropsFile = rootProject.file("keystore.properties")
+if (keystorePropsFile.exists()) {
+    keystoreProps.load(new FileInputStream(keystorePropsFile))
+}
+
+android {
+    namespace "gov.mt.fwp.engagemt"
+    compileSdk rootProject.ext.compileSdkVersion
+    defaultConfig {
+        applicationId "gov.mt.fwp.engagemt"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        // Q.23.P1.4 — `versionCode` reads VERSION_CODE env so CI can
+        // auto-increment per release. Local dev builds default to 1.
+        // NB: the outer parens are required — `versionCode (x).toInteger()`
+        // parses in Groovy as `versionCode(x).toInteger()` (calls the setter
+        // with a String, then .toInteger() on its void return → "Value is
+        // null"). Keep .toInteger() *inside* the argument.
+        versionCode((System.getenv("VERSION_CODE") ?: "1").toInteger())
+        versionName "1.0.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        aaptOptions {
+             // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.
+             // Default: https://android.googlesource.com/platform/frameworks/base/+/282e181b58cf72b6ca770dc7ca5f91f135444502/tools/aapt/AaptAssets.cpp#61
+            ignoreAssetsPattern '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
+        }
+    }
+    // Q.23.P1.4 — Release signing block. `keystore.properties` is
+    // gitignored; release scripts populate it from CI secrets.
+    signingConfigs {
+        release {
+            if (keystoreProps['storeFile']) {
+                // Resolve storeFile from the android rootProject (mobile/android),
+                // NOT this :app module — keystore.properties documents the path as
+                // `app/engagemt.keystore` (rootProject-relative), mirroring how the
+                // properties file itself is read via rootProject.file(...). Using a
+                // bare file() here would double the segment to app/app/… and fail.
+                storeFile rootProject.file(keystoreProps['storeFile'])
+                storePassword keystoreProps['storePassword']
+                keyAlias keystoreProps['keyAlias']
+                keyPassword keystoreProps['keyPassword']
+            }
+        }
+    }
+    buildTypes {
+        release {
+            // Q.23.P1.4 — Enable R8 / ProGuard. Play Console rejects
+            // unminified release uploads for prod tracks.
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+}
+
+repositories {
+    flatDir{
+        dirs '../capacitor-cordova-android-plugins/src/main/libs', 'libs'
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
+    implementation "androidx.coordinatorlayout:coordinatorlayout:$androidxCoordinatorLayoutVersion"
+    implementation "androidx.core:core-splashscreen:$coreSplashScreenVersion"
+    implementation project(':capacitor-android')
+    testImplementation "junit:junit:$junitVersion"
+    androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$androidxEspressoCoreVersion"
+    implementation project(':capacitor-cordova-android-plugins')
+}
+
+apply from: 'capacitor.build.gradle'
+
+try {
+    def servicesJSON = file('google-services.json')
+    if (servicesJSON.text) {
+        apply plugin: 'com.google.gms.google-services'
+    }
+} catch(Exception e) {
+    logger.info("google-services.json not found, google-services plugin not applied. Push Notifications won't work")
+}

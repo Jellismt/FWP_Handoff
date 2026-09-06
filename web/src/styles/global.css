@@ -1,0 +1,1126 @@
+/**
+ * @file global.css
+ * @module engage-mt/styles
+ * @description Global reset, body defaults, skip-link, focus ring, reduced-motion handling,
+ *              the cross-cutting interaction utilities (.fwp-card-lift, .fwp-accent-stripe-left,
+ *              .fwp-night-glass, .fwp-rise staggered entrance, .fwp-map-chrome-scrim), and the
+ *              shared .fwp-control-card night-glass selection/filter panel.
+ * @author Jamie Ellis / Engage MT
+ * @created 2026-05-29
+ * @updated 2026-07-06
+ * @version 1.3.1
+ *
+ * FWP Engage MT — Montana's Official Gateway to the Outdoors
+ * Licensed under the MIT License.
+ */
+
+@import "./brand-tokens.css";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--fwp-font-sans);
+  font-size: var(--fwp-text-md);
+  line-height: var(--fwp-line-height-base);
+  color: var(--fwp-text-primary);
+  background: var(--fwp-bg-page);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Skip-to-main-content link (a11y) — visually hidden until focused */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: var(--fwp-space-2);
+  background: var(--fwp-cta-primary);
+  color: var(--fwp-cta-primary-text);
+  padding: var(--fwp-space-2) var(--fwp-space-4);
+  border-radius: var(--fwp-radius-md);
+  text-decoration: none;
+  font-weight: var(--fwp-weight-bold);
+  font-size: var(--fwp-text-base);
+  z-index: 1000;
+  transition: top var(--fwp-motion-base);
+}
+
+.skip-link:focus {
+  top: var(--fwp-space-2);
+  outline: 2px solid var(--fwp-focus);
+  outline-offset: 2px;
+}
+
+/* Visible, high-contrast focus ring — applied globally to every focusable
+   element. Component CSS MUST NOT re-declare this same rule on its own
+   :focus-visible selectors (it duplicates output and creates drift). If a
+   component needs a custom focus style (different color, larger offset,
+   inset), declare just the override property — the base outline + offset
+   inherit. Focus outlines are defined once here; do not redeclare them per component. */
+:focus-visible {
+  outline: 2px solid var(--fwp-focus);
+  outline-offset: 2px;
+  border-radius: var(--fwp-radius-sm);
+}
+
+/* Honor prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Shared viewport offset for virtualized list pages.
+   Composition: AppHeader (56) + tool hero (~180) + filter row (~80)
+   + bottom tab bar (~44) ≈ 360px. Consumers (currently only
+   TrailExplorer's VirtuosoGrid) read this via `var(--fwp-list-virt-height)`
+   so a future header-height change updates every virtualized list. */
+:root {
+  --fwp-list-virt-height: calc(100vh - 360px);
+}
+
+/* Headings — FWP tracked-bold style, tied to the 9-step type ramp */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: var(--fwp-weight-bold);
+  margin: 0 0 var(--fwp-space-3);
+  color: var(--fwp-text-primary);
+  letter-spacing: var(--fwp-letter-spacing-heading);
+}
+
+/* The two display tiers carry the editorial serif; h3 down
+   stays on the system sans so dense UI sections keep their utility
+   voice. text-wrap: balance keeps multi-line serif headlines even. */
+h1 {
+  font-family: var(--fwp-font-display);
+  font-weight: var(--fwp-weight-display);
+  font-size: var(--fwp-text-2xl);
+  line-height: 1.15;
+  text-wrap: balance;
+}
+h2 {
+  font-family: var(--fwp-font-display);
+  font-weight: var(--fwp-weight-display);
+  font-size: var(--fwp-text-xl);
+  line-height: 1.2;
+  text-wrap: balance;
+}
+h3 {
+  font-size: var(--fwp-text-lg);
+  line-height: 1.3;
+  letter-spacing: 0;
+}
+h4 {
+  font-size: var(--fwp-text-md);
+  line-height: 1.35;
+  letter-spacing: 0;
+}
+h5,
+h6 {
+  font-size: var(--fwp-text-base);
+  line-height: 1.4;
+  letter-spacing: 0;
+}
+
+p {
+  margin: 0 0 var(--fwp-space-3);
+  color: var(--fwp-text-primary);
+}
+
+a {
+  color: var(--fwp-cta-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color var(--fwp-motion-quick);
+}
+
+a:hover {
+  color: var(--fwp-cta-primary-hover);
+}
+
+a:active {
+  color: var(--fwp-cta-primary-press);
+}
+
+/* ─────────────────────────────────────────────────────────────────
+ * CROSS-CUTTING UTILS — reused by Sidebar, BottomTabBar, cards
+ * ───────────────────────────────────────────────────────────────── */
+
+/**
+ * Card hover-lift — subtle elevation gain + 2px upward translate.
+ * Apply on resting elements that should respond to pointer hover.
+ * Gated behind prefers-reduced-motion: no-preference (a11y rule).
+ */
+.fwp-card-lift {
+  transition:
+    box-shadow var(--fwp-motion-base),
+    transform var(--fwp-motion-base);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .fwp-card-lift:hover {
+    box-shadow: var(--fwp-shadow-3);
+    transform: translateY(-2px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fwp-card-lift:hover {
+    box-shadow: var(--fwp-shadow-3);
+  }
+}
+
+/**
+ * Pending-result cue. A surface whose
+ * derived content is recomputing against a deferred value sets
+ * `data-pending="true"`; the content softens slightly so the user reads
+ * "updating" without a jarring spinner swap. Pair with `aria-busy` on the
+ * same element for assistive tech. Opacity-only so it's reduced-motion safe;
+ * the fade itself is gated.
+ */
+.fwp-pending[data-pending="true"] {
+  opacity: 0.55;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .fwp-pending {
+    transition: opacity var(--fwp-motion-quick);
+  }
+}
+
+/**
+ * THE canonical module-identity stripe. Left edge, token-driven width
+ * (--fwp-accent-stripe-width, default 4px). Reads --module-accent first
+ * (set by the landing/card components via [data-module] or
+ * MODULE_ACCENT_VAR), then brand.
+ * One rule replaces the old 3px-top / 6px-left / 3px-left drift.
+ */
+.fwp-accent-stripe-left {
+  position: relative;
+}
+
+.fwp-accent-stripe-left::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--fwp-accent-stripe-width, 4px);
+  background: var(--module-accent, var(--fwp-accent-current, var(--fwp-cta-primary)));
+  border-top-left-radius: inherit;
+  border-bottom-left-radius: inherit;
+}
+
+.fwp-accent-stripe-left--thin::before {
+  width: 3px;
+}
+
+/* Hero / chrome-scale stripe — one step heavier than content cards. */
+.fwp-accent-stripe-left--hero::before {
+  width: 6px;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+ * TABLE SCROLL — wrap any wide data table in this so it scrolls
+ * horizontally inside its card on a phone instead of squishing columns
+ * (width:100% tables) or forcing page-level horizontal overflow. The
+ * nested table rule keeps columns at their natural width on narrow
+ * viewports (scroll) while still filling the container on wide ones.
+ * No fade mask here (unlike MapToolRail) — a mask would clip the
+ * rightmost column's data. Touch momentum + overscroll containment keep
+ * the pan inside the table so a swipe doesn't ripple to the page.
+ * ───────────────────────────────────────────────────────────────── */
+.fwp-table-scroll {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+
+.fwp-table-scroll > table {
+  width: max-content;
+  min-width: 100%;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+ * STAGGERED ENTRANCE — a staggered "hero-rise" cadence. Direct children
+ * fade+rise in sequence. Decoration only; collapses to instant under
+ * prefers-reduced-motion.
+ * ───────────────────────────────────────────────────────────────── */
+@keyframes fwp-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .fwp-rise > * {
+    animation: fwp-rise var(--fwp-motion-soft) both;
+  }
+  .fwp-rise > *:nth-child(1) {
+    animation-delay: 0.02s;
+  }
+  .fwp-rise > *:nth-child(2) {
+    animation-delay: 0.08s;
+  }
+  .fwp-rise > *:nth-child(3) {
+    animation-delay: 0.14s;
+  }
+  .fwp-rise > *:nth-child(4) {
+    animation-delay: 0.2s;
+  }
+  .fwp-rise > *:nth-child(5) {
+    animation-delay: 0.26s;
+  }
+  .fwp-rise > *:nth-child(n + 6) {
+    animation-delay: 0.32s;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────
+ * GLASSMORPHISM — frosted-glass surface utility
+ * Pair with a parent that has a gradient or photo background for the
+ * "floating glass card" effect. Falls back gracefully on browsers
+ * without backdrop-filter support.
+ * ───────────────────────────────────────────────────────────────── */
+.fwp-glass {
+  background: var(--fwp-glass-bg);
+  backdrop-filter: var(--fwp-glass-blur);
+  -webkit-backdrop-filter: var(--fwp-glass-blur);
+  border: 1px solid var(--fwp-glass-border-strong);
+  border-radius: var(--fwp-radius-xl);
+}
+
+.fwp-glass--strong {
+  background: var(--fwp-glass-bg-strong);
+  backdrop-filter: var(--fwp-glass-blur-strong);
+  -webkit-backdrop-filter: var(--fwp-glass-blur-strong);
+}
+
+@supports not (backdrop-filter: blur(20px)) {
+  .fwp-glass,
+  .fwp-glass--strong {
+    background: var(--fwp-bg-surface);
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────
+ * PAPER INSET — warm parchment "field notes" surface
+ * For dense reference data: tables, fact blocks, survey records.
+ * Stays light in dark mode (paper islands), so descendants must use
+ * the fixed --fwp-paper-ink* tokens rather than --fwp-text-*.
+ * ───────────────────────────────────────────────────────────────── */
+.fwp-paper-inset {
+  background: var(--fwp-paper);
+  color: var(--fwp-paper-ink);
+  border: 1px solid var(--fwp-paper-line);
+  border-radius: var(--fwp-radius-lg);
+}
+
+/* ─────────────────────────────────────────────────────────────────
+ * HERO CTA — title-level primary action.
+ * Large pill button with gradient + shadow lift on hover.
+ * Use for the most important action on a page (View map, Sign in).
+ * ───────────────────────────────────────────────────────────────── */
+.fwp-cta-hero {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--fwp-space-2);
+  padding: var(--fwp-space-4) var(--fwp-space-7);
+  background: var(--fwp-cta-primary);
+  color: var(--fwp-cta-primary-text);
+  font-family: inherit;
+  font-size: var(--fwp-text-lg);
+  font-weight: var(--fwp-weight-bold);
+  letter-spacing: 0.01em;
+  border: none;
+  border-radius: var(--fwp-radius-pill);
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform var(--fwp-motion-base),
+    box-shadow var(--fwp-motion-base),
+    background var(--fwp-motion-quick);
+  min-height: 52px;
+}
+
+.fwp-cta-hero svg {
+  width: 20px;
+  height: 20px;
+  transition: transform var(--fwp-motion-base);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .fwp-cta-hero:hover {
+    transform: translateY(-2px);
+  }
+  .fwp-cta-hero:hover svg {
+    transform: translateX(3px);
+  }
+}
+
+.fwp-cta-hero:active {
+  background: var(--fwp-cta-primary-press);
+  box-shadow: var(--fwp-shadow-2);
+}
+
+.fwp-cta-hero:focus-visible {
+  outline: 2px solid var(--fwp-focus);
+  outline-offset: 3px;
+}
+
+/* Secondary hero CTA — outlined pill, same size as primary */
+.fwp-cta-hero--secondary {
+  background: transparent;
+  color: var(--fwp-cta-primary);
+  border: 2px solid var(--fwp-border-default);
+  box-shadow: var(--fwp-shadow-0);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .fwp-cta-hero--secondary:hover {
+    background: var(--fwp-state-hover-overlay);
+    border-color: var(--fwp-cta-primary);
+    box-shadow: var(--fwp-shadow-1);
+  }
+}
+
+[data-color-scheme="dark"] .fwp-cta-hero--secondary {
+  color: var(--fwp-text-primary);
+  border-color: var(--fwp-border-default);
+}
+
+/* ─────────────────────────────────────────────────────────────────
+ * PILL BUTTON — compact pill (header sign-in, secondary actions)
+ * ───────────────────────────────────────────────────────────────── */
+.fwp-pill-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--fwp-space-2);
+  padding: var(--fwp-space-2) var(--fwp-space-4);
+  background: transparent;
+  color: inherit;
+  font-family: inherit;
+  font-size: var(--fwp-text-base);
+  font-weight: var(--fwp-weight-medium);
+  border: 1px solid var(--fwp-border-default);
+  border-radius: var(--fwp-radius-pill);
+  text-decoration: none;
+  cursor: pointer;
+  min-height: 36px;
+  transition:
+    background var(--fwp-motion-quick),
+    border-color var(--fwp-motion-quick),
+    transform var(--fwp-motion-quick);
+}
+
+.fwp-pill-button:hover {
+  background: var(--fwp-state-hover-overlay);
+}
+
+.fwp-pill-button:focus-visible {
+  outline: 2px solid var(--fwp-focus);
+  outline-offset: 2px;
+}
+
+.fwp-pill-button svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* On dark surfaces (e.g. AppHeader): invert hover/border for contrast */
+.fwp-pill-button--on-brand {
+  color: var(--fwp-text-on-brand);
+  border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.fwp-pill-button--on-brand:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.fwp-pill-button--primary {
+  background: var(--fwp-cta-primary);
+  color: var(--fwp-cta-primary-text);
+  border-color: transparent;
+  font-weight: var(--fwp-weight-bold);
+}
+
+.fwp-pill-button--primary:hover {
+  background: var(--fwp-cta-primary-hover);
+}
+
+/* Visually hidden (SR-only) — for non-visual labels */
+.fwp-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Skip-to-content link. Hidden visually + to AT until focused;
+   reveals on Tab as a bold pill at the top of the viewport so keyboard
+   users can bypass the header / sidebar / tab bar in one keystroke.
+   WCAG 2.4.1 Bypass Blocks. */
+.fwp-skip-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  padding: var(--fwp-space-2) var(--fwp-space-4);
+  background: var(--fwp-cta-primary);
+  color: var(--fwp-cta-primary-text);
+  font-weight: var(--fwp-weight-bold);
+  font-size: var(--fwp-text-sm);
+  text-decoration: none;
+  border-bottom-right-radius: var(--fwp-radius-md);
+  transform: translateY(-110%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .fwp-skip-link {
+    transition: transform var(--fwp-motion-base);
+  }
+}
+
+.fwp-skip-link:focus,
+.fwp-skip-link:focus-visible {
+  transform: translateY(0);
+  outline: 2px solid var(--fwp-focus);
+  outline-offset: 2px;
+}
+
+/* Canonical CLOSE button — a yellow circle with the FWP Blue ×, matching the
+   map tool-rail buttons + header CTA pills. The one look for every "× to close
+   a screen" affordance (modals, dialogs, sheets, galleries). 44×44 touch floor
+   (WCAG 2.5.5). Owns only the appearance — each usage sits inside its own
+   header/flex row for positioning. */
+.fwp-icon-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--fwp-touch-min);
+  height: var(--fwp-touch-min);
+  padding: 0;
+  border: 1px solid color-mix(in srgb, var(--fwp-yellow) 70%, var(--fwp-blue) 30%);
+  border-radius: var(--fwp-radius-pill);
+  background: var(--fwp-yellow);
+  color: var(--fwp-blue);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition:
+    background var(--fwp-motion-quick),
+    transform var(--fwp-motion-quick);
+}
+
+.fwp-icon-close:hover {
+  background: color-mix(in srgb, var(--fwp-yellow) 88%, white 12%);
+}
+
+/* Blue ring — a yellow focus ring would vanish on the yellow fill. */
+.fwp-icon-close:focus-visible {
+  outline: 2px solid var(--fwp-blue);
+  outline-offset: 2px;
+}
+
+.fwp-icon-close svg {
+  display: block;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+ * TOOL HERO — bold landing block at the top of any single-purpose tool
+ * (Trail Explorer, Field Tools, etc.).
+ *
+ * Composition: module-accent gradient backdrop + bold eyebrow + huge
+ * title + lede paragraph + optional stats strip + optional action row.
+ *
+ * The host element MUST set `data-module="hunt|fish|explore|access|manage"`
+ * so the gradient & accent stripe pick up the correct accent CSS variable.
+ *
+ * Bottom safety margin keeps the hero from sitting under the bottom tab
+ * bar on mobile when used at the bottom of a scroll region.
+ * ───────────────────────────────────────────────────────────────── */
+.fwp-tool-hero {
+  --tool-hero-accent: var(--fwp-cta-primary);
+  position: relative;
+  padding: var(--fwp-space-7) var(--fwp-space-6) var(--fwp-space-8);
+  /* Consistent gap below every tool-page hero so the next block (filter card,
+     wallet list, tabs) never butts against the band on some pages and floats
+     on others. */
+  margin-bottom: var(--fwp-space-5);
+  border-radius: var(--fwp-radius-xl);
+  /* Two-color card — theme surface (grey light / blue dark) + a 1px inverse-ink
+     outline, matching every other hero/tool card. No left accent stripe. */
+  background: var(--fwp-bg-surface);
+  border: 1px solid var(--fwp-card-outline);
+  color: var(--fwp-text-primary);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* "View map" — yellow pill pinned to a tool hero's upper-right corner
+   (same treatment as the module-landing hero CTA). */
+.fwp-tool-hero__map-cta {
+  position: absolute;
+  top: var(--fwp-space-4);
+  right: var(--fwp-space-4);
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--fwp-space-2);
+  padding: var(--fwp-space-2) var(--fwp-space-4);
+  min-height: var(--fwp-touch-min);
+  background: var(--fwp-yellow);
+  color: var(--fwp-blue);
+  border: 1px solid color-mix(in srgb, var(--fwp-yellow) 70%, var(--fwp-blue) 30%);
+  border-radius: var(--fwp-radius-pill);
+  font-size: var(--fwp-text-base);
+  font-weight: var(--fwp-weight-bold);
+  text-decoration: none;
+}
+
+.fwp-tool-hero__map-cta:hover {
+  background: color-mix(in srgb, var(--fwp-yellow) 88%, var(--fwp-neutral-900) 12%);
+}
+
+.fwp-tool-hero__title {
+  margin: 0 0 var(--fwp-space-3);
+  font-family: var(--fwp-font-display);
+  font-size: var(--fwp-text-3xl);
+  font-weight: var(--fwp-weight-display);
+  letter-spacing: var(--fwp-letter-spacing-heading);
+  color: var(--fwp-heading-accent);
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+@media (max-width: 767px) {
+  .fwp-tool-hero {
+    padding: var(--fwp-space-5) var(--fwp-space-4) var(--fwp-space-6);
+  }
+  .fwp-tool-hero__title {
+    font-size: var(--fwp-text-2xl);
+  }
+}
+
+.fwp-tool-hero__lede {
+  max-width: 60ch;
+  margin: 0 0 var(--fwp-space-5);
+  font-size: var(--fwp-text-lg);
+  line-height: 1.5;
+  color: var(--fwp-text-secondary);
+}
+
+/* Secondary subline that follows the hero lede. Lighter weight + smaller
+   font for a calmer second-line read. Used by Explore landing pages
+   where the headline carries the punch and the intro adds context. */
+.fwp-tool-hero__intro {
+  max-width: 60ch;
+  margin: calc(-1 * var(--fwp-space-3)) 0 var(--fwp-space-5);
+  font-size: var(--fwp-text-base);
+  line-height: 1.5;
+  color: var(--fwp-text-secondary);
+}
+
+/* An ExplainerNote (.fwp-explainer-note) slotted inside a tool hero must
+   read on the dark band. Scoped so the same component stays dark-on-light
+   everywhere else it's used (takeover panels, chart captions). */
+.fwp-tool-hero .fwp-explainer-note {
+  color: var(--fwp-text-secondary);
+}
+
+/* Stats strip — 2–4 numerical callouts arranged horizontally */
+.fwp-tool-hero__stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--fwp-space-4);
+  margin: var(--fwp-space-5) 0 0;
+  padding: var(--fwp-space-4);
+  /* Stat inset inside the tool hero — same theme surface + inverse-ink outline
+     as the hero card, so it reads as one cohesive band. */
+  background: var(--fwp-bg-surface);
+  border: 1px solid var(--fwp-card-outline);
+  border-radius: var(--fwp-radius-lg);
+}
+
+.fwp-tool-hero__stat-label {
+  display: block;
+  margin: 0 0 4px;
+  font-size: var(--fwp-text-xs);
+  font-weight: var(--fwp-weight-bold);
+  letter-spacing: var(--fwp-letter-spacing-label);
+  text-transform: uppercase;
+  color: var(--fwp-text-secondary);
+}
+
+.fwp-tool-hero__stat-value {
+  display: block;
+  font-size: var(--fwp-text-2xl);
+  font-weight: var(--fwp-weight-bold);
+  color: var(--fwp-text-primary);
+  letter-spacing: var(--fwp-letter-spacing-heading);
+  line-height: 1.1;
+}
+
+.fwp-tool-hero__stat-value--accent {
+  color: var(--tool-hero-accent);
+}
+
+/* Compact variant — used when the stat slot carries a chip / badge
+   instead of a numeric hero value (e.g., TrailExplorerPage). */
+.fwp-tool-hero__stat-value--compact {
+  font-size: var(--fwp-text-md);
+}
+
+.fwp-tool-hero__stat-hint {
+  display: block;
+  margin-top: 2px;
+  font-size: var(--fwp-text-sm);
+  color: var(--fwp-text-secondary);
+}
+
+.fwp-tool-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--fwp-space-3);
+  margin-top: var(--fwp-space-5);
+}
+
+/* Bottom safe-area for mobile — keep page content above the bottom tab bar.
+   Use on the outermost scroll container of tool pages. */
+.fwp-mobile-safe-bottom {
+  padding-bottom: calc(var(--fwp-space-10) + env(safe-area-inset-bottom, 0));
+}
+
+@media (min-width: 1024px) {
+  .fwp-mobile-safe-bottom {
+    padding-bottom: var(--fwp-space-6);
+  }
+}
+
+/* Global spinner keyframe used by Loader2 + similar inline
+   loading spinners across tool pages. Lives here so tool components
+   don't each ship their own keyframe declaration. */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Honor reduced-motion: hide rotation, leave the icon in place so the
+   user still sees the loading affordance via the surrounding text. */
+@media (prefers-reduced-motion: reduce) {
+  @keyframes spin {
+    from,
+    to {
+      transform: none;
+    }
+  }
+}
+
+/* Utility for inline Loader2 / spinner icons so callers don't ship
+   `style={{ animation: "spin ..." }}`. Pairs with a trailing space via
+   the inline-end margin token. */
+.fwp-icon-spin {
+  animation: spin 1s linear infinite;
+  margin-inline-end: var(--fwp-space-2);
+  flex-shrink: 0;
+}
+
+/* Muted helper-text paragraph (small, secondary-color, token-spaced
+   bottom margin). For inline tips / hints that aren't TipBlock-worthy. */
+.fwp-helper-text {
+  font-size: var(--fwp-text-sm);
+  color: var(--fwp-text-secondary);
+  margin: 0 0 var(--fwp-space-3);
+}
+
+/* Fieldset reset — strip the browser default border + padding so a
+   form-aware container (FwpFormShell) can own its own spacing while
+   <fieldset> still groups inputs semantically for screen readers. */
+.fwp-fieldset-reset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+
+/* 2-column form-input grid (e.g., draw-application "district + species"
+   row). Stacks on mobile via auto-fit minmax. */
+.fwp-form-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--fwp-space-2);
+}
+
+/* ─────────────────────────────────────────────────────────────────
+ * PRINT STYLESHEET FOR PANEL CARDS
+ * The takeover modal already gets print handling via TakeoverPopupPortal.
+ * Inline panel cards (TapQueryPanel, multi-feature list) need their own
+ * rule set so that a user who Cmd-Ps an opened card sees a clean
+ * page-fitted printout — no map chrome, no sticky-footer overlap, no
+ * cropped accent stripe.
+ * ───────────────────────────────────────────────────────────────── */
+@media print {
+  /* Hide the map and global app chrome (incl. LayerPanel surfaces). */
+  .map-view,
+  .app-header,
+  .app-sidebar,
+  .bottom-tab-bar,
+  .layer-panel,
+  .layer-panel__collapsed-pill,
+  .skip-link,
+  .fwp-skip-link,
+  .esri-view,
+  .esri-ui {
+    display: none !important;
+  }
+
+  /* Cards print as discrete blocks; preserve the accent stripe but drop
+     the shadows + sticky footer to avoid awkward page-break behavior. */
+  .feature-card {
+    box-shadow: none !important;
+    page-break-inside: avoid;
+    margin-bottom: 1rem;
+  }
+  .feature-card__actions {
+    position: static !important;
+    border-top: 1px solid #ccc !important;
+    background: transparent !important;
+  }
+
+  /* Hide interactive affordances that don't print — expand chevrons,
+     Live pulse dots (animation stops anyway, but the dot itself reads
+     as noise on paper). */
+  .feature-card__title-chevron,
+  .fwp-pulse-dot,
+  .fwp-live-pulse-dot,
+  .fwp-hero-block--live::after {
+    display: none !important;
+  }
+
+  /* Pages default to white background — drop any tinted body that would
+     burn ink. */
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────
+ * LIVE PULSE DOT
+ * Reusable 8px dot that pulses to signal "this data is updating in
+ * real-time." Lifted out of cardPrimitives.css so any chart legend,
+ * status chip, header eyebrow, or sidebar entry can apply it without
+ * pulling the MetricPill `--live` variant.
+ *
+ * Pulse is purely decorative — pair every use with a visible text
+ * label and an aria-label="Live data" on a parent so SR users get the
+ * signal without the animation.
+ * ───────────────────────────────────────────────────────────────── */
+.fwp-pulse-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--fwp-radius-pill);
+  background: currentColor;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .fwp-pulse-dot {
+    animation: fwp-pulse-dot 2s ease-in-out infinite;
+  }
+}
+
+@keyframes fwp-pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 currentColor;
+  }
+  50% {
+    opacity: 0.55;
+    box-shadow: 0 0 0 4px transparent;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────
+ * ESRI ATTRIBUTION RIBBON — visually hidden from every map view.
+ *
+ * Esri's basemap ToS requires attribution somewhere in the app, but it
+ * does not need to be on the map. Engage MT renders the full Esri /
+ * Earthstar / NOAA / NWS / etc. credits on the dedicated AttributionPage
+ * at /about/attribution (linked from the global footer + Privacy +
+ * Settings). That satisfies the ToS while reclaiming the bottom strip
+ * of every map for actual UI. We keep the node in the DOM for screen
+ * readers + ToS compliance — only the visual ribbon is removed.
+ * ───────────────────────────────────────────────────────────────── */
+.esri-ui-corner .esri-attribution,
+.esri-attribution {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+  pointer-events: none !important;
+}
+
+/* The attribution corner container can shrink to
+   zero so it doesn't reserve space at the bottom of the map. */
+.esri-ui-bottom-right,
+.esri-ui-bottom-left {
+  min-height: 0;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+ * ESRI DEFAULT ZOOM WIDGET — hidden. We ship our own pinch/scroll
+ * zoom + a future explicit zoom affordance in MapToolRail; the stock
+ * square +/- buttons in the top-left corner duplicate them and clash
+ * with the FWP rail visual style.
+ * ───────────────────────────────────────────────────────────────── */
+.esri-zoom,
+.esri-ui-corner .esri-zoom {
+  display: none !important;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+ * FORM CONTROLS — app-wide native <select> / <input> / <textarea>
+ * polish. Native browser controls read as "unfinished" against the
+ * FWP theme; this gives every dropdown and text field a consistent
+ * surface, radius, focus ring, 44px touch target, and a custom
+ * chevron so they pop and match the high-polish chrome.
+ *
+ * Specificity is a single element selector (0,0,1) so component CSS
+ * always wins. Component select rules use `background-color` (not the
+ * `background` shorthand) so the chevron `background-image` below
+ * survives their surface override. global.css is exempt from the
+ * token-strict stylelint rules, so the chevron data-URIs may carry a
+ * literal stroke colour.
+ * ───────────────────────────────────────────────────────────────── */
+select,
+input[type="text"],
+input[type="search"],
+input[type="number"],
+input[type="email"],
+input[type="tel"],
+input[type="url"],
+input[type="date"],
+input[type="time"],
+input[type="datetime-local"],
+textarea {
+  font-family: var(--fwp-font-sans);
+  font-size: var(--fwp-text-base);
+  color: var(--fwp-text-primary);
+  background-color: var(--fwp-bg-surface);
+  border: 1px solid var(--fwp-border-default);
+  border-radius: var(--fwp-radius-md);
+  padding: var(--fwp-space-2) var(--fwp-space-3);
+  min-height: var(--fwp-touch-min);
+  box-shadow: var(--fwp-shadow-1);
+  transition:
+    border-color var(--fwp-motion-quick),
+    box-shadow var(--fwp-motion-quick);
+}
+
+select:hover,
+input[type="text"]:hover,
+input[type="search"]:hover,
+input[type="number"]:hover,
+input[type="date"]:hover,
+input[type="datetime-local"]:hover,
+textarea:hover {
+  border-color: var(--fwp-border-strong);
+}
+
+select:focus-visible,
+input[type="text"]:focus-visible,
+input[type="search"]:focus-visible,
+input[type="number"]:focus-visible,
+input[type="email"]:focus-visible,
+input[type="tel"]:focus-visible,
+input[type="url"]:focus-visible,
+input[type="date"]:focus-visible,
+input[type="time"]:focus-visible,
+input[type="datetime-local"]:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--fwp-focus);
+  outline-offset: 2px;
+  border-color: var(--fwp-focus);
+}
+
+/* Native <select> — drop the OS arrow and paint our own chevron so the
+   control matches the rest of the chrome in both themes. The chevron +
+   appearance + chevron-room padding are forced with !important so an
+   incidental `background:` shorthand in a component rule (higher
+   specificity) can't wipe the chevron and leave an arrowless control. */
+select {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  padding-right: var(--fwp-space-7) !important;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2.25' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>") !important;
+  background-repeat: no-repeat !important;
+  background-position: right var(--fwp-space-3) center !important;
+}
+
+[data-color-scheme="dark"] select {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23C2C7D0' stroke-width='2.25' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>") !important;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+ * CONTROL CARD — the canonical selection / filter panel surface.
+ *
+ * One source of truth for the two-color control surface (used by
+ * HuntingDistrictsBrowser and any filter panel). Any tool or explorer
+ * filter panel opts in by adding `fwp-control-card` to its container and
+ * setting a `--module-accent` (hunt red, fish blue, …) for the chip / slider
+ * accent. Native <select> / <input> / <textarea> inside the card inherit the
+ * card surface via the FORM CONTROLS rules above — no per-input restyle.
+ * ───────────────────────────────────────────────────────────────── */
+.fwp-control-card {
+  /* Module accent defaults to the yellow CTA when a panel sets none. */
+  --module-accent: var(--fwp-cta-primary);
+
+  /* Two-color card — theme surface + inverse-ink outline + theme ink. */
+  background: var(--fwp-bg-surface);
+  border: 1px solid var(--fwp-card-outline);
+  border-radius: var(--fwp-radius-lg);
+  padding: var(--fwp-space-4);
+  color: var(--fwp-text-primary);
+}
+
+/* Opaque fallback where the browser can't frost the glass. */
+@supports not ((backdrop-filter: blur(8px)) or (-webkit-backdrop-filter: blur(8px))) {
+  .fwp-control-card {
+    background: var(--fwp-bg-surface);
+  }
+}
+
+/* Chevron legibility: the light-mode global chevron (#6B7280) is low
+   contrast on the navy fill, so paint the lighter neutral stroke for
+   control-card selects regardless of page color scheme. Higher
+   specificity than the base `select` rule, and !important to win over
+   it (both carry !important). */
+.fwp-control-card select {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23C2C7D0' stroke-width='2.25' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>") !important;
+}
+
+/* Sliders + range inputs follow the module accent on the dark surface. */
+.fwp-control-card input[type="range"] {
+  accent-color: var(--module-accent);
+}
+
+/* ── Optional sub-element helpers (label-above-control + chip) ────────
+   Surfaces that already have their own field / label / chip classes keep
+   them (they cascade off the remapped tokens). These are for new or
+   minimal markup that doesn't. */
+.fwp-control-card__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fwp-space-1);
+  min-width: 0;
+}
+
+.fwp-control-card__label {
+  font-size: var(--fwp-text-xs);
+  font-weight: var(--fwp-weight-bold);
+  letter-spacing: var(--fwp-letter-spacing-label);
+  text-transform: uppercase;
+  color: var(--fwp-text-secondary);
+}
+
+.fwp-control-card__chip {
+  appearance: none;
+  border: 1px solid var(--fwp-border-default);
+  background: var(--fwp-bg-surface);
+  color: var(--fwp-text-primary);
+  font: inherit;
+  font-size: var(--fwp-text-sm);
+  font-weight: var(--fwp-weight-medium);
+  border-radius: var(--fwp-radius-pill);
+  padding: var(--fwp-space-2) var(--fwp-space-4);
+  min-height: 40px;
+  cursor: pointer;
+  box-shadow: var(--fwp-shadow-1);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .fwp-control-card__chip {
+    transition:
+      background var(--fwp-motion-quick),
+      border-color var(--fwp-motion-quick),
+      box-shadow var(--fwp-motion-quick),
+      transform var(--fwp-motion-quick);
+  }
+}
+
+.fwp-control-card__chip:hover {
+  border-color: var(--module-accent);
+  transform: translateY(-1px);
+}
+
+/* Selected = filled module accent (the on-brand pressed state). Supports
+   both the aria-pressed pattern and the .is-active flag. */
+.fwp-control-card__chip[aria-pressed="true"],
+.fwp-control-card__chip.is-active {
+  background: var(--module-accent);
+  border-color: var(--module-accent);
+  color: var(--fwp-text-on-brand);
+  box-shadow: var(--fwp-shadow-2);
+}
+
+/* Centered narrow page wrapper for simple single-card routes (e.g. the
+   "not in database yet" regulation-notice pages). Replaces per-page inline
+   margin/padding so the token-discipline lint stays clean. */
+.fwp-notice-page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: var(--fwp-space-6) var(--fwp-space-4);
+}

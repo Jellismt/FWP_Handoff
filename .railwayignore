@@ -1,0 +1,52 @@
+# Phase 53.4 — Self-building deploy upload filter.
+#
+# The Dockerfile now builds the SPA from source inside the container
+# (multi-stage), so the upload context must INCLUDE web source + public
+# assets. (This file previously stripped them because we shipped a
+# pre-built dist.) We exclude only deps, VCS, the prebuilt dist, and
+# heavy artifacts the build doesn't need.
+
+# Never upload dependencies or VCS history.
+node_modules
+**/node_modules
+.git
+.github
+
+# Prebuilt output — the Dockerfile builds dist fresh now, so don't ship
+# (or trust) a local one.
+web/dist
+
+# Generated native mobile projects + docs — not part of the web build.
+mobile/ios
+mobile/android
+mobile/dist
+docs
+
+# Test + cache + build artifacts.
+web/test-results
+web/playwright-report
+web/.vite
+web/.cache
+test-results
+.parcel-cache
+.next
+.nuxt
+.turbo
+
+# Editor / OS / logs / envs.
+.idea
+.vscode
+**/.DS_Store
+*.log
+.env
+.env.local
+.env.*.local
+
+# Railway link metadata + local dev notes.
+.railway
+
+# Root-level debug screenshots ONLY. NB: root-anchored (`/*.png`) on
+# purpose — a bare `*.png` matches every PNG at every depth and would
+# strip web/public/icons/layers/*.png (the layer swatches) out of the
+# build context. Do NOT un-anchor this.
+/*.png

@@ -1,0 +1,23 @@
+# Keep the Docker build context lean + deterministic. The builder stage
+# runs `npm ci` from the lockfile, so host node_modules must never leak
+# in; the prebuilt dist is rebuilt by the build itself.
+node_modules
+**/node_modules
+.git
+.github
+web/dist
+mobile/ios
+mobile/android
+mobile/dist
+docs
+web/test-results
+web/playwright-report
+web/.vite
+web/.cache
+test-results
+**/.DS_Store
+*.log
+.env
+.env.local
+.env.*.local
+.railway

@@ -1,0 +1,136 @@
+/**
+ * @file ToolCluster.css
+ * @module engage-mt/map
+ * @description Styling for the grouped map-tool clusters. The trigger
+ *              reuses `.map-tool-rail__button` (see MapToolRail.css); only the
+ *              popover menu, its rows, and the trigger "armed" dot are styled
+ *              here. The popover is portaled to <body> with fixed coords from
+ *              the trigger (see ToolCluster.tsx) — the rail clips its own
+ *              overflow, so an in-flow menu would be cut off.
+ * @author Jamie Ellis / Engage MT
+ * @created 2026-07-01
+ * @updated 2026-07-01
+ * @version 1.0.0
+ *
+ * FWP Engage MT — Montana's Official Gateway to the Outdoors
+ * Licensed under the MIT License.
+ */
+
+.tool-cluster {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+/* Small "a tool inside is armed" indicator on the collapsed trigger — pairs
+   with the trigger's `--active` inversion so state reads without expanding.
+   Color is not the only cue; the pill also inverts to blue. */
+.tool-cluster__dot {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 7px;
+  height: 7px;
+  border-radius: var(--fwp-radius-pill);
+  background: var(--fwp-yellow);
+  box-shadow: 0 0 0 1.5px var(--fwp-blue);
+}
+
+.tool-cluster__popover {
+  /* position: fixed + right/bottom coords are set inline from the trigger's
+     bounding rect (portaled to <body>). */
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: var(--fwp-space-1);
+  min-width: 264px;
+  padding: var(--fwp-space-2);
+  background: var(--fwp-bg-surface);
+  border: 1px solid var(--fwp-border-default);
+  border-radius: var(--fwp-radius-md);
+  box-shadow: var(--fwp-shadow-4);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .tool-cluster__popover {
+    animation: tool-cluster-in var(--fwp-motion-soft);
+  }
+}
+
+@keyframes tool-cluster-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tool-cluster__item {
+  display: flex;
+  align-items: center;
+  gap: var(--fwp-space-3);
+  width: 100%;
+  min-height: 44px;
+  padding: var(--fwp-space-2) var(--fwp-space-3);
+  border: 1px solid transparent;
+  border-radius: var(--fwp-radius-sm);
+  background: transparent;
+  color: var(--fwp-text-primary);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background var(--fwp-motion-quick),
+    border-color var(--fwp-motion-quick);
+}
+
+.tool-cluster__item:hover {
+  background: var(--fwp-state-hover-overlay);
+}
+
+.tool-cluster__item--on {
+  background: var(--fwp-state-selected-bg);
+  border-color: var(--fwp-state-selected-border);
+}
+
+.tool-cluster__item-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: var(--fwp-accent-fish);
+}
+
+.tool-cluster__item-text {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.tool-cluster__item-label {
+  font-size: var(--fwp-text-md);
+  font-weight: var(--fwp-weight-medium);
+  color: var(--fwp-text-primary);
+}
+
+.tool-cluster__item-hint {
+  font-size: var(--fwp-text-sm);
+  color: var(--fwp-text-secondary);
+}
+
+.tool-cluster__item-check {
+  flex-shrink: 0;
+  color: var(--fwp-accent-fish);
+}
+
+/* Record row live states — the icon glows to the universal red record idiom
+   while recording, amber while paused. Color pairs with the label copy
+   ("Recording…") so it's never color-alone. */
+.tool-cluster__item--recording .tool-cluster__item-icon {
+  color: var(--fwp-danger);
+}
+
+.tool-cluster__item--paused .tool-cluster__item-icon {
+  color: var(--fwp-warning);
+}

@@ -1,0 +1,29 @@
+/**
+ * @file FetchErrorCard.css
+ * @module engage-mt/shared
+ * @description Extracted from FetchErrorCard.tsx so the
+ *              component stops shipping multi-line `style={{}}` blocks.
+ * @author Jamie Ellis / Engage MT
+ * @created 2026-06-02
+ * @updated 2026-07-03
+ * @version 1.1.0
+ *
+ * FWP Engage MT — Montana's Official Gateway to the Outdoors
+ * Licensed under the MIT License.
+ */
+
+.fetch-error__detail {
+  opacity: 0.8;
+  /* Raw upstream error strings (e.g. a REST service message) can be long,
+     space-free tokens. `anywhere` lets them break mid-token so their
+     min-content width never blows out the card / page on a phone. */
+  display: block;
+  overflow-wrap: anywhere;
+}
+
+.fetch-error__actions {
+  margin-top: var(--fwp-space-3);
+  display: flex;
+  gap: var(--fwp-space-2);
+  flex-wrap: wrap;
+}

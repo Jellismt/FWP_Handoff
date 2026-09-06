@@ -1,0 +1,124 @@
+/**
+ * @file PrivacyPage.css
+ * @module engage-mt/shared
+ * @description Single-column reading layout. Generous
+ *              line-height + a 70-character measure for skimmability.
+ * @author Jamie Ellis / Engage MT
+ * @created 2026-06-02
+ * @updated 2026-07-03
+ * @version 1.0.0
+ *
+ * FWP Engage MT — Montana's Official Gateway to the Outdoors
+ * Licensed under the MIT License.
+ */
+
+.privacy-page {
+  padding: var(--fwp-space-6) var(--fwp-space-7);
+  margin: 0 auto;
+  width: 100%;
+}
+
+@media (max-width: 767px) {
+  .privacy-page {
+    padding: var(--fwp-space-4);
+  }
+}
+
+.privacy-page__section {
+  margin-top: var(--fwp-space-7);
+}
+
+.privacy-page__section-title {
+  margin: 0 0 var(--fwp-space-3);
+  display: flex;
+  align-items: center;
+  gap: var(--fwp-space-2);
+  font-size: var(--fwp-text-xl);
+  font-weight: var(--fwp-weight-bold);
+  letter-spacing: var(--fwp-letter-spacing-heading);
+  color: var(--fwp-text-primary);
+}
+
+.privacy-page__section-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--fwp-radius-pill);
+  background: color-mix(in srgb, var(--fwp-cta-primary) 16%, transparent);
+  color: var(--fwp-cta-primary);
+  flex-shrink: 0;
+}
+
+.privacy-page__section h3 {
+  margin: var(--fwp-space-4) 0 var(--fwp-space-2);
+  font-size: var(--fwp-text-md);
+  font-weight: var(--fwp-weight-bold);
+  color: var(--fwp-text-primary);
+}
+
+.privacy-page__section p,
+.privacy-page__list li {
+  /* Mercury Text — brand editorial serif for long-form reading copy. */
+  font-family: var(--fwp-font-serif);
+  font-size: var(--fwp-text-md);
+  line-height: 1.6;
+  color: var(--fwp-text-primary);
+}
+
+.privacy-page__section p {
+  margin: 0 0 var(--fwp-space-3);
+}
+
+.privacy-page__list {
+  list-style: disc;
+  padding-left: var(--fwp-space-5);
+  margin: 0 0 var(--fwp-space-3);
+}
+
+.privacy-page__list li {
+  margin-bottom: var(--fwp-space-2);
+}
+
+.privacy-page code {
+  display: inline-block;
+  padding: 1px 6px;
+  background: var(--fwp-bg-surface-sunken);
+  border-radius: var(--fwp-radius-sm);
+  font-family: var(--fwp-font-mono, ui-monospace, SFMono-Regular, monospace);
+  font-size: 0.9em;
+  color: var(--fwp-text-primary);
+}
+
+.privacy-page__address {
+  font-style: normal;
+  margin: 0 0 var(--fwp-space-3);
+  font-size: var(--fwp-text-md);
+  line-height: 1.6;
+  color: var(--fwp-text-secondary);
+}
+
+.privacy-page__footnote {
+  margin-top: var(--fwp-space-8);
+  padding-top: var(--fwp-space-4);
+  border-top: 1px solid var(--fwp-border-subtle);
+  font-size: var(--fwp-text-sm);
+  color: var(--fwp-text-secondary);
+  line-height: 1.5;
+}
+
+.privacy-page a {
+  color: var(--fwp-cta-primary);
+  text-decoration: underline;
+}
+
+.privacy-page a:hover,
+.privacy-page a:focus-visible {
+  color: var(--fwp-cta-primary-hover);
+}
+
+.privacy-page__section p.privacy-page__tbd {
+  color: var(--fwp-danger);
+  font-weight: var(--fwp-weight-bold);
+}

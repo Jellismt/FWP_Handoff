@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "lib": ["ES2022"],
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "outDir": "dist",
+    "rootDir": "src",
+    "composite": true,
+    "types": ["node"],
+    "paths": {
+      "@engage-mt/regs-shared": ["../shared/src/index.ts"]
+    }
+  },
+  "include": ["src/**/*.ts"],
+  "references": [{ "path": "../shared" }]
+}

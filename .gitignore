@@ -1,0 +1,86 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Builds
+web/dist/
+web/.vite/
+web/.deploy-sha
+**/build/
+**/dist/
+**/tsconfig.tsbuildinfo
+**/*.tsbuildinfo
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# Capacitor / iOS — Podfile.lock IS committed for deterministic builds;
+# only Pods/, build artifacts, and Xcode-user state are ignored.
+mobile/ios/App/Pods/
+mobile/ios/App/build/
+mobile/ios/DerivedData/
+mobile/ios/App/App.xcworkspace/xcuserdata/
+mobile/ios/App/App.xcodeproj/xcuserdata/
+mobile/ios/App/App.xcodeproj/project.xcworkspace/xcuserdata/
+mobile/ios/build/
+
+# Android release signing — never commit credentials
+mobile/android/keystore.properties
+mobile/android/app/keystore.properties
+mobile/android/app/*.keystore
+mobile/android/app/*.jks
+mobile/.env.local
+
+# iOS / Play store credentials — keep checked in: Fastfile + Appfile.example
+mobile/ios/fastlane/AuthKey_*.p8
+mobile/ios/fastlane/Appfile
+mobile/ios/fastlane/Matchfile
+mobile/android/fastlane/play-key.json
+mobile/android/fastlane/Appfile
+
+# Capacitor / Android
+mobile/android/.gradle/
+mobile/android/app/build/
+mobile/android/build/
+mobile/android/local.properties
+mobile/android/.idea/
+mobile/android/captures/
+
+# Capacitor generated copies of web assets (re-synced each build)
+mobile/ios/App/App/public/
+mobile/android/app/src/main/assets/public/
+
+# Test artifacts
+coverage/
+.nyc_output/
+playwright-report/
+test-results/
+
+# Copied Calcite assets (regenerated from node_modules; never source)
+web/public/calcite-assets/
+
+# Railway build artifacts
+.railway/
+
+# Ad-hoc screenshots dropped at repo root; tracked images live under web/public/
+/*.png
+/*.jpg
+/*.jpeg
+/*.gif
+/*.webp

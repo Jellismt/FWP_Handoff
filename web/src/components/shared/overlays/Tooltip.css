@@ -1,0 +1,119 @@
+/**
+ * @file Tooltip.css
+ * @module engage-mt/shared
+ * @description Visual styling for the shared Tooltip component. Dark
+ *              tooltip body with a subtle pointer arrow per placement,
+ *              respects reduced-motion + matches brand-token type ramp.
+ * @author Jamie Ellis / Engage MT
+ * @created 2026-05-31
+ * @updated 2026-07-03
+ * @version 1.0.0
+ *
+ * FWP Engage MT — Montana's Official Gateway to the Outdoors
+ * Licensed under the MIT License.
+ */
+
+.fwp-tooltip {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+  background: var(--fwp-neutral-900);
+  color: var(--fwp-neutral-0);
+  padding: var(--fwp-space-2) var(--fwp-space-3);
+  border-radius: var(--fwp-radius-md);
+  font-size: var(--fwp-text-sm);
+  line-height: 1.35;
+  font-weight: var(--fwp-weight-medium);
+  letter-spacing: 0;
+  text-transform: none;
+  max-width: 280px;
+  box-shadow: var(--fwp-shadow-4);
+  /* Subtle border for tooltips that overlap shadow-on-dark surfaces. */
+  border: 1px solid var(--fwp-neutral-700);
+  /* Wrap is the desired behavior — short labels fit single-line, longer
+     explanations wrap to ≤ 280px. */
+  white-space: normal;
+  word-wrap: break-word;
+  /* Reveal animation. Gated behind reduced-motion preference. */
+  animation: fwp-tooltip-fade var(--fwp-motion-quick);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fwp-tooltip {
+    animation: none;
+  }
+}
+
+@keyframes fwp-tooltip-fade {
+  from {
+    opacity: 0;
+    transform: translateY(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Placement-specific pointer arrow. CSS-only triangle via ::after. */
+.fwp-tooltip::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+.fwp-tooltip--top::after {
+  top: 100%;
+  left: 50%;
+  margin-left: -6px;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid var(--fwp-neutral-900);
+}
+
+.fwp-tooltip--bottom::after {
+  bottom: 100%;
+  left: 50%;
+  margin-left: -6px;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 6px solid var(--fwp-neutral-900);
+}
+
+.fwp-tooltip--left::after {
+  left: 100%;
+  top: 50%;
+  margin-top: -6px;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 6px solid var(--fwp-neutral-900);
+}
+
+.fwp-tooltip--right::after {
+  right: 100%;
+  top: 50%;
+  margin-top: -6px;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-right: 6px solid var(--fwp-neutral-900);
+}
+
+/* Dark mode tweak: tooltip body lightens slightly so it doesn't read as
+   a void hole on the deep-navy background of dark-mode surfaces. */
+[data-color-scheme="dark"] .fwp-tooltip {
+  background: var(--fwp-neutral-700);
+  border-color: var(--fwp-neutral-500);
+}
+[data-color-scheme="dark"] .fwp-tooltip--top::after {
+  border-top-color: var(--fwp-neutral-700);
+}
+[data-color-scheme="dark"] .fwp-tooltip--bottom::after {
+  border-bottom-color: var(--fwp-neutral-700);
+}
+[data-color-scheme="dark"] .fwp-tooltip--left::after {
+  border-left-color: var(--fwp-neutral-700);
+}
+[data-color-scheme="dark"] .fwp-tooltip--right::after {
+  border-right-color: var(--fwp-neutral-700);
+}

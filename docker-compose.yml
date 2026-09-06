@@ -1,0 +1,82 @@
+# ============================================================================
+# Engage MT — local parity stack (Railway topology on any Docker host).
+#
+# Runs the exact production images: the public web SPA (root Dockerfile → nginx),
+# the FWP Regs Manager API + staff SPA (server/Dockerfile → Fastify), and a
+# TABULAR Postgres (stock postgres:16 — NO PostGIS; the regs DB stores no geometry,
+# it links to FWP's live public ESRI layers by code). This is the portability proof
+# and the AWS/FWP-handover rehearsal: one command, whole stack, no Railway.
+#
+#   cp .env.compose.example .env.compose   # (optional — sane dev defaults inline)
+#   npm run stack:up                        # docker compose up --build
+#   # web   → http://localhost:8088
+#   # api   → http://localhost:8080/api/v1/healthz   (staff SPA at /)
+#   npm run stack:down
+#
+# The API needs outbound network to fwp-gis.mt.gov only for the district-code ETL
+# (`npm run sync:districts`); the boot path (migrate→seed→serve) is fully offline.
+# See docs/deploy/web.md.
+# ============================================================================
+
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-regs}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-regs}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  regs-api:
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+    environment:
+      # Tabular Postgres — SKIP_POSTGIS=1 mirrors prod: migration 0011 (PostGIS
+      # sidecars) is skipped on a stock image; 0020 drops them harmlessly.
+      DATABASE_URL: postgres://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@db:5432/${POSTGRES_DB:-regs}
+      SKIP_POSTGIS: "1"
+      NODE_ENV: production
+      PORT: "8080"
+      SESSION_SECRET: ${SESSION_SECRET:-dev-only-session-secret-change-me-32ch}
+      PUBLIC_CORS_ORIGINS: ${PUBLIC_CORS_ORIGINS:-http://localhost:8088}
+      SEED_ADMIN_EMAIL: ${SEED_ADMIN_EMAIL:-admin@fwp.mt.gov}
+      SEED_ADMIN_PASSWORD: ${SEED_ADMIN_PASSWORD:-dev-admin-password-change-me}
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:8080/api/v1/healthz').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      # nginx reads $PORT at container start (see root Dockerfile CMD).
+      PORT: "8080"
+    ports:
+      - "8088:8080"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:8080/healthz"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    # No depends_on the API: the web image serves bundled Tier-2 data (the offline/
+    # fallback path). To exercise the local API instead, rebuild web with a
+    # VITE_FWP_API_BASE build arg + add it to the CSP connect-src — see local-stack.md.
+
+volumes:
+  pgdata:

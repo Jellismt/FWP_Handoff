@@ -1,0 +1,179 @@
+/**
+ * @file MapToolRail.css
+ * @module engage-mt/map
+ * @description Horizontal map-tool strip pinned below the map and above the bottom
+ *              tab bar. 44×44 yellow pills — primary controls plus expandable
+ *              tool-cluster triggers (see ToolCluster.css) — scroll horizontally
+ *              when the rail outgrows the viewport width; a right-edge mask fade
+ *              hints at overflow. Active state inverts to FWP Blue pill bg.
+ * @author Jamie Ellis / Engage MT
+ * @created 2026-05-29
+ * @updated 2026-07-01
+ * @version 2.0.0
+ *
+ * FWP Engage MT — Montana's Official Gateway to the Outdoors
+ * Licensed under the MIT License.
+ */
+
+.map-tool-rail {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* Center the rail when the row fits on screen, fall back
+     to a left-aligned scroll when it overflows. `safe center` is the
+     CSS alignment keyword that prevents items from being clipped off
+     the start edge when the content is wider than the container — in
+     that case the alignment falls back to `start` so every button is
+     reachable via horizontal scroll. */
+  justify-content: safe center;
+  gap: var(--fwp-space-2);
+  padding: var(--fwp-space-2) var(--fwp-space-3);
+  /* Rail is now a horizontal strip below the map. Scrolls
+     horizontally when the rail outgrows the viewport width; scrollbar
+     hidden so the row reads as a clean band of pills. A right-edge
+     gradient fade tells the user there's more to the right when content
+     overflows. overscroll-behavior contains the pan to this strip so a
+     phone swipe doesn't ripple to the page. */
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+  overscroll-behavior-x: contain;
+  -ms-overflow-style: none;
+  mask-image: linear-gradient(to right, black 0, black calc(100% - 16px), transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, black 0, black calc(100% - 16px), transparent 100%);
+}
+
+.map-tool-rail::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.map-tool-rail__button {
+  /* Pill fill swapped to theme yellow with the FWP Blue
+     icon, matching the AppHeader Sign-in / Buy-a-License accent and the
+     Yellow CTA palette adopted. Border tint is a darker
+     blend so the pill reads on the white tool strip. */
+  /* 44×44 floor (WCAG 2.5.5) — the rail scrolls horizontally so the extra
+     2px never constrains layout. */
+  width: var(--fwp-touch-min);
+  height: var(--fwp-touch-min);
+  border-radius: var(--fwp-radius-pill);
+  border: 1px solid color-mix(in srgb, var(--fwp-yellow) 70%, var(--fwp-blue) 30%);
+  background: var(--fwp-yellow);
+  color: var(--fwp-blue);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  transition:
+    box-shadow var(--fwp-motion-base),
+    transform var(--fwp-motion-base),
+    background var(--fwp-motion-quick),
+    color var(--fwp-motion-quick),
+    border-color var(--fwp-motion-quick);
+}
+
+.map-tool-rail__button:hover {
+  background: color-mix(in srgb, var(--fwp-yellow) 88%, white 12%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .map-tool-rail__button:hover {
+    transform: translateY(-1px);
+  }
+}
+
+.map-tool-rail__button:active {
+  transform: translateY(0);
+  box-shadow: var(--fwp-shadow-2);
+}
+
+/* Active state inverts to FWP Blue bg + yellow icon so it
+   reads as "selected" against the yellow inactive pills. */
+.map-tool-rail__button--active {
+  background: var(--fwp-blue);
+  color: var(--fwp-yellow);
+  border-color: var(--fwp-blue);
+}
+
+.map-tool-rail__button--active:hover {
+  background: var(--fwp-blue-mid);
+}
+
+/* When the active (filled-green) button is
+   keyboard-focused, the standard :focus-visible outline blends visually
+   against the FWP-green pill. Bumping the offset + adding a one-pixel
+   page-bg inset gives the ring a clear silhouette on both light and
+   dark surfaces. Yellow-on-green has 4.5:1 contrast for the outline,
+   the inset ring guarantees a gap so the eye finds it. */
+.map-tool-rail__button--active:focus-visible {
+  outline: 2px solid var(--fwp-focus);
+  outline-offset: 3px;
+  box-shadow:
+    0 0 0 1px var(--fwp-bg-surface),
+    var(--fwp-shadow-3);
+}
+
+/* Record-track button live states. Distinct from the standard
+   blue `--active` inversion so a recording reads as "live capture" (the
+   universal red record idiom), not merely "selected tool". The filled
+   record dot rides on a red pill while recording, amber while paused. */
+.map-tool-rail__button--recording {
+  background: var(--fwp-danger);
+  color: var(--fwp-text-on-brand);
+  border-color: var(--fwp-danger);
+}
+
+.map-tool-rail__button--recording:hover {
+  background: color-mix(in srgb, var(--fwp-danger) 88%, black 12%);
+}
+
+.map-tool-rail__button--paused {
+  background: var(--fwp-warning);
+  color: var(--fwp-text-on-brand);
+  border-color: var(--fwp-warning);
+}
+
+.map-tool-rail__button--paused:hover {
+  background: color-mix(in srgb, var(--fwp-warning) 88%, black 12%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .map-tool-rail__button--recording {
+    animation: map-tool-rail-rec-pulse 1.4s ease-in-out infinite;
+  }
+
+  @keyframes map-tool-rail-rec-pulse {
+    0%,
+    100% {
+      box-shadow: 0 0 0 0 color-mix(in srgb, var(--fwp-danger) 45%, transparent);
+    }
+    50% {
+      box-shadow: 0 0 0 6px color-mix(in srgb, var(--fwp-danger) 0%, transparent);
+    }
+  }
+}
+
+.map-tool-rail__spin {
+  animation: map-tool-rail-spin 1s linear infinite;
+}
+
+@keyframes map-tool-rail-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .map-tool-rail__spin {
+    animation: none;
+  }
+}

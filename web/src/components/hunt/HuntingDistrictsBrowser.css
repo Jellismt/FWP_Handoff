@@ -1,0 +1,151 @@
+/**
+ * @file HuntingDistrictsBrowser.css
+ * @module engage-mt/hunt
+ * @description Styles for the Hunting Districts lookup — species chips +
+ *              district-number input + ListCard grid. All values flow
+ *              from brand tokens (no hardcoded hex or font-size).
+ * @author Jamie Ellis / Engage MT
+ * @created 2026-06-06
+ * @updated 2026-07-16
+ * @version 2.0.0
+ *
+ * FWP Engage MT — Montana's Official Gateway to the Outdoors
+ * Licensed under the MIT License.
+ */
+
+.hd-browser {
+  padding: var(--fwp-space-6) var(--fwp-space-7) var(--fwp-space-8);
+  margin: 0 auto;
+  width: 100%;
+}
+
+@media (max-width: 767px) {
+  .hd-browser {
+    padding: var(--fwp-space-4) var(--fwp-space-4) var(--fwp-space-8);
+  }
+}
+
+/* Night-glass selection panel — surface owned by .fwp-control-card. */
+.hd-browser__filters {
+  --module-accent: var(--fwp-accent-hunt);
+  display: grid;
+  gap: var(--fwp-space-3);
+  padding: var(--fwp-space-4);
+  margin: 0 0 var(--fwp-space-4);
+}
+
+.hd-browser__filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fwp-space-2);
+  min-width: 0;
+}
+
+.hd-browser__filter-label {
+  font-size: var(--fwp-text-xs);
+  font-weight: var(--fwp-weight-medium);
+  letter-spacing: var(--fwp-letter-spacing-label);
+  text-transform: uppercase;
+  color: var(--fwp-text-secondary);
+}
+
+.hd-browser__chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--fwp-space-2);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.hd-browser__chip {
+  appearance: none;
+  border: 1px solid var(--fwp-border-default);
+  background: var(--fwp-bg-surface);
+  color: var(--fwp-text-primary);
+  font: inherit;
+  font-size: var(--fwp-text-sm);
+  font-weight: var(--fwp-weight-medium);
+  border-radius: var(--fwp-radius-pill);
+  padding: var(--fwp-space-2) var(--fwp-space-4);
+  cursor: pointer;
+  min-height: 40px;
+  box-shadow: var(--fwp-shadow-1);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hd-browser__chip {
+    transition:
+      background var(--fwp-motion-quick),
+      border-color var(--fwp-motion-quick),
+      box-shadow var(--fwp-motion-quick),
+      transform var(--fwp-motion-quick);
+  }
+}
+
+.hd-browser__chip:hover {
+  border-color: var(--fwp-accent-hunt);
+  background: var(--fwp-state-hover-overlay);
+  transform: translateY(-1px);
+}
+
+/* Selected = filled module accent for an unambiguous, on-brand pressed state. */
+.hd-browser__chip[aria-pressed="true"] {
+  background: var(--fwp-accent-hunt);
+  border-color: var(--fwp-accent-hunt);
+  color: var(--fwp-text-on-brand);
+  box-shadow: var(--fwp-shadow-2);
+}
+
+.hd-browser__chip[aria-pressed="true"]:hover {
+  background: var(--fwp-accent-hunt);
+  filter: brightness(1.06);
+}
+
+.hd-browser__sort {
+  appearance: none;
+  border: 1px solid var(--fwp-border-default);
+  background-color: var(--fwp-bg-surface);
+  color: var(--fwp-text-primary);
+  font: inherit;
+  font-size: var(--fwp-text-base);
+  border-radius: var(--fwp-radius-md);
+  padding: var(--fwp-space-3);
+  min-height: var(--fwp-touch-min);
+  box-shadow: var(--fwp-shadow-1);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hd-browser__sort {
+    transition:
+      border-color var(--fwp-motion-quick),
+      box-shadow var(--fwp-motion-quick);
+  }
+}
+
+.hd-browser__sort:hover {
+  border-color: var(--fwp-border-strong);
+}
+
+.hd-browser__sort:focus-visible {
+  outline: 2px solid var(--fwp-focus);
+  outline-offset: 2px;
+  border-color: var(--fwp-focus);
+}
+
+.hd-browser__sort:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.hd-browser__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--fwp-space-3);
+}
+
+@media (min-width: 768px) {
+  .hd-browser__grid {
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  }
+}

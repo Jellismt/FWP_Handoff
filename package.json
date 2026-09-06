@@ -1,0 +1,62 @@
+{
+  "name": "engage-mt",
+  "version": "1.0.0",
+  "description": "Engage MT — Montana's Official Gateway to the Outdoors. Web (React+Vite) + Mobile (Capacitor).",
+  "author": "Jamie Ellis",
+  "license": "MIT",
+  "workspaces": [
+    "shared",
+    "web",
+    "mobile",
+    "server",
+    "staff"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace web",
+    "build": "npm run build --workspace web",
+    "start": "npm run start --workspace web",
+    "lint": "npm run lint --workspace web",
+    "format": "npm run format --workspace web",
+    "test": "npm run test --workspace web",
+    "check:data-freshness": "npx tsx scripts/check-data-freshness.ts",
+    "check:doc-links": "node scripts/check-doc-links.mjs",
+    "check:capacitor-imports": "node scripts/check-capacitor-imports.mjs",
+    "check:plugin-parity": "node scripts/check-plugin-parity.mjs",
+    "check:native-config": "node scripts/check-native-config.mjs",
+    "check:security-headers": "node scripts/qc/check-security-headers.mjs",
+    "check:ios-privacy-manifest": "node scripts/qc/check-ios-privacy-manifest.mjs",
+    "check:regs-floor": "node scripts/check-regs-floor-age.mjs",
+    "check:orphans": "node scripts/qc/check-orphans.mjs",
+    "prune:mobile": "node scripts/prune-mobile-assets.mjs",
+    "verify": "bash scripts/verify-local.sh",
+    "verify:e2e": "bash scripts/verify-local.sh --e2e",
+    "mobile:ios": "bash mobile/scripts/sync-and-open-ios.sh",
+    "mobile:iphone": "bash mobile/scripts/deploy-iphone.sh",
+    "mobile:android": "bash mobile/scripts/sync-and-open-android.sh",
+    "mobile:emulator": "bash mobile/scripts/deploy-android.sh",
+    "mobile:bootstrap": "bash scripts/bootstrap-mobile.sh",
+    "mobile:doctor": "bash scripts/doctor-mobile.sh",
+    "verify:signing": "bash mobile/scripts/verify-signing.sh",
+    "apk": "bash mobile/scripts/build-apk.sh",
+    "ios:sim": "bash mobile/scripts/build-ios-sim.sh",
+    "check:gis-registry": "node scripts/qc/check-gis-registry.mjs",
+    "check:montana-scoping": "npx tsx scripts/qc/check-montana-scoping.ts",
+    "stack:up": "docker compose up --build",
+    "stack:down": "docker compose down",
+    "test:scripts": "node --test $(find scripts -name \"*.test.mjs\")",
+    "check:container-config": "node scripts/qc/check-container-config.mjs",
+    "db:backup": "npm run db:backup --workspace server --",
+    "db:restore-rehearsal": "npm run db:restore-rehearsal --workspace server --"
+  },
+  "overrides": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=20",
+    "npm": ">=10"
+  }
+}

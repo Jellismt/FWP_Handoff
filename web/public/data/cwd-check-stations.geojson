@@ -1,0 +1,139 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "title": "Montana CWD Check Stations",
+    "source": "FWP Wildlife Health (sample fixture)",
+    "note": "Derived from web/src/data/cwdZones.ts (CWD_ZONES[].checkStations). Source of truth is cwdZones.ts; the guard test web/src/data/cwdCheckStations.geojson.test.ts asserts the two stay in sync. Swap to the real FWP service when STUB-005 lands.",
+    "upstreamUrl": "https://fwp.mt.gov/cwd"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-115.5453, 48.3897] },
+      "properties": {
+        "name": "Libby — FWP Region 1 Office",
+        "season": "Oct 15 – Dec 1",
+        "zoneId": "libby",
+        "zoneName": "Libby CWD Surveillance Area",
+        "status": "mandatory",
+        "districts": "HD 100, HD 101, HD 102",
+        "region": 1,
+        "county": "Lincoln",
+        "lat": 48.3897,
+        "lon": -115.5453
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-115.0539, 48.8769] },
+      "properties": {
+        "name": "Eureka FAS",
+        "season": "Oct 22 – Nov 26",
+        "zoneId": "libby",
+        "zoneName": "Libby CWD Surveillance Area",
+        "status": "mandatory",
+        "districts": "HD 100, HD 101, HD 102",
+        "region": 1,
+        "county": "Lincoln",
+        "lat": 48.8769,
+        "lon": -115.0539
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-108.5007, 45.7833] },
+      "properties": {
+        "name": "Billings — Region 5 HQ",
+        "season": "Oct 22 – Dec 1",
+        "zoneId": "billings",
+        "zoneName": "Billings CWD Priority Area",
+        "status": "mandatory",
+        "districts": "HD 510, HD 575",
+        "region": 5,
+        "county": "Yellowstone / Carbon",
+        "lat": 45.7833,
+        "lon": -108.5007
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-109.2467, 45.1838] },
+      "properties": {
+        "name": "Red Lodge — Carbon Co",
+        "season": "Oct 25 – Nov 25",
+        "zoneId": "billings",
+        "zoneName": "Billings CWD Priority Area",
+        "status": "mandatory",
+        "districts": "HD 510, HD 575",
+        "region": 5,
+        "county": "Yellowstone / Carbon",
+        "lat": 45.1838,
+        "lon": -109.2467
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-105.8403, 46.4083] },
+      "properties": {
+        "name": "Miles City — Region 7 HQ",
+        "season": "Oct 22 – Nov 30",
+        "zoneId": "miles-city",
+        "zoneName": "Miles City CWD Priority Area",
+        "status": "mandatory",
+        "districts": "HD 700, HD 702, HD 704",
+        "region": 7,
+        "county": "Custer / Powder River",
+        "lat": 46.4083,
+        "lon": -105.8403
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-105.4097, 45.4444] },
+      "properties": {
+        "name": "Broadus FAS",
+        "season": "Oct 29 – Nov 24",
+        "zoneId": "miles-city",
+        "zoneName": "Miles City CWD Priority Area",
+        "status": "mandatory",
+        "districts": "HD 700, HD 702, HD 704",
+        "region": 7,
+        "county": "Custer / Powder River",
+        "lat": 45.4444,
+        "lon": -105.4097
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-112.1953, 45.4564] },
+      "properties": {
+        "name": "Sheridan — community sampling",
+        "season": "Oct 22 – Nov 26",
+        "zoneId": "ruby-valley",
+        "zoneName": "Ruby Valley CWD Surveillance Area",
+        "status": "encouraged",
+        "districts": "HD 322, HD 325",
+        "region": 3,
+        "county": "Madison",
+        "lat": 45.4564,
+        "lon": -112.1953
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-112.7325, 46.3958] },
+      "properties": {
+        "name": "Deer Lodge — community sampling",
+        "season": "Oct 22 – Nov 26",
+        "zoneId": "deer-lodge",
+        "zoneName": "Deer Lodge CWD Advisory Area",
+        "status": "advisory",
+        "districts": "HD 215",
+        "region": 3,
+        "county": "Powell",
+        "lat": 46.3958,
+        "lon": -112.7325
+      }
+    }
+  ]
+}

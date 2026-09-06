@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Engage MT FileProvider roots. Least-privilege: only the internal cache dir
+  is exposed, and only via per-URI grants (the <provider> is
+  android:exported="false" with grantUriPermissions="true", so no file is
+  reachable unless we hand out an explicit content:// URI).
+
+  The external-storage root was removed on 2026-07-02 (security hardening
+  pass): nothing in the app writes to or shares from external storage —
+  captured photos persist to Directory.Data (internal) via photoStorage.ts,
+  and the photo-library picker returns MediaStore URIs directly, not through
+  this provider.
+
+  cache-path MUST stay at the cache root: the @capacitor/camera plugin writes
+  its temp capture with File.createTempFile(..., context.cacheDir) /
+  File(context.cacheDir, name) at the cache root, so scoping this to a
+  subdirectory makes FileProvider.getUriForFile throw "Failed to find
+  configured root" and breaks photo capture.
+-->
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <cache-path name="my_cache_images" path="." />
+</paths>

@@ -1,0 +1,111 @@
+/**
+ * @file Sidebar.css
+ * @module engage-mt/shared
+ * @description Desktop left rail. 220px wide, night-navy chrome matching the
+ *              AppHeader (top) + map tool strip (bottom) so the three chrome
+ *              surfaces read as one continuous band in both themes. Each module
+ *              link carries a 3px accent stripe that grows + tints on hover, and
+ *              a selected-state with a subtle tint + yellow stripe. Focus-visible
+ *              ring is the yellow FWP brand focus token.
+ * @author Jamie Ellis / Engage MT
+ * @created 2026-05-29
+ * @updated 2026-07-03
+ * @version 1.1.0
+ *
+ * FWP Engage MT — Montana's Official Gateway to the Outdoors
+ * Licensed under the MIT License.
+ */
+
+.sidebar {
+  display: none;
+  width: 220px;
+  flex-shrink: 0;
+  /* Flat solid chrome (shared --fwp-chrome-bg): grey in light mode (dark text),
+     deep navy in dark mode (light text). No glass or border so the top, bottom,
+     and left chrome flow into one color. Text/state follow the theme by default;
+     dark mode re-maps them to night equivalents (block below). */
+  background: var(--fwp-chrome-bg);
+  color: var(--fwp-text-primary);
+  padding: var(--fwp-space-4) var(--fwp-space-3);
+}
+
+[data-color-scheme="dark"] .sidebar {
+  /* Light interaction overlays for the dark-blue sidebar chrome; surface, text,
+     and borders already flip via the two-color roots. */
+  --fwp-state-hover-overlay: rgba(255, 255, 255, 0.06);
+  --fwp-state-press-overlay: rgba(255, 255, 255, 0.1);
+  --fwp-state-selected-bg: rgba(255, 255, 255, 0.08);
+}
+
+@media (min-width: 1024px) {
+  .sidebar {
+    display: block;
+  }
+}
+
+.sidebar__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--fwp-space-1);
+}
+
+.sidebar__link {
+  display: flex;
+  align-items: center;
+  gap: var(--fwp-space-3);
+  padding: var(--fwp-space-3) var(--fwp-space-4);
+  min-height: var(--fwp-touch-min);
+  border-radius: var(--fwp-radius-md);
+  /* Primary (dark) ink — the grey chrome is a mid-tone, so muted secondary text
+     would fall below WCAG AA (axe). */
+  color: var(--fwp-text-primary);
+  text-decoration: none;
+  font-weight: var(--fwp-weight-medium);
+  font-size: var(--fwp-text-base);
+  position: relative;
+  border-left: 3px solid transparent;
+  transition:
+    background var(--fwp-motion-quick),
+    color var(--fwp-motion-quick),
+    border-left-color var(--fwp-motion-quick);
+}
+
+.sidebar__link:hover {
+  background: var(--fwp-state-hover-overlay);
+  color: var(--fwp-text-primary);
+}
+
+.sidebar__link:active {
+  background: var(--fwp-state-press-overlay);
+}
+
+/* Active link: theme-yellow stripe (one accent for every module). */
+.sidebar__link--active {
+  /* Yellow-tint fill + yellow stripe — the same selected treatment in both
+     themes (yellow is theme-independent, reads on grey + on blue chrome). */
+  background: color-mix(in srgb, var(--fwp-yellow) 16%, transparent);
+  color: var(--fwp-text-primary);
+  font-weight: var(--fwp-weight-bold);
+  border-left-color: var(--fwp-yellow);
+}
+
+.sidebar__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+}
+
+.sidebar__icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.sidebar__label {
+  font-size: var(--fwp-text-base);
+}

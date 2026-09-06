@@ -1,0 +1,155 @@
+/**
+ * @file RecordingStatusChip.css
+ * @module engage-mt/field
+ * @description Floating on-map tracker HUD. A
+ *              frosted-glass card that shares the map-chrome material with
+ *              the collapsed Layers pill. Red dot pulses while recording,
+ *              amber when paused. Holds live stats + Pause/Resume + Stop &
+ *              save controls so a recording runs entirely from the map.
+ * @author Jamie Ellis / Engage MT
+ * @created 2026-06-03
+ * @updated 2026-07-01
+ * @version 2.0.0
+ *
+ * FWP Engage MT — Montana's Official Gateway to the Outdoors
+ * Licensed under the MIT License.
+ */
+
+.track-hud {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fwp-space-2);
+  width: min(15rem, calc(100vw - var(--fwp-space-6)));
+  padding: var(--fwp-space-3);
+  border-radius: var(--fwp-radius-lg);
+  /* Frosted glass like the collapsed Layers pill: floating
+     map chrome shares one material. */
+  background: var(--fwp-glass-bg-strong);
+  backdrop-filter: var(--fwp-glass-blur);
+  -webkit-backdrop-filter: var(--fwp-glass-blur);
+  border: 1px solid var(--fwp-glass-border-strong);
+  box-shadow: var(--fwp-shadow-3);
+  color: var(--fwp-text-primary);
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  .track-hud {
+    background: var(--fwp-bg-surface);
+  }
+}
+
+.track-hud__head {
+  display: flex;
+  align-items: center;
+  gap: var(--fwp-space-2);
+}
+
+.track-hud__dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.track-hud--recording .track-hud__dot {
+  background: var(--fwp-red);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--fwp-red) 18%, transparent);
+}
+
+.track-hud--paused .track-hud__dot {
+  background: var(--fwp-amber);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--fwp-amber) 18%, transparent);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .track-hud--recording .track-hud__dot {
+    animation: track-hud-pulse 1.4s ease-in-out infinite;
+  }
+
+  @keyframes track-hud-pulse {
+    0%,
+    100% {
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--fwp-red) 12%, transparent);
+    }
+    50% {
+      box-shadow: 0 0 0 8px color-mix(in srgb, var(--fwp-red) 32%, transparent);
+    }
+  }
+}
+
+.track-hud__label {
+  font-weight: var(--fwp-weight-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: var(--fwp-text-xs);
+}
+
+.track-hud__head svg {
+  color: inherit;
+  flex-shrink: 0;
+}
+
+.track-hud__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--fwp-space-2);
+  margin: 0;
+}
+
+.track-hud__stats > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.track-hud__stats dt {
+  margin: 0;
+  font-size: var(--fwp-text-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--fwp-letter-spacing-label);
+  color: var(--fwp-text-secondary);
+  font-weight: var(--fwp-weight-bold);
+}
+
+.track-hud__stats dd {
+  margin: 0;
+  font-size: var(--fwp-text-md);
+  font-weight: var(--fwp-weight-bold);
+  color: var(--fwp-text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.track-hud__controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--fwp-space-2);
+}
+
+.track-hud__error {
+  margin: 0;
+  padding: var(--fwp-space-2) var(--fwp-space-3);
+  background: color-mix(in srgb, var(--fwp-warning) 16%, transparent);
+  border: 1px solid color-mix(in srgb, var(--fwp-warning) 40%, transparent);
+  border-radius: var(--fwp-radius-md);
+  font-size: var(--fwp-text-sm);
+  color: var(--fwp-text-primary);
+  line-height: 1.4;
+}
+
+.track-hud__error strong {
+  color: var(--fwp-warning);
+}
+
+.track-hud__link {
+  align-self: flex-start;
+  font-size: var(--fwp-text-xs);
+  font-weight: var(--fwp-weight-medium);
+  color: var(--fwp-text-secondary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.track-hud__link:hover {
+  color: var(--fwp-text-primary);
+}

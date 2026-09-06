@@ -1,0 +1,128 @@
+/**
+ * @file charts.css
+ * @module engage-mt/shared/charts
+ * @description Shared styles for SVG chart primitives. All colors read from
+ *              brand tokens; module accent is provided via --module-accent.
+ * @author Jamie Ellis / Engage MT
+ * @created 2026-05-29
+ * @updated 2026-07-15
+ * @version 2.0.0
+ *
+ * FWP Engage MT — Montana's Official Gateway to the Outdoors
+ * Licensed under the MIT License.
+ */
+
+/* ConditionBar */
+.fwp-condition-bar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fwp-space-1);
+  width: 100%;
+}
+
+.fwp-condition-bar__caption {
+  font-size: var(--fwp-text-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--fwp-letter-spacing-label);
+  color: var(--fwp-text-secondary);
+  font-weight: 700;
+}
+
+.fwp-condition-bar__row {
+  display: flex;
+  align-items: center;
+  gap: var(--fwp-space-2);
+}
+
+.fwp-condition-bar__track {
+  position: relative;
+  flex: 1 1 auto;
+  display: flex;
+  border-radius: var(--fwp-radius-sm);
+  overflow: hidden;
+  background: var(--fwp-bg-surface-sunken);
+}
+
+.fwp-condition-bar__segment {
+  height: 100%;
+}
+
+.fwp-condition-bar__marker {
+  position: absolute;
+  top: -3px;
+  bottom: -3px;
+  width: 2px;
+  background: var(--fwp-text-primary);
+  transform: translateX(-1px);
+}
+
+.fwp-condition-bar__marker::after {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid var(--fwp-text-primary);
+}
+
+.fwp-condition-bar__readout {
+  font-family: var(--fwp-font-mono, monospace);
+  font-weight: 700;
+  font-size: var(--fwp-text-base);
+  white-space: nowrap;
+}
+
+.fwp-condition-bar__legend {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--fwp-space-2);
+  font-size: var(--fwp-text-sm);
+  color: var(--fwp-text-secondary);
+}
+
+.fwp-condition-bar__legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.fwp-condition-bar__swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  display: inline-block;
+}
+
+/* Continuous gradient track + band-only legend. */
+.fwp-condition-bar__track--gradient {
+  border-radius: var(--fwp-radius-pill);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.18);
+}
+
+.fwp-condition-bar__legend--bands {
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: var(--fwp-text-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--fwp-letter-spacing-label);
+}
+
+.fwp-condition-bar__legend--bands li {
+  flex: 1 1 0;
+  text-align: center;
+}
+
+.fwp-condition-bar__legend--bands li:first-child {
+  text-align: left;
+}
+
+.fwp-condition-bar__legend--bands li:last-child {
+  text-align: right;
+}

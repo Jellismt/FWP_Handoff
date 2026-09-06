@@ -1,0 +1,112 @@
+/**
+ * @file PillButton.css
+ * @module engage-mt/shared
+ * @description Variant + size + disabled additions on top of the
+ *              `.fwp-pill-button` base in global.css. Existing
+ *              `--primary` + `--on-brand` modifiers continue to work;
+ *              this file only adds the new variants (`--ghost`,
+ *              `--danger`, `--sm`, `--block`).
+ * @author Jamie Ellis / Engage MT
+ * @created 2026-05-31
+ * @updated 2026-07-03
+ * @version 1.0.0
+ *
+ * FWP Engage MT — Montana's Official Gateway to the Outdoors
+ * Licensed under the MIT License.
+ */
+
+/* Label span — separates the text node from icon so flex gap works
+   cleanly without an extra wrapper around bare text. */
+.fwp-pill-button__label {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+/* Compact size — for in-card action rows where 36px feels too heavy.
+   28px min still passes the WCAG 2.5.5 24px AA floor and clears the
+   2.5.5 AAA 44px floor on touch via media query below. */
+.fwp-pill-button--sm {
+  min-height: 28px;
+  padding: var(--fwp-space-1) var(--fwp-space-3);
+  font-size: var(--fwp-text-sm);
+  gap: var(--fwp-space-1);
+}
+
+/* Touch-mode bump — pointer:coarse implies a stylus or finger; bump
+   min-height to the 44px target regardless of the `sm` modifier. */
+@media (pointer: coarse) {
+  .fwp-pill-button--sm {
+    min-height: var(--fwp-touch-target);
+  }
+}
+
+/* Ghost — transparent, hover only, no border. Used for tertiary
+   actions like "Cancel" inside a modal footer where we don't want a
+   third filled rect competing with the primary CTA. */
+.fwp-pill-button--ghost {
+  border-color: transparent;
+  background: transparent;
+}
+
+.fwp-pill-button--ghost:hover {
+  background: var(--fwp-state-hover-overlay);
+  border-color: var(--fwp-border-subtle);
+}
+
+/* Danger — destructive filled red. Used for "Delete draft", "Revoke
+   permission", etc. */
+.fwp-pill-button--danger {
+  background: var(--fwp-danger);
+  color: var(--fwp-text-on-brand);
+  border-color: transparent;
+  font-weight: var(--fwp-weight-bold);
+}
+
+.fwp-pill-button--danger:hover {
+  /* Filter darkens by ~6% — keeps the danger red on-brand while still
+     signalling hover state. */
+  filter: brightness(0.94);
+}
+
+/* Block — fills its container. Used in single-column mobile sheets
+   where the action row stacks vertically full-width. */
+.fwp-pill-button--block {
+  width: 100%;
+  display: flex;
+}
+
+/* Disabled — visually muted + interaction blocked. */
+.fwp-pill-button:disabled,
+.fwp-pill-button[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  filter: grayscale(0.3);
+}
+
+.fwp-pill-button:disabled:hover,
+.fwp-pill-button[aria-disabled="true"]:hover {
+  background: transparent;
+}
+
+/* Active / pressed — gentle scale-down for tactile feedback. */
+@media (prefers-reduced-motion: no-preference) {
+  .fwp-pill-button:active {
+    transform: scale(0.98);
+  }
+}
+
+/* Toggle-pressed state — used on chip-filter conversions where a
+   ghost-variant PillButton acts as a sticky selected/unselected
+   toggle (e.g. TrailExplorerPage filters). Reads green CTA
+   when pressed so the user gets a clear "this filter is on" cue. */
+.fwp-pill-button[aria-pressed="true"] {
+  background: var(--fwp-cta-primary);
+  color: var(--fwp-cta-primary-text);
+  border-color: transparent;
+}
+
+.fwp-pill-button[aria-pressed="true"]:hover {
+  background: var(--fwp-cta-primary-hover);
+  border-color: transparent;
+}

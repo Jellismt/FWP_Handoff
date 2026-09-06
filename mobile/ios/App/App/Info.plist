@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleDisplayName</key>
+        <string>Engage MT</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(MARKETING_VERSION)</string>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIMainStoryboardFile</key>
+	<string>Main</string>
+	<!-- Q.23.P1.2 — `arm64` only. iOS 11+ rejects armv7 binaries;
+	     App Store submission fails on the older value. -->
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>arm64</string>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<true/>
+	<!-- Q.23.P1.2 — App Store submission gates. No custom crypto in
+	     this app (we call public HTTPS endpoints only). Outdoor /
+	     travel category per the FWP product framing. -->
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.travel</string>
+	<!-- Q.22.C2 — Privacy usage descriptions. FWP-voice copy.
+	     Per docs/rules/privacy.md, every camera / photo / location
+	     call stays on-device unless the user picks Share. -->
+	<key>NSCameraUsageDescription</key>
+	<string>Take photos to attach to your waypoints and field notes. Photos stay on this device unless you tap Share.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Attach existing photos to your waypoints. Photos stay on this device unless you tap Share.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Save the photos you capture in Engage MT to your photo library if you choose.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Pin waypoints at your location and record GPS tracks while the app is open. Coordinates stay on this device unless you tap Share.</string>
+	<!-- Track recording is foreground-only by decision (see docs/rules/mobile.md): the recorder
+	     runs while the app is open and pauses on suspend, so we request only
+	     "When In Use" and intentionally omit the always-on location strings
+	     and the location background mode. Declaring an unused
+	     background-location capability is a known App Store review rejection
+	     trigger; it returns with a real foreground service in a later
+	     increment. -->
+	<!-- SHARE.0 — Custom URL scheme so `engagemt://…` deep links (incl. shared
+	     pins, `engagemt://field/receive?d=…`) open the app and fire appUrlOpen.
+	     Universal links (https://fwp.mt.gov/app/…) additionally require the
+	     Associated Domains entitlement + an apple-app-site-association file on
+	     the server — tracked separately; the custom scheme works standalone. -->
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>gov.mt.fwp.engagemt</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>engagemt</string>
+			</array>
+		</dict>
+	</array>
+	<!-- SHARE.3 — Register Engage MT as an "open in" handler for GPX + KML so a
+	     pin a friend exports from another mapping app can be
+	     opened straight into our import preview from Mail / Files / AirDrop. -->
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>GPS Exchange Format</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.topografix.gpx</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>Keyhole Markup Language</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.google.earth.kml</string>
+			</array>
+		</dict>
+	</array>
+	<!-- GPX has no system-declared UTI; import it so LSItemContentTypes above
+	     resolves. KML's UTI (com.google.earth.kml) is system-known. -->
+	<key>UTImportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeIdentifier</key>
+			<string>com.topografix.gpx</string>
+			<key>UTTypeDescription</key>
+			<string>GPS Exchange Format</string>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.xml</string>
+			</array>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>gpx</string>
+				</array>
+				<key>public.mime-type</key>
+				<array>
+					<string>application/gpx+xml</string>
+				</array>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Q.23.P1.5 — `usesCleartextTraffic="false"` locks the WebView to
+         HTTPS. Engage MT only calls HTTPS upstreams (per the CSP allowlist
+         in web/serve.json). Play Console gates on this for prod apps.
+         `allowBackup="false"` prevents Android backup from exfiltrating
+         the user's waypoints + tracks; per the privacy rule, that
+         personal field state stays on this device. -->
+    <application
+        android:allowBackup="false"
+        android:fullBackupContent="false"
+        android:usesCleartextTraffic="false"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode"
+            android:name=".MainActivity"
+            android:label="@string/title_activity_main"
+            android:theme="@style/AppTheme.NoActionBarLaunch"
+            android:launchMode="singleTask"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <!-- SHARE.0 — Custom-scheme deep links (engagemt://…), incl. shared
+                 pins engagemt://field/receive?d=… . Fires Capacitor appUrlOpen. -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="engagemt" />
+            </intent-filter>
+
+            <!-- SHARE.0 — Android App Links for universal links. autoVerify needs
+                 a /.well-known/assetlinks.json on fwp.mt.gov to open WITHOUT the
+                 chooser; until then Android shows a disambiguation dialog. -->
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="https" android:host="fwp.mt.gov" android:pathPrefix="/app" />
+            </intent-filter>
+
+            <!-- SHARE.3 — "Open in Engage MT" for GPX / KML files (exports from
+                 other mapping apps) from Files / Mail / share sheet.
+                 Matches by MIME type first, then by extension for providers that
+                 hand us a generic octet-stream / xml type. -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="content" />
+                <data android:scheme="file" />
+                <data android:mimeType="application/gpx+xml" />
+                <data android:mimeType="application/vnd.google-earth.kml+xml" />
+            </intent-filter>
+            <intent-filter android:label="Open in Engage MT">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="content" />
+                <data android:scheme="file" />
+                <data android:host="*" />
+                <data android:mimeType="application/octet-stream" />
+                <data android:mimeType="text/xml" />
+                <data android:mimeType="application/xml" />
+                <data android:pathPattern=".*\\.gpx" />
+                <data android:pathPattern=".*\\.kml" />
+            </intent-filter>
+        </activity>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths" />
+        </provider>
+    </application>
+
+    <!-- Permissions -->
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Q.22.C3 — Field tools: camera + photo library + location.
+         Coordinates and photos stay on-device unless the user picks
+         Share. -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <!-- Android 13+ scoped media access for the photo-library fallback. -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <!-- Android 12 and below — same purpose, legacy permission name. -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />
+
+    <!-- Camera is optional — the Play Store should not exclude
+         tablets without a back camera. -->
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <uses-feature android:name="android.hardware.location.gps" android:required="false" />
+
+    <!-- Track recording is foreground-only by decision; see docs/rules/mobile.md. The JS recorder
+         runs while the app is foregrounded and pauses on suspend, so we do NOT
+         declare ACCESS_BACKGROUND_LOCATION / FOREGROUND_SERVICE* here.
+         Declaring a background-location permission with no demonstrable
+         background use triggers Google Play's location-permission declaration
+         review (and likely rejection). True background recording returns with
+         a real foreground service (TrackRecorderService) in a later increment;
+         the perms + a registered <service> get added back together at that point. -->
+</manifest>

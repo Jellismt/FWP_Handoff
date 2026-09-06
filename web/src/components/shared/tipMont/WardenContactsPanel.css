@@ -1,0 +1,72 @@
+/**
+ * @file WardenContactsPanel.css
+ * @module engage-mt/shared
+ * @description Layout for the TipMont warden-contacts directory — hotline /
+ *              911 callout and the regional-office list.
+ * @author Jamie Ellis / Engage MT
+ * @created 2026-06-30
+ * @updated 2026-06-30
+ * @version 1.0.0
+ *
+ * FWP Engage MT — Montana's Official Gateway to the Outdoors
+ * Licensed under the MIT License.
+ */
+
+.warden-contacts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fwp-space-3);
+}
+
+.warden-contacts__hotline {
+  background: var(--fwp-bg-surface-sunken);
+  border-radius: var(--fwp-radius-md);
+  padding: var(--fwp-space-4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--fwp-space-2);
+  text-align: center;
+}
+
+.warden-contacts__call-hotline {
+  align-self: center;
+}
+
+.warden-contacts__heading {
+  margin: 0;
+  font-size: var(--fwp-text-lg);
+}
+
+.warden-contacts__note {
+  margin: 0;
+  font-size: var(--fwp-text-sm);
+  color: var(--fwp-text-secondary);
+}
+
+.warden-contacts__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fwp-space-3);
+}
+
+/* Region cards drop the module accent stripe + its reserved padding — flat
+   surface, no colored edge. */
+.warden-contacts__list .fwp-list-card::before {
+  content: none;
+}
+
+.warden-contacts__list .fwp-list-card {
+  padding-left: var(--fwp-space-5);
+}
+
+@media (max-width: 480px) {
+  .warden-contacts__list .fwp-list-card {
+    padding-left: var(--fwp-space-4);
+  }
+}
+
+/* Honor the 44×44 touch floor on the hotline call pill. */
+.warden-contacts__call-hotline {
+  min-height: var(--fwp-touch-min);
+}

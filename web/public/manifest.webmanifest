@@ -1,0 +1,53 @@
+{
+  "$schema_note": "PWA manifest. Read by mobile Safari for add-to-home-screen and Chrome for the installable banner. Theme color matches the FWP-blue splash from the Capacitor SplashScreen plugin so the browser top bar visually continues into the app shell.",
+  "name": "Engage MT — Montana's Official Gateway to the Outdoors",
+  "short_name": "Engage MT",
+  "description": "Montana Fish, Wildlife & Parks — hunting, fishing, recreation, land access, and live conditions, all in one place. Your location stays on your device.",
+  "lang": "en-US",
+  "dir": "ltr",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "start_url": "/",
+  "scope": "/",
+  "id": "/",
+  "theme_color": "#002855",
+  "background_color": "#F4F5F7",
+  "categories": ["travel", "navigation", "utilities", "government"],
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Map",
+      "short_name": "Map",
+      "description": "Open the full Engage MT map.",
+      "url": "/",
+      "icons": [{ "src": "/favicon.svg", "sizes": "any" }]
+    },
+    {
+      "name": "Field tools",
+      "short_name": "Field",
+      "description": "Waypoints + track recorder.",
+      "url": "/field",
+      "icons": [{ "src": "/favicon.svg", "sizes": "any" }]
+    }
+  ]
+}

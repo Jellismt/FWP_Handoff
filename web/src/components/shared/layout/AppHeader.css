@@ -1,0 +1,371 @@
+/**
+ * @file AppHeader.css
+ * @module engage-mt/shared
+ * @description Sticky FWP-branded app header. Night-glass chrome rail with yellow wordmark
+ *              and yellow action pills. Bottom-edge gold shimmer grounds it above content.
+ * @author Jamie Ellis / Engage MT
+ * @created 2026-05-29
+ * @updated 2026-07-06
+ * @version 1.7.0
+ *
+ * FWP Engage MT — Montana's Official Gateway to the Outdoors
+ * Licensed under the MIT License.
+ */
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--fwp-space-4);
+  /* iOS runs the WebView full-screen under `viewport-fit=cover` (setOverlaysWebView
+     is Android-only), so the status bar / Dynamic Island would clip the wordmark.
+     Pad the top by the safe-area inset and let the chrome paint behind the bar. */
+  padding: calc(var(--fwp-space-3) + env(safe-area-inset-top, 0)) var(--fwp-space-5)
+    var(--fwp-space-3);
+  /* Flat solid navy chrome (shared --fwp-chrome-bg) — no glass, border, or shadow
+     so the top rail, bottom tool strip, and left sidebar flow into one another as
+     a single color. */
+  background: var(--fwp-chrome-bg);
+  color: var(--fwp-text-primary);
+  min-height: 64px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 10;
+}
+
+.app-header__brand {
+  display: inline-flex;
+  /* ENGAGE arrow chip on the left, MONTANA to its right, both centered
+     vertically in the rail. */
+  flex-direction: row;
+  align-items: center;
+  gap: var(--fwp-space-2);
+  color: inherit;
+  text-decoration: none;
+  border-radius: var(--fwp-radius-sm);
+  transition: opacity var(--fwp-motion-quick);
+  flex-shrink: 0;
+}
+
+.app-header__brand:hover {
+  opacity: 0.92;
+}
+
+.app-header__brand:focus-visible {
+  outline-offset: 4px;
+}
+
+.app-header__mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--fwp-yellow);
+  color: var(--fwp-blue);
+  font-weight: var(--fwp-weight-bold);
+  letter-spacing: 0.06em;
+  /* Extra right padding clears the arrowhead point so ENGAGE never tucks
+     under the clipped edge. Vertical padding is trimmed to a hair so the
+     ENGAGE caps fill the yellow chip top-to-bottom. */
+  padding: 2px var(--fwp-space-4) 2px var(--fwp-space-3);
+  font-size: var(--fwp-text-2xl);
+  line-height: 1;
+  text-transform: uppercase;
+  /* Blocky right-pointing arrow: rectangular body, triangular point on the
+     right edge. The clip squares the left corners, so no border-radius. */
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%, 0 100%);
+}
+
+/* MONTANA wordmark sits directly under the ENGAGE chip, matching letter-height
+   in the theme yellow with the same letter-spacing so the two read as one
+   stacked wordmark, not as title + subtitle. */
+.app-header__wordmark {
+  /* MONTANA matches the ENGAGE chip's blue, sized to the chip's height and set
+     to its right. On the dark-blue chrome it would vanish, so it flips to the
+     gold there (block below). */
+  color: var(--fwp-blue);
+  font-size: var(--fwp-text-2xl);
+  font-weight: var(--fwp-weight-bold);
+  letter-spacing: 0.06em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.app-header__actions {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--fwp-space-2);
+}
+
+/* Top-row action pill base — FWP Yellow surface, FWP Blue label.
+   The most prominent right-of-logo action without competing with the
+   sign-in pill. */
+.app-header__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--fwp-space-2);
+  padding: var(--fwp-space-2) var(--fwp-space-4);
+  background: var(--fwp-yellow);
+  color: var(--fwp-blue);
+  font-family: inherit;
+  font-size: var(--fwp-text-sm);
+  font-weight: var(--fwp-weight-bold);
+  letter-spacing: 0.01em;
+  border: 1px solid color-mix(in srgb, var(--fwp-yellow) 70%, var(--fwp-blue) 30%);
+  border-radius: var(--fwp-radius-pill);
+  cursor: pointer;
+  min-height: 36px;
+  white-space: nowrap;
+  transition:
+    background var(--fwp-motion-quick),
+    transform var(--fwp-motion-quick),
+    box-shadow var(--fwp-motion-quick);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+  flex-shrink: 0;
+}
+
+.app-header__pill:hover {
+  background: color-mix(in srgb, var(--fwp-yellow) 88%, white 12%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .app-header__pill:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  }
+}
+
+.app-header__pill:focus-visible {
+  outline: 2px solid var(--fwp-blue);
+  outline-offset: 2px;
+}
+
+.app-header__pill svg {
+  flex-shrink: 0;
+}
+
+/* TipMont pill — staff feedback (2026-07): the FWP website buries TipMont, so
+   in-app it should be genuinely prominent. It wears the standard yellow-on-blue
+   button treatment (same as the Sign-in pill and the app's yellow CTAs) and —
+   unlike the other action pills — never sheds its label, so "report a
+   violation" is legible on every screen size, not a bare megaphone icon. */
+.app-header__tipmont {
+  background: var(--fwp-yellow);
+  color: var(--fwp-blue);
+  border-color: color-mix(in srgb, var(--fwp-yellow) 70%, var(--fwp-blue) 30%);
+  font-weight: var(--fwp-weight-bold);
+  box-shadow: none;
+}
+
+.app-header__tipmont:hover {
+  background: color-mix(in srgb, var(--fwp-yellow) 88%, var(--fwp-neutral-900) 12%);
+}
+
+.app-header__tipmont:focus-visible {
+  outline-color: var(--fwp-yellow);
+}
+
+/* Keep the TipMont label at every breakpoint — higher specificity than the
+   ≤1023px `.app-header__pill-label { display: none }` collapse. A lone megaphone
+   icon isn't self-evidently "report a violation"; the label is the whole point
+   of the staff-requested prominence. */
+.app-header__tipmont .app-header__pill-label {
+  display: inline;
+}
+
+/* Sign-in pill flipped from transparent-on-brand to the same
+   yellow-on-blue style as the action-pill base so the primary header
+   actions read as one cohesive yellow-action band. The colors also tie
+   to the new yellow CTA palette across the rest of the app. */
+.app-header__signin.fwp-pill-button--on-brand,
+.app-header__signin {
+  background: var(--fwp-yellow);
+  color: var(--fwp-blue);
+  border-color: color-mix(in srgb, var(--fwp-yellow) 70%, var(--fwp-blue) 30%);
+  font-weight: var(--fwp-weight-bold);
+  white-space: nowrap;
+}
+
+.app-header__signin.fwp-pill-button--on-brand:hover,
+.app-header__signin:hover {
+  background: color-mix(in srgb, var(--fwp-yellow) 88%, white 12%);
+  border-color: color-mix(in srgb, var(--fwp-yellow) 70%, var(--fwp-blue) 30%);
+}
+
+.app-header__signin svg {
+  color: var(--fwp-blue);
+}
+
+/* Icon-only signed-out variant — square pill so it reads as a generic
+   account-affordance icon, matching the pattern used by popular apps. */
+.app-header__signin--icon {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.app-header__signin--icon svg {
+  margin: 0;
+}
+
+/* Icon-only theme toggle — square pill so it reads as an icon button, not a
+   labeled pill. Sized to match the other actions' touch-target floor. */
+.app-header__theme {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.app-header__theme svg {
+  margin: 0;
+}
+
+/* Icon-only "i" info button — square pill matching the theme toggle. Opens the
+   About Engage MT modal that replaced the page footer. */
+.app-header__info {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.app-header__info svg {
+  margin: 0;
+}
+
+/* The icon-only header controls stay 36px visual to keep the action band
+   compact, but a centered ::before expands the touch/click area to the
+   44×44 WCAG 2.5.5 floor without affecting layout (per docs/rules/
+   accessibility.md — "wrap the hit area, don't shrink the touch target").
+   This is the reference implementation of the halo pattern. */
+.app-header__signin--icon,
+.app-header__theme,
+.app-header__info {
+  position: relative;
+}
+
+.app-header__signin--icon::before,
+.app-header__theme::before,
+.app-header__info::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--fwp-touch-min);
+  height: var(--fwp-touch-min);
+  transform: translate(-50%, -50%);
+}
+
+/* Signed-out header action icons — account (signed-out), theme toggle, and
+   info — wear the INVERSE-OUTLINE treatment, not the yellow pill: they sit on
+   the chrome rail in the rail's own color with an inverse-ink outline + glyph.
+   Light: blue outline/glyph on grey. Dark: grey outline/glyph on blue. The
+   logged-in avatar (below) keeps the solid-yellow style. */
+.app-header__signin.app-header__signin--icon.fwp-pill-button,
+.app-header__theme.fwp-pill-button,
+.app-header__info.fwp-pill-button {
+  background: var(--fwp-chrome-bg);
+  color: var(--fwp-ink);
+  border: 1px solid var(--fwp-ink);
+  box-shadow: none;
+}
+
+.app-header__signin.app-header__signin--icon.fwp-pill-button:hover,
+.app-header__theme.fwp-pill-button:hover,
+.app-header__info.fwp-pill-button:hover {
+  background: color-mix(in srgb, var(--fwp-ink) 12%, var(--fwp-chrome-bg));
+  border-color: var(--fwp-ink);
+}
+
+/* Glyph rides the inverse ink — overrides the on-brand `svg { color: blue }`
+   rule so the icon flips to grey in dark mode too. */
+.app-header__signin.app-header__signin--icon.fwp-pill-button svg,
+.app-header__theme.fwp-pill-button svg,
+.app-header__info.fwp-pill-button svg {
+  color: var(--fwp-ink);
+}
+
+.app-header__avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--fwp-radius-pill);
+  background: var(--fwp-yellow);
+  color: var(--fwp-blue);
+  font-weight: var(--fwp-weight-bold);
+  font-size: var(--fwp-text-xs);
+  letter-spacing: 0;
+  flex-shrink: 0;
+}
+
+/* Hide the verbose action-pill text labels through tablet portrait — the full
+   pill + "Sign in" labels need more action band than a
+   768–1023px viewport offers. Icon-only pills read fine on tablet; labels
+   return at desktop (≥1024px) where there's room. */
+@media (max-width: 1023px) {
+  .app-header__signin-label {
+    display: none;
+  }
+  .app-header__pill-label {
+    display: none;
+  }
+  .app-header__pill {
+    padding: var(--fwp-space-2) var(--fwp-space-3);
+  }
+}
+
+/* The action band (TipMont · account · theme · info) is wider than a
+   phone. Below the mobile breakpoint, let the header reflow into two
+   rows: brand + account cluster pin to row 1, and the action pills wrap
+   onto row 2. The auto margin on the account cluster eats row-1 free
+   space, forcing everything after it to wrap. */
+@media (max-width: 767px) {
+  .app-header {
+    flex-wrap: wrap;
+    row-gap: var(--fwp-space-2);
+    /* Keep the safe-area top inset — a flat padding here would re-clip the
+       wordmark under the notch on phones. */
+    padding: calc(var(--fwp-space-3) + env(safe-area-inset-top, 0)) var(--fwp-space-4)
+      var(--fwp-space-3);
+  }
+  .app-header__brand {
+    order: 0;
+  }
+  .app-header__actions {
+    order: 1;
+    margin-left: auto;
+  }
+  .app-header__pill,
+  .app-header__tipmont {
+    order: 2;
+  }
+}
+
+/* Avatar popover — the single "Log in to My FWP" seam. Anchored under the
+   avatar; a plain positioned card (no backdrop) so a stray click closes it. */
+.app-header__signin-wrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.app-header__signin-popover {
+  position: absolute;
+  top: calc(100% + var(--fwp-space-2));
+  right: 0;
+  z-index: 30;
+  padding: var(--fwp-space-3);
+  background: var(--fwp-bg-surface);
+  border: 1px solid var(--fwp-border-default);
+  border-radius: var(--fwp-radius-md);
+  box-shadow: var(--fwp-shadow-4);
+  white-space: nowrap;
+}
+
+/* Dark mode — the chrome is the brand blue, so MONTANA can't be blue-on-blue;
+   flip it to the gold accent. */
+[data-color-scheme="dark"] .app-header__wordmark {
+  color: var(--fwp-heading-accent);
+}

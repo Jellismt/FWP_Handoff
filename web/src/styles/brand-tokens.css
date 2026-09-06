@@ -1,0 +1,653 @@
+/**
+ * @file brand-tokens.css
+ * @module engage-mt/styles
+ * @description Official FWP design tokens — color, typography, spacing, elevation, motion, interaction state.
+ *              Component CSS reads SEMANTIC tokens (--fwp-bg-surface, --fwp-text-primary,
+ *              --fwp-cta-*) — never raw colors, never inline hex.
+ *
+ *              THE MODEL — two-color inverting theme. The whole app is two colors that
+ *              swap by theme: surface (--fwp-chrome-bg) = grey #B1B3B3 (light) / FWP Blue
+ *              #002855 (dark); ink (--fwp-ink) = the inverse. All text/icons/outlines read
+ *              --fwp-ink; the one accent is --fwp-yellow in both themes. The
+ *              [data-color-scheme="dark"] block flips ONLY --fwp-chrome-bg, --fwp-ink, and
+ *              --fwp-heading-accent — every other surface/text token derives from those two
+ *              in :root, so it inverts automatically. Do NOT add per-token dark overrides
+ *              for surfaces/text.
+ *
+ *              One deliberate exception that does NOT invert: the always-light "paper"
+ *              inset tokens (--fwp-paper-*) for dense reference data (tables, fact blocks).
+ *
+ *              Full guide: docs/rules/fwp-brand.md.
+ * @author Jamie Ellis / Engage MT
+ * @created 2026-05-29
+ * @updated 2026-06-30
+ * @version 2.3.0
+ *
+ * FWP Engage MT — Montana's Official Gateway to the Outdoors
+ * Licensed under the MIT License.
+ */
+
+/* ───────────────────────────────────────────────────────────────────
+ * SELF-HOSTED SERIF — Fraunces variable (SIL OFL)
+ * The brand's editorial serif is Mercury Text (Hoefler & Co., licensed
+ * — not bundled). Fraunces is a self-hosted, OFL-licensed stand-in that
+ * renders identically for every user regardless of installed fonts, so
+ * the reading serif (--fwp-font-serif) leads with the real Mercury names
+ * and falls to Fraunces before the ubiquitous Georgia. Self-hosted WOFF2
+ * keeps the privacy rule intact: zero CDN / third-party font requests.
+ * ─────────────────────────────────────────────────────────────────── */
+@font-face {
+  font-family: "Fraunces";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("/fonts/fraunces.woff2") format("woff2");
+}
+
+:root {
+  /* ─────────────────────────────────────────────────────────────────
+   * RAW COLOR TOKENS — Light mode (official FWP brand palette)
+   * Components should NOT read these directly; read semantic tokens.
+   * ───────────────────────────────────────────────────────────────── */
+
+  /* FWP Blue family — primary brand + Fish accent */
+  --fwp-blue: #002855;
+  --fwp-blue-mid: #1b3d6b;
+  --fwp-blue-light: #4a6fa5;
+
+  /* Dedicated water token for lakes / rivers / streams on the
+     map. Brighter than the FWP-Blue family so hydro reads as water at
+     a glance on satellite + terrain basemaps without being neon. */
+  --fwp-water: #0094d6;
+  --fwp-water-deep: #0073a8;
+
+  /* FWP Green family — primary CTA + Hunt accent */
+  --fwp-green-dark: #046a38;
+  --fwp-green-mid: #2d8a5f;
+  --fwp-green-light: #6bab8b;
+
+  /* Module accent raw colors */
+  --fwp-orange: #e57200;
+  --fwp-yellow: #ffc72c;
+  --fwp-brown-raw: #744f28;
+  /* Hunt accent — FWP brand red (deep + readable on white) */
+  --fwp-hunt-red: #b3252e;
+  --fwp-hunt-red-bright: #d94349;
+  /* Manage accent — neutral graphite */
+  --fwp-manage-grey: #2d3748;
+  --fwp-manage-grey-bright: #a8b2c1;
+
+  /* Cool tech grey neutral ramp */
+  --fwp-neutral-0: #ffffff;
+  --fwp-neutral-50: #f4f5f7;
+  --fwp-neutral-100: #eceef1;
+  --fwp-neutral-200: #dee1e6;
+  --fwp-neutral-300: #c2c7d0;
+  --fwp-neutral-500: #6b7280;
+  --fwp-neutral-700: #2d3748;
+  --fwp-neutral-900: #0f1419;
+
+  /* Semantic raw colors */
+  --fwp-red: #c5283d;
+  --fwp-amber: #e57200;
+
+  /* ─────────────────────────────────────────────────────────────────
+   * LEGACY ALIASES — retained so any pre-refactor reference still renders.
+   * Eventually sweep these out, but their presence prevents regressions.
+   * ───────────────────────────────────────────────────────────────── */
+  --fwp-gold: var(--fwp-yellow);
+  --fwp-sky: var(--fwp-blue-light);
+  --fwp-brown: var(--fwp-brown-raw);
+  --fwp-cream: var(--fwp-neutral-50);
+  --fwp-dark-bg: #0b1929;
+  --fwp-dark-surface: var(--fwp-blue);
+  --fwp-dark-border: rgba(244, 245, 247, 0.14);
+
+  /* ─────────────────────────────────────────────────────────────────
+   * MODULE ACCENTS (light mode)
+   *   Hunt    → FWP Red    #B3252E
+   *   Fish    → FWP Blue   #002855
+   *   Explore → FWP Brown  #744F28
+   *   Access  → FWP Green  #046A38
+   *   Manage  → Graphite   #2D3748
+   * ───────────────────────────────────────────────────────────────── */
+  --fwp-accent-hunt: var(--fwp-hunt-red);
+  --fwp-accent-fish: var(--fwp-blue);
+  --fwp-accent-explore: var(--fwp-brown-raw);
+  --fwp-accent-access: var(--fwp-green-dark);
+  --fwp-accent-manage: var(--fwp-manage-grey);
+
+  /* ─────────────────────────────────────────────────────────────────
+   * SEMANTIC TOKENS — components read these
+   * ───────────────────────────────────────────────────────────────── */
+  /* Page background = the one canonical chrome color (grey in light, brand blue
+     in dark) so content areas share the single grey / single dark blue. */
+  --fwp-bg-page: var(--fwp-chrome-bg);
+  /* All surfaces = the one theme grey (light) / brand blue (dark). */
+  --fwp-bg-surface: var(--fwp-chrome-bg);
+  --fwp-bg-surface-raised: var(--fwp-chrome-bg);
+  --fwp-bg-surface-sunken: var(--fwp-chrome-bg);
+  --fwp-surface-elevated: var(--fwp-chrome-bg);
+
+  /* Chrome rail surface — the ONE solid, opaque color shared by the top rail
+     (AppHeader), the bottom map-tool strip, and the left sidebar so all three
+     are the exact same flat color and flow into each other (no glass/fade/
+     border). Light mode = neutral grey (dark text); dark mode = the deep navy
+     (light text), overridden in [data-color-scheme="dark"]. */
+  --fwp-chrome-bg: rgb(177, 179, 179);
+
+  /* Floating-widget surface (Layers panel + Info-modal header) = the shared
+     surface color (grey light / blue dark). */
+  --fwp-surface-blue: var(--fwp-chrome-bg);
+
+  /* ── Two-color inverting theme ─────────────────────────────────────
+   * The whole app is exactly two colors that swap by theme:
+   *   surface = --fwp-chrome-bg  →  grey (light) / brand blue (dark)
+   *   ink     = --fwp-ink        →  the INVERSE: brand blue (light) / grey (dark)
+   * All text + icons read --fwp-ink; cards use the surface fill + a 1px outline
+   * in the ink color so same-on-same surfaces still separate. Yellow stays the
+   * one accent in both themes. */
+  --fwp-ink: var(--fwp-blue); /* light-mode ink = brand blue */
+  --fwp-card-outline: var(--fwp-ink);
+  /* Accent for headings/stat numerals that were gold-on-dark. Yellow text can't
+     meet AA on the light-mode grey surface, so in light it falls back to the ink
+     (blue); in dark (blue surface) it stays the gold. Yellow-FILLED elements
+     (pills, chips, toggle knobs) keep the yellow directly. */
+  --fwp-heading-accent: var(--fwp-ink);
+
+  /* Text + icons = the ink color (inverse of the surface): brand blue in light,
+     grey in dark. Secondary is the ink mixed only slightly toward the surface —
+     the grey mid-tone forces it close to the ink to stay above WCAG AA 4.5:1. */
+  --fwp-text-primary: var(--fwp-ink);
+  /* 93% ink, not 88%: at 88% this lands on the chrome background at 4.02:1,
+     under the 4.5:1 WCAG AA floor for the small bold labels that use it (the
+     layer panel's group headings). Both terms flip with the theme, so moving
+     toward ink raises contrast in light and dark alike. */
+  --fwp-text-secondary: color-mix(in srgb, var(--fwp-ink) 93%, var(--fwp-chrome-bg));
+  --fwp-text-on-brand: var(--fwp-neutral-0);
+
+  /* Meta labels — nearly the full ink so it clears WCAG AA on the grey surface
+     and on tinted TipBlock backgrounds. */
+  --fwp-text-meta-accessible: color-mix(in srgb, var(--fwp-ink) 92%, var(--fwp-chrome-bg));
+
+  --fwp-border-subtle: rgba(15, 20, 25, 0.08);
+  --fwp-border-default: rgba(15, 20, 25, 0.14);
+  --fwp-border-strong: var(--fwp-neutral-300);
+
+  /* Primary CTAs unify on FWP Yellow + FWP Blue label across
+     both light and dark mode. This matches the AppHeader action-pill pattern and the
+     desired theme-yellow accent that ties the header, the map-tool active
+     state, and the bottom-tab-bar selected state together. Success stays
+     semantically green via its own --fwp-success token below. */
+  --fwp-cta-primary: var(--fwp-yellow);
+  --fwp-cta-primary-hover: #ffd457;
+  --fwp-cta-primary-press: #e6b226;
+  --fwp-cta-primary-text: var(--fwp-blue);
+
+  --fwp-focus: var(--fwp-yellow);
+  --fwp-success: var(--fwp-green-dark);
+  --fwp-warning: var(--fwp-amber);
+  --fwp-danger: var(--fwp-red);
+  /* Darker amber + red text for AA contrast on the 12%
+     tinted intent backgrounds used by BadgeRow + cardPrimitives. The
+     normal --fwp-warning / --fwp-danger raw colors clear ~3.5:1 on
+     their own 12% tint (below AA 4.5:1); these tuned shades clear AA
+     while still reading as members of the warning/danger family. */
+  --fwp-warning-text-on-tint: #8a4500;
+  --fwp-danger-text-on-tint: #8d1c2c;
+
+  /* ─────────────────────────────────────────────────────────────────
+   * INTERACTION STATE OVERLAYS
+   * ───────────────────────────────────────────────────────────────── */
+  --fwp-state-hover-overlay: rgba(0, 40, 85, 0.04);
+  --fwp-state-press-overlay: rgba(0, 40, 85, 0.08);
+  /* Selected bg flips to a soft yellow tint to match the
+     new yellow CTA palette. */
+  --fwp-state-selected-bg: rgba(255, 199, 44, 0.14);
+  --fwp-state-selected-border: var(--fwp-cta-primary);
+
+  /* ─────────────────────────────────────────────────────────────────
+   * TYPOGRAPHY
+   * ───────────────────────────────────────────────────────────────── */
+  /* PRIMARY — Gotham Narrow (FWP brand primary typeface, licensed / not
+     bundled). Body, UI, labels, buttons — the workhorse. Fallbacks are the
+     closest widely-installed geometric sans faces (Avenir Next / Futura /
+     Century Gothic) then the system sans stack, so machines without Gotham
+     still read as a clean geometric sans. */
+  --fwp-font-sans:
+    "Gotham Narrow", "Gotham", "Montserrat", "Avenir Next Condensed", "Avenir Next", Futura,
+    "Century Gothic", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --fwp-font-mono:
+    ui-monospace, "SF Mono", "Cascadia Mono", "Roboto Mono", Consolas, "Liberation Mono", monospace;
+  /* DISPLAY — Sanchez Niu (FWP brand secondary slab serif, licensed / not
+     bundled). Hero headlines, panel/takeover titles, and dominant data
+     Numerals (the "field journal" idiom Fallbacks are the
+     closest common slab serifs (Rockwell / Roboto Slab / Bitter) then
+     Georgia. Body + UI text stays on the primary sans. */
+  --fwp-font-display:
+    "Sanchez Niu", "Sanchez", "Rockwell", "Rockwell Nova", "Roboto Slab", "Bitter", Georgia,
+    "Times New Roman", serif;
+  /* EDITORIAL — Mercury Text (FWP brand secondary reading serif, licensed /
+     not bundled). Long-form reading copy (privacy/legal, About). Falls to
+     the self-hosted Fraunces (consistent for every user) then Georgia. */
+  --fwp-font-serif:
+    "Mercury Text G1", "Mercury Text", "Mercury", "Fraunces", Georgia, "Iowan Old Style", "Charter",
+    "Times New Roman", serif;
+  --fwp-font-size-base: 16px;
+  --fwp-line-height-base: 1.5;
+  --fwp-letter-spacing-label: 0.04em;
+  --fwp-letter-spacing-heading: -0.01em;
+
+  /* 9-step type ramp */
+  --fwp-text-xs: 0.6875rem; /* 11px — eyebrow labels, freshness chips */
+  --fwp-text-sm: 0.8125rem; /* 13px — metadata, captions */
+  --fwp-text-base: 0.9375rem; /* 15px — secondary body */
+  --fwp-text-md: 1rem; /* 16px — primary body */
+  --fwp-text-lg: 1.125rem; /* 18px — card titles, section heads */
+  --fwp-text-xl: 1.375rem; /* 22px — h2 */
+  --fwp-text-2xl: 1.75rem; /* 28px — h1, takeover title */
+  --fwp-text-3xl: 2.25rem; /* 36px — hero headlines */
+  --fwp-text-4xl: 3rem; /* 48px — HeroValue numerals */
+
+  /* Weight scale */
+  --fwp-weight-regular: 400;
+  --fwp-weight-medium: 500;
+  --fwp-weight-bold: 700;
+  /* Fraunces reads heavy; 600 is the display sweet spot
+     (700 serif headlines turn muddy at hero sizes). */
+  --fwp-weight-display: 600;
+
+  /* ─────────────────────────────────────────────────────────────────
+   * SPACING (4-pt grid)
+   * ───────────────────────────────────────────────────────────────── */
+  --fwp-space-tiny: 2px;
+  --fwp-space-1: 4px;
+  --fwp-space-2: 8px;
+  --fwp-space-3: 12px;
+  --fwp-space-4: 16px;
+  --fwp-space-5: 20px;
+  --fwp-space-6: 24px;
+  --fwp-space-7: 32px;
+  --fwp-space-8: 40px;
+  --fwp-space-9: 48px;
+  --fwp-space-10: 64px;
+
+  /* ─────────────────────────────────────────────────────────────────
+   * BREAKPOINTS (canonical responsive tiers)
+   * Source of truth for docs/rules/responsive-layouts.md. CSS @media
+   * conditions cannot read var() — these tokens document the contract and
+   * are consumable in min()/max()/clamp() width math (e.g. panel widths).
+   * The @media queries themselves standardize on the SAME literal values.
+   * Canonical tier set — use ONLY these in @media:
+   *   max-width: 767px   → phone + small tablet portrait
+   *   max-width: 480px   → compact-phone second collapse step (optional)
+   *   min-width: 768px   → tablet up
+   *   min-width: 1024px  → desktop up
+   *   min-width: 1440px  → wide desktop (optional)
+   * ───────────────────────────────────────────────────────────────── */
+  --fwp-bp-phone-sm: 360px; /* iPhone SE / small Android floor */
+  --fwp-bp-compact-max: 480px;
+  --fwp-bp-mobile-max: 767px;
+  --fwp-bp-tablet-min: 768px;
+  --fwp-bp-tablet-max: 1023px;
+  --fwp-bp-desktop-min: 1024px;
+  --fwp-bp-wide-min: 1440px;
+
+  /* ─────────────────────────────────────────────────────────────────
+   * RADII
+   * Pills are the default button shape per FWP brand polish.
+   * ───────────────────────────────────────────────────────────────── */
+  --fwp-radius-sm: 4px;
+  --fwp-radius-md: 8px;
+  --fwp-radius-lg: 12px;
+  --fwp-radius-xl: 16px;
+  --fwp-radius-2xl: 24px;
+  --fwp-radius-pill: 999px;
+  --fwp-radius-button: var(--fwp-radius-pill);
+
+  /* ─────────────────────────────────────────────────────────────────
+   * GLASSMORPHISM
+   * Frosted-glass surfaces. Pair with --fwp-shadow-3 or shadow-4 for the
+   * "floating" feel. Use sparingly — hero cards, takeover modals,
+   * floating action panels.
+   * ───────────────────────────────────────────────────────────────── */
+  --fwp-glass-bg: var(--fwp-bg-surface); /* solid — no translucency */
+  --fwp-glass-bg-strong: var(--fwp-bg-surface); /* solid — no translucency */
+  --fwp-glass-border: rgba(255, 255, 255, 0.6);
+  --fwp-glass-border-strong: rgba(15, 20, 25, 0.06);
+  --fwp-glass-blur: saturate(180%) blur(20px);
+  --fwp-glass-blur-strong: saturate(180%) blur(28px);
+
+  /* Module-accent-tinted gradients for hero backgrounds — set
+     `--module-accent-rgb` at the section root (or default to brand). */
+  --fwp-hero-gradient-stop: rgba(0, 40, 85, 0);
+
+  /* Canonical module-stripe width — the ONE source for the left accent
+     stripe that marks "this card belongs to module X". Was 3px (top) on
+     tool tiles, 6px (left) on ListCards, 3px on the hint: now one value,
+     one position (left), via the .fwp-accent-stripe-left utility. */
+  --fwp-accent-stripe-width: 4px;
+
+  /* ─────────────────────────────────────────────────────────────────
+   * PAPER — warm parchment "field notes" inset
+   * For dense reference data (tables, fact blocks) that should read
+   * like a printed field guide page. Deliberately NOT flipped in dark
+   * mode — paper insets stay light ("paper islands on dark"), so
+   * content inside MUST use the fixed --fwp-paper-ink* tokens, never
+   * --fwp-text-* semantics.
+   * ───────────────────────────────────────────────────────────────── */
+  --fwp-paper: #f6f4ee;
+  --fwp-paper-sunken: #efece2;
+  --fwp-paper-line: #e3e1d8;
+  --fwp-paper-ink: #1c2430;
+  --fwp-paper-ink-muted: #5a6675;
+
+  /* ─────────────────────────────────────────────────────────────────
+   * ELEVATION — 5-step shadow ramp
+   * ───────────────────────────────────────────────────────────────── */
+  --fwp-shadow-0: none;
+  --fwp-shadow-1: 0 1px 2px rgba(15, 20, 25, 0.06), 0 1px 1px rgba(15, 20, 25, 0.04);
+  --fwp-shadow-2: 0 2px 4px rgba(15, 20, 25, 0.08), 0 2px 6px rgba(15, 20, 25, 0.04);
+  /* Steps 3–5 deepened toward long, diffuse "editorial"
+     shadows (large blur, low opacity) so floating panels read as paper
+     lifted off the map rather than hard UI chrome. */
+  --fwp-shadow-3: 0 10px 30px rgba(15, 20, 25, 0.12), 0 2px 5px rgba(15, 20, 25, 0.06);
+  --fwp-shadow-4: 0 18px 50px rgba(15, 20, 25, 0.16), 0 4px 10px rgba(15, 20, 25, 0.07);
+  --fwp-shadow-5: 0 28px 70px rgba(15, 20, 25, 0.2), 0 8px 18px rgba(15, 20, 25, 0.09);
+
+  /* ─────────────────────────────────────────────────────────────────
+   * MOTION — durations + easings (gate behind prefers-reduced-motion)
+   * ───────────────────────────────────────────────────────────────── */
+  --fwp-motion-quick: 120ms cubic-bezier(0.4, 0, 0.2, 1);
+  --fwp-motion-base: 180ms cubic-bezier(0.4, 0, 0.2, 1);
+  --fwp-motion-emphasis: 240ms cubic-bezier(0.2, 0, 0, 1);
+  /* Soft overshoot ease for panel entrances + hover lifts.
+     The standalone easing token exists for @keyframes consumers that
+     need duration and easing split apart. */
+  --fwp-ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --fwp-motion-soft: 280ms cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Touch target floor (WCAG 2.5.5) */
+  --fwp-touch-min: 44px;
+
+  /* Field-mode aware target (larger when [data-field-mode="true"]) */
+  --fwp-touch-target: var(--fwp-touch-min);
+
+  /* ─────────────────────────────────────────────────────────────────
+   * CALCITE OVERRIDES — bridge FWP semantic tokens into Calcite's CSS API
+   * ───────────────────────────────────────────────────────────────── */
+  --calcite-color-brand: var(--fwp-cta-primary);
+  --calcite-color-brand-hover: var(--fwp-cta-primary-hover);
+  --calcite-color-brand-press: var(--fwp-cta-primary-press);
+  --calcite-color-focus: var(--fwp-focus);
+  --calcite-color-background: var(--fwp-bg-page);
+  --calcite-color-foreground-1: var(--fwp-bg-surface);
+  --calcite-color-text-1: var(--fwp-text-primary);
+  --calcite-color-text-2: var(--fwp-text-secondary);
+  --calcite-font-family: var(--fwp-font-sans);
+  --calcite-border-radius: var(--fwp-radius-md);
+  --calcite-button-border-radius: var(--fwp-radius-pill);
+  --calcite-chip-border-radius: var(--fwp-radius-pill);
+
+  /* ─────────────────────────────────────────────────────────────────
+   * Semantic component colors. Every color a component needs lives here
+ * so the palette has exactly one place to edit.
+   * ───────────────────────────────────────────────────────────────── */
+
+  /* Montana mask veil — opacity controls the "60% transparent" spec
+     for the surrounding-states veil rendered around the state. Light
+     mode reads white at 40% opacity over the satellite basemap;
+     dark mode bumps to 55% over the deep-navy night basemap so the
+     mask still reads as "softly veiled, not blanket." */
+  --fwp-mask-light: rgba(177, 179, 179, 0.55);
+  --fwp-mask-dark: rgba(0, 40, 85, 0.66);
+
+  /* Land-tenure overlay palette.
+     Each tier polygon (BMA / WMA / Parks) carries its own
+     fill + outline. ~40% fill opacity so layers stack visibly without
+     muddying the satellite basemap. The corresponding hex
+     constants flow through colors.ts → polygons.ts. */
+  --fwp-overlay-bma: #c6e22d;
+  --fwp-overlay-bma-outline: #7a9112;
+  --fwp-overlay-wma: #6a8b45;
+  --fwp-overlay-wma-outline: #4a6330;
+  --fwp-overlay-park: #338033;
+  --fwp-overlay-park-outline: #1a5c1a;
+  --fwp-overlay-tier-opacity: 0.4;
+
+  /* Blue-forward sequential ramp. White → light blue →
+     mid blue → FWP blue → navy. Used by any sequential band needing a
+     "more is bluer" reading, and
+     mini-map intensity overlays. Five stops in light mode; dark mode
+     inverts at the .0 end so the ramp still reads on dark surfaces. */
+  --fwp-ramp-blue-0: var(--fwp-neutral-0);
+  --fwp-ramp-blue-1: #cfdcec;
+  --fwp-ramp-blue-2: var(--fwp-blue-light);
+  --fwp-ramp-blue-3: var(--fwp-blue-mid);
+  --fwp-ramp-blue-4: var(--fwp-blue);
+
+  /* ─────────────────────────────────────────────────────────────────
+   * DOMAIN COLOR AXIS
+   * Orthogonal to the intent axis (success/warning/danger). Where
+   * `intent` describes STATE ("is this thing OK?"), `domain` describes
+   * CATEGORY ("what KIND of thing is this metric?"). A MetricPill can
+   * be both — intent owns the left stripe, domain tints the icon +
+   * value glyph. the polish comes largely from consistent domain
+   * coding; we adopt the vocabulary, retuned for the FWP light-default
+   * brand (FWP-Blue forward, no gold-on-dark).
+   *
+   * Each domain ships a base + 20% alpha variant for soft tinted
+   * backgrounds (e.g. DomainPill icon halo, sparkline area fill).
+   * ───────────────────────────────────────────────────────────────── */
+  --fwp-domain-flow: var(--fwp-water-deep);
+  --fwp-domain-flow-a20: rgba(0, 115, 168, 0.2);
+  --fwp-domain-temp: #d35400;
+  --fwp-domain-temp-a20: rgba(211, 84, 0, 0.2);
+  --fwp-domain-fire: var(--fwp-red);
+  --fwp-domain-fire-a20: rgba(197, 40, 61, 0.2);
+  --fwp-domain-fish: var(--fwp-green-mid);
+  --fwp-domain-fish-a20: rgba(45, 138, 95, 0.2);
+  --fwp-domain-park: var(--fwp-brown-raw);
+  --fwp-domain-park-a20: rgba(116, 79, 40, 0.2);
+  --fwp-domain-snow: #2b9bd9;
+  --fwp-domain-snow-a20: rgba(43, 155, 217, 0.2);
+  --fwp-domain-wind: var(--fwp-blue-light);
+  --fwp-domain-wind-a20: rgba(74, 111, 165, 0.2);
+  --fwp-domain-elev: #7a4fbf;
+  --fwp-domain-elev-a20: rgba(122, 79, 191, 0.2);
+  --fwp-domain-drought: #b85c00;
+  --fwp-domain-drought-a20: rgba(184, 92, 0, 0.2);
+  --fwp-domain-mercury: #6d28a8;
+  --fwp-domain-mercury-a20: rgba(109, 40, 168, 0.2);
+  --fwp-domain-wildlife: var(--fwp-hunt-red);
+  --fwp-domain-wildlife-a20: rgba(179, 37, 46, 0.2);
+
+  /* ─────────────────────────────────────────────────────────────────
+   * HERO TREATMENT TOKENS
+   * Surfaces and accents that wrap the single dominant headline metric
+   * on every Tier-2 card. The pattern: subtle gradient background +
+   * 3px top-edge accent stripe + soft glow on the numeral. Translates
+   * the glass-morphism aesthetic into the FWP cool-tech-grey light
+   * theme without the dark-gold weight.
+   * ───────────────────────────────────────────────────────────────── */
+  /* Flat hero surface — was a gradient wash; popups are single
+     colours now. Declared here (not in the card CSS) so it resolves against
+     the :root theme surface, the same scope as --fwp-hero-ink below. */
+  --fwp-hero-surface: var(--fwp-bg-surface);
+  --fwp-hero-stripe: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--module-accent, var(--fwp-cta-primary)) 18%,
+    var(--module-accent, var(--fwp-cta-primary)) 82%,
+    transparent 100%
+  );
+  --fwp-hero-glow: 0 0 18px rgba(0, 40, 85, 0.16);
+  --fwp-hero-border: 1px solid var(--fwp-border-subtle);
+  /* Ink for the hero numeral. Declared HERE, next to --fwp-hero-surface, on
+     purpose: a custom property's var()s resolve in the scope that DECLARES
+     it, so --fwp-hero-surface is baked from the :root (theme) surface and
+     then inherits as a literal colour. `.feature-card` re-scopes
+     --fwp-text-primary to night ink for the dark popup chrome, but that
+     never reaches the already-resolved --fwp-hero-surface — so a hero numeral
+     painted with --fwp-text-primary came out near-white on the light hero
+     card. Resolving the ink here keeps the pair in the same scope: black on
+     the light hero, light on the dark-theme hero. */
+  --fwp-hero-ink: var(--fwp-text-primary);
+}
+
+/* ─────────────────────────────────────────────────────────────────
+ * GLOBAL BUTTON SHAPE — Calcite + native <button> default to pill.
+ * Override on the element if a square shape is required (rare).
+ * ───────────────────────────────────────────────────────────────── */
+calcite-button {
+  --calcite-button-border-radius: var(--fwp-radius-pill);
+  border-radius: var(--fwp-radius-pill);
+}
+
+calcite-button::part(button),
+calcite-button::part(content) {
+  border-radius: var(--fwp-radius-pill);
+}
+
+calcite-chip {
+  --calcite-chip-border-radius: var(--fwp-radius-pill);
+}
+
+/* ─────────────────────────────────────────────────────────────────
+ * DARK MODE OVERRIDES
+ * Deep navy bg + FWP Blue card surfaces + brightened module accents
+ * ───────────────────────────────────────────────────────────────── */
+[data-color-scheme="dark"] {
+  /* Two-color inversion — the ONLY tokens that flip by theme are the surface
+     (--fwp-chrome-bg) and the ink (--fwp-ink). Every other surface / text /
+     outline token derives from these two (see the :root definitions), so no
+     other surface or text overrides are needed in this block. */
+  --fwp-chrome-bg: var(--fwp-blue); /* surfaces + page + chrome = brand blue */
+  --fwp-ink: rgb(177, 179, 179); /* text + icons + card outline = grey */
+  --fwp-heading-accent: var(--fwp-yellow); /* gold headings read fine on blue */
+
+  /* Brightened water tokens for dark-mode readability on
+     dark imagery basemaps. */
+  --fwp-water: #2ba7e0;
+  --fwp-water-deep: #1a8bc1;
+
+  /* Dark-mode 15-stop bathy ramp. Lifted ~10%
+     vs light so the shallow end stays readable against dark navy
+     basemap; deepest stop stays at FWP-navy spine. */
+  --fwp-bathy-1: #a7d2ea;
+  --fwp-bathy-2: #97c8e5;
+  --fwp-bathy-3: #86bee0;
+  --fwp-bathy-4: #74b3da;
+  --fwp-bathy-5: #4ea3d2;
+  --fwp-bathy-6: var(--fwp-water);
+  --fwp-bathy-7: #1e9bd1;
+  --fwp-bathy-8: #1a92c5;
+  --fwp-bathy-9: #1789b9;
+  --fwp-bathy-10: var(--fwp-water-deep);
+  --fwp-bathy-11: #1c6da3;
+  --fwp-bathy-12: #1d5e8f;
+  --fwp-bathy-13: #244e83;
+  --fwp-bathy-14: #163e72;
+  --fwp-bathy-15: #082f63;
+
+  /* Text — inherits the ink-based :root definitions (grey in dark), no override
+     needed. --fwp-text-on-brand stays white for labels on the yellow accent. */
+  --fwp-text-on-brand: var(--fwp-neutral-0);
+
+  /* Borders */
+  --fwp-border: rgba(244, 245, 247, 0.08);
+  --fwp-border-subtle: rgba(244, 245, 247, 0.08);
+  --fwp-border-default: rgba(244, 245, 247, 0.14);
+  --fwp-border-strong: rgba(244, 245, 247, 0.28);
+
+  /* CTA — FWP gold replaces green in dark mode per brand polish.
+     Anywhere a prominent green accent would appear on dark navy, swap
+     to FWP yellow/gold for warmth + better contrast. */
+  --fwp-cta-primary: var(--fwp-yellow);
+  --fwp-cta-primary-hover: #ffd457;
+  --fwp-cta-primary-press: #e6b226;
+  --fwp-cta-primary-text: var(--fwp-neutral-900);
+
+  /* Module accents (dark) — brightened ~10% for AA on navy. Hunt becomes
+     a brighter red; Access (light-mode green) flips to FWP yellow gold
+     per the "no prominent green" dark-mode rule; Manage becomes a soft
+     graphite-on-navy. */
+  --fwp-accent-hunt: var(--fwp-hunt-red-bright);
+  --fwp-accent-fish: var(--fwp-blue-light);
+  --fwp-accent-explore: #a07a4d;
+  --fwp-accent-access: var(--fwp-yellow);
+  --fwp-accent-manage: var(--fwp-manage-grey-bright);
+
+  /* Success stays semantically green even in dark mode — but the SHADE
+     leans warmer (less prominent) so it doesn't visually compete with
+     the gold CTA. Danger / warning unchanged. */
+  --fwp-success: #6bab8b;
+
+  /* Interaction state — light overlays on dark. Selected state uses a
+     gold tint to match the dark-mode green→gold CTA swap. */
+  --fwp-state-hover-overlay: rgba(244, 245, 247, 0.06);
+  --fwp-state-press-overlay: rgba(244, 245, 247, 0.1);
+  --fwp-state-selected-bg: rgba(255, 199, 44, 0.18);
+  --fwp-state-selected-border: var(--fwp-yellow);
+
+  /* Glassmorphism — dark navy tinted */
+  --fwp-glass-bg: var(--fwp-blue); /* solid — no translucency */
+  --fwp-glass-bg-strong: var(--fwp-blue); /* solid — no translucency */
+  --fwp-glass-border: rgba(244, 245, 247, 0.1);
+  --fwp-glass-border-strong: rgba(244, 245, 247, 0.16);
+  --fwp-hero-gradient-stop: rgba(74, 111, 165, 0);
+
+  /* Shadows — drop opacity ~40% so they don't darken navy too heavily */
+  --fwp-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.28), 0 1px 1px rgba(0, 0, 0, 0.18);
+  --fwp-shadow-2: 0 2px 4px rgba(0, 0, 0, 0.32), 0 2px 6px rgba(0, 0, 0, 0.18);
+  --fwp-shadow-3: 0 10px 30px rgba(0, 0, 0, 0.42), 0 2px 5px rgba(0, 0, 0, 0.24);
+  --fwp-shadow-4: 0 18px 50px rgba(0, 0, 0, 0.5), 0 4px 10px rgba(0, 0, 0, 0.28);
+  --fwp-shadow-5: 0 28px 70px rgba(0, 0, 0, 0.58), 0 8px 18px rgba(0, 0, 0, 0.32);
+
+  /* Calcite dark mode remap — CTA tokens already point at the gold,
+     so Calcite buttons follow automatically. */
+  --calcite-color-brand: var(--fwp-cta-primary);
+  --calcite-color-brand-hover: var(--fwp-cta-primary-hover);
+  --calcite-color-brand-press: var(--fwp-cta-primary-press);
+  --calcite-color-focus: var(--fwp-focus);
+  --calcite-color-background: var(--fwp-bg-page);
+  --calcite-color-foreground-1: var(--fwp-bg-surface);
+
+  /* Dark-mode domain tokens brightened ~12% for AA contrast
+     on FWP-Blue + navy surfaces. Drought and mercury push warmer +
+     lighter so they read against the dark backdrop without going neon. */
+  --fwp-domain-flow: #4eb8e8;
+  --fwp-domain-flow-a20: rgba(78, 184, 232, 0.24);
+  --fwp-domain-temp: #ff7a3d;
+  --fwp-domain-temp-a20: rgba(255, 122, 61, 0.24);
+  --fwp-domain-fire: #ff5a5f;
+  --fwp-domain-fire-a20: rgba(255, 90, 95, 0.24);
+  --fwp-domain-fish: #6bc99a;
+  --fwp-domain-fish-a20: rgba(107, 201, 154, 0.24);
+  --fwp-domain-park: #c9a36e;
+  --fwp-domain-park-a20: rgba(201, 163, 110, 0.24);
+  --fwp-domain-snow: #6fd0f5;
+  --fwp-domain-snow-a20: rgba(111, 208, 245, 0.24);
+  --fwp-domain-wind: #8fb8e6;
+  --fwp-domain-wind-a20: rgba(143, 184, 230, 0.24);
+  --fwp-domain-elev: #b794e8;
+  --fwp-domain-elev-a20: rgba(183, 148, 232, 0.24);
+  --fwp-domain-drought: #f0a44a;
+  --fwp-domain-drought-a20: rgba(240, 164, 74, 0.24);
+  --fwp-domain-mercury: #b187d6;
+  --fwp-domain-mercury-a20: rgba(177, 135, 214, 0.24);
+  --fwp-domain-wildlife: var(--fwp-hunt-red-bright);
+  --fwp-domain-wildlife-a20: rgba(217, 67, 73, 0.24);
+
+  /* Hero treatment in dark mode. Brighter glow on a warmer
+     blue so the headline metric pops on the navy surface. */
+  --fwp-hero-glow: 0 0 22px rgba(74, 111, 165, 0.32);
+}
+
+/* ─────────────────────────────────────────────────────────────────
+ * FIELD MODE — larger touch targets when user toggles field mode on
+ * ───────────────────────────────────────────────────────────────── */
+[data-field-mode="true"] {
+  --fwp-touch-target: 56px;
+}

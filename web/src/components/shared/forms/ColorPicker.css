@@ -1,0 +1,74 @@
+/**
+ * @file ColorPicker.css
+ * @module engage-mt/shared
+ * @description Styles for the brand-token color swatch grid.
+ *              Every color flows through `--swatch-color` (set by the
+ *              component as a per-element custom property) so light/dark
+ *              theme flip is automatic.
+ * @author Jamie Ellis / Engage MT
+ * @created 2026-06-09
+ * @updated 2026-07-03
+ * @version 1.0.0
+ *
+ * FWP Engage MT — Montana's Official Gateway to the Outdoors
+ * Licensed under the MIT License.
+ */
+
+.fwp-color-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--fwp-space-2);
+}
+
+.fwp-color-picker__swatch {
+  --swatch-color: var(--fwp-neutral-300);
+  align-items: center;
+  appearance: none;
+  background: var(--swatch-color);
+  border: 2px solid var(--fwp-bg-surface);
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px var(--fwp-border-default);
+  color: var(--fwp-text-on-brand);
+  cursor: pointer;
+  display: inline-flex;
+  height: 36px;
+  justify-content: center;
+  margin: var(--fwp-space-1);
+  padding: 0;
+  position: relative;
+  width: 36px;
+}
+
+/* 44 × 44 touch target via an invisible halo. Visual swatch stays 36×36. */
+.fwp-color-picker__swatch::before {
+  content: "";
+  inset: -4px;
+  position: absolute;
+}
+
+.fwp-color-picker__swatch--default {
+  background: var(--fwp-bg-surface);
+  color: var(--fwp-text-secondary);
+}
+
+.fwp-color-picker__swatch--on {
+  box-shadow:
+    0 0 0 1px var(--fwp-border-default),
+    0 0 0 3px var(--swatch-color);
+}
+
+.fwp-color-picker__swatch:focus-visible {
+  outline: 2px solid var(--fwp-focus);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .fwp-color-picker__swatch {
+    transition: box-shadow var(--fwp-motion-quick);
+  }
+}
+
+.fwp-color-picker__default-glyph {
+  font-size: var(--fwp-text-lg);
+  line-height: 1;
+}

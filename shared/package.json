@@ -1,0 +1,29 @@
+{
+  "name": "@engage-mt/regs-shared",
+  "version": "1.0.0",
+  "description": "Shared zod schemas + TS types for the FWP Regs Manager (server + staff + web contract).",
+  "author": "Jamie Ellis",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "typecheck": "tsc -b",
+    "typecheck:contract": "tsc --noEmit -p tsconfig.contract.json",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0",
+    "vitest": "^4.1.7"
+  }
+}

@@ -1,0 +1,198 @@
+/**
+ * @file InfoModal.css
+ * @module engage-mt/shared
+ * @description Centered "About Engage MT" modal styles (replaces the footer).
+ *              Compact card; Resources/Contact two-column grid stacks on mobile.
+ *              Tokens-only.
+ * @author Jamie Ellis / Engage MT
+ * @created 2026-06-29
+ * @updated 2026-07-03
+ * @version 1.1.0
+ *
+ * FWP Engage MT — Montana's Official Gateway to the Outdoors
+ * Licensed under the MIT License.
+ */
+
+.info-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--fwp-space-4);
+}
+
+.info-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, var(--fwp-neutral-900) 70%, transparent);
+  backdrop-filter: blur(2px);
+}
+
+/* Compact centered card at every width — height fits the content, capped by
+   max-height so a long body scrolls inside (.info-modal__body) rather than the
+   panel growing to fill the viewport. */
+.info-modal__panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  max-height: calc(100dvh - var(--fwp-space-8));
+  background: var(--fwp-bg-surface);
+  color: var(--fwp-text-primary);
+  box-shadow: var(--fwp-shadow-5);
+  border-radius: var(--fwp-radius-xl);
+  overflow: hidden;
+}
+
+.info-modal__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--fwp-space-3);
+  padding: var(--fwp-space-4) var(--fwp-space-5);
+  /* Theme surface — grey in light, brand dark blue in dark (the one grey / one
+     dark blue). */
+  background: var(--fwp-surface-blue);
+  color: var(--fwp-text-primary);
+  flex-shrink: 0;
+}
+
+.info-modal__title-block {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--fwp-space-3);
+}
+
+.info-modal__title-block svg {
+  color: var(--fwp-text-primary);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.info-modal__title {
+  margin: 0;
+  font-size: var(--fwp-text-xl);
+  font-weight: var(--fwp-weight-bold);
+  letter-spacing: var(--fwp-letter-spacing-heading);
+  line-height: 1.2;
+  color: var(--fwp-text-primary);
+}
+
+.info-modal__subtitle {
+  margin: var(--fwp-space-1) 0 0;
+  font-size: var(--fwp-text-sm);
+  color: var(--fwp-text-secondary);
+}
+
+/* Close button appearance is the shared .fwp-icon-close utility (global.css). */
+
+.info-modal__body {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: var(--fwp-space-5);
+  -webkit-overflow-scrolling: touch;
+}
+
+.info-modal__lede {
+  margin: 0 0 var(--fwp-space-3);
+  /* Mercury Text — brand editorial serif for the About lede. */
+  font-family: var(--fwp-font-serif);
+  font-size: var(--fwp-text-sm);
+  line-height: 1.55;
+  /* meta-accessible clears WCAG AA 4.5:1 at small sizes where text-secondary
+     lands just below threshold — matches the old footer's deliberate choice. */
+  color: var(--fwp-text-meta-accessible);
+  max-width: 42ch;
+}
+
+.info-modal__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--fwp-space-2);
+  margin: 0 0 var(--fwp-space-5);
+}
+
+.info-modal__chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: var(--fwp-radius-pill);
+  background: var(--fwp-bg-surface-sunken);
+  border: 1px solid var(--fwp-border-subtle);
+  font-size: var(--fwp-text-xs);
+  font-weight: var(--fwp-weight-bold);
+  letter-spacing: 0.02em;
+  color: var(--fwp-text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.info-modal__chip--muted {
+  color: var(--fwp-text-secondary);
+  font-weight: var(--fwp-weight-medium);
+}
+
+.info-modal__cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--fwp-space-5);
+  padding-top: var(--fwp-space-4);
+  border-top: 1px solid var(--fwp-border-subtle);
+}
+
+@media (max-width: 480px) {
+  .info-modal__cols {
+    grid-template-columns: 1fr;
+    gap: var(--fwp-space-4);
+  }
+}
+
+.info-modal__col-title {
+  margin: 0 0 var(--fwp-space-3);
+  font-size: var(--fwp-text-sm);
+  font-weight: var(--fwp-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--fwp-letter-spacing-label);
+  color: var(--fwp-text-primary);
+}
+
+.info-modal__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--fwp-space-2);
+}
+
+.info-modal__link {
+  font-size: var(--fwp-text-sm);
+  color: var(--fwp-text-primary);
+  text-decoration: none;
+  border-radius: var(--fwp-radius-sm);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .info-modal__link {
+    transition: color var(--fwp-motion-quick);
+  }
+}
+
+.info-modal__link:hover,
+.info-modal__link:focus-visible {
+  color: var(--fwp-cta-primary);
+  text-decoration: underline;
+}
+
+.info-modal__legal {
+  margin: var(--fwp-space-5) 0 0;
+  padding-top: var(--fwp-space-4);
+  border-top: 1px solid var(--fwp-border-subtle);
+  font-size: var(--fwp-text-xs);
+  /* meta-accessible holds AA contrast at 11px; see lede note above. */
+  color: var(--fwp-text-meta-accessible);
+  line-height: 1.5;
+}

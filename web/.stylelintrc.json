@@ -1,0 +1,50 @@
+{
+  "plugins": ["stylelint-declaration-strict-value"],
+  "rules": {
+    "scale-unlimited/declaration-strict-value": [
+      ["font-size"],
+      {
+        "ignoreValues": [
+          "inherit",
+          "initial",
+          "unset",
+          "0",
+          "/^var\\(/",
+          "/em$/"
+        ],
+        "message": "Use a --fwp-text-* token instead of a raw font-size value (rule lives in docs/rules/fwp-brand.md). `em` values are allowed (relative scaling)."
+      }
+    ],
+    "color-no-hex": [
+      true,
+      {
+        "message": "Use a --fwp-* token instead of a raw hex color (rule lives in docs/rules/fwp-brand.md)."
+      }
+    ],
+    "media-feature-name-value-allowed-list": [
+      {
+        "min-width": ["/^(480|768|1024|1440)px$/"],
+        "max-width": ["/^(480|767|1023)px$/"]
+      },
+      {
+        "message": "Use a canonical breakpoint tier (max-width 767/480/1023, min-width 768/1024/1440). Tokens + rationale in brand-tokens.css → BREAKPOINTS and docs/rules/responsive-layouts.md."
+      }
+    ],
+    "declaration-property-value-disallowed-list": [
+      {
+        "color": ["/^white$/", "/^black$/", "/^#fff$/i", "/^#ffffff$/i", "/^#000$/i", "/^#000000$/i"],
+        "/^.+$/": ["/var\\([^)]+,\\s*#[0-9a-f]{3,8}\\)/i"]
+      },
+      {
+        "message": "Use var(--fwp-text-on-brand) or a scoped [color-scheme=\"dark\"] override instead of color: white|black, AND never inline a hex fallback inside var(--fwp-*, #hex) — brand-tokens.css is the single source of truth (rules in docs/rules/{accessibility,design-polish,fwp-brand}.md)."
+      }
+    ]
+  },
+  "ignoreFiles": [
+    "dist/**/*",
+    "node_modules/**/*",
+    "src/styles/brand-tokens.css",
+    "src/styles/calcite-theme.css",
+    "src/styles/global.css"
+  ]
+}

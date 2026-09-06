@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Engage MT network security config (defense-in-depth, added 2026-07-02).
+
+  Cleartext (HTTP) traffic is disabled app-wide — the app only calls HTTPS
+  upstreams (the CSP connect-src allowlist: USGS / NOAA / NRCS / USFS / BLM /
+  DNRC / FWP + Esri), matching android:usesCleartextTraffic="false" in the
+  manifest. This file makes the intent explicit for a Play reviewer and is the
+  single place to add a scoped, audited exception later if one is ever needed.
+
+  Trust anchors are the system CA store only (no user-added CAs), so a device
+  with a rogue user-installed CA cannot silently MITM the app's HTTPS calls.
+-->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="false">
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+</network-security-config>
