@@ -1,0 +1,67 @@
+# Fastlane — Android lanes for Engage MT.
+# Run from `mobile/android/`:
+#   fastlane android internal   → Play Internal Track
+#   fastlane android beta       → Play Closed Beta
+#   fastlane android production → drafted production release
+#
+# Auth: Google Play service account JSON at
+# `mobile/android/fastlane/play-key.json` (gitignored).
+
+default_platform(:android)
+
+platform :android do
+  before_all do
+    setup_ci if ENV['CI']
+  end
+
+  desc "Push a new build to Play Internal Track"
+  lane :internal do
+    sh("cd ../.. && npm run build --workspace web")
+    sh("cd ../.. && cd mobile && npx cap sync android")
+    gradle(
+      task: "bundle",
+      build_type: "Release",
+      project_dir: "."
+    )
+    upload_to_play_store(
+      track: "internal",
+      release_status: "draft",
+      skip_upload_metadata: true,
+      skip_upload_changelogs: false,
+      aab: "app/build/outputs/bundle/release/app-release.aab"
+    )
+  end
+
+  desc "Push to closed beta track"
+  lane :beta do
+    sh("cd ../.. && npm run build --workspace web")
+    sh("cd ../.. && cd mobile && npx cap sync android")
+    gradle(
+      task: "bundle",
+      build_type: "Release",
+      project_dir: "."
+    )
+    upload_to_play_store(
+      track: "beta",
+      release_status: "draft",
+      aab: "app/build/outputs/bundle/release/app-release.aab"
+    )
+  end
+
+  desc "Draft a production release (NOT live until promoted)"
+  lane :production do
+    sh("cd ../.. && npm run build --workspace web")
+    sh("cd ../.. && cd mobile && npx cap sync android")
+    gradle(
+      task: "bundle",
+      build_type: "Release",
+      project_dir: "."
+    )
+    upload_to_play_store(
+      track: "production",
+      release_status: "draft",
+      skip_upload_metadata: false,
+      aab: "app/build/outputs/bundle/release/app-release.aab"
+    )
+  end
+end

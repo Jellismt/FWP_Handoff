@@ -1,0 +1,235 @@
+/**
+ * @file styles.css
+ * @module engage-mt/staff
+ * @description FWP-token design system for the Regs Manager (light, staff-facing).
+ *              Mirrors the public app's brand tokens so a later Calcite restyle drops in.
+ * @author Jamie Ellis / Engage MT
+ * @created 2026-07-03
+ * @updated 2026-07-14
+ * @version 1.2.0
+ *
+ * FWP Engage MT — Montana's Official Gateway to the Outdoors
+ * Licensed under the MIT License.
+ */
+
+:root {
+  --fwp-blue: #002855;
+  --fwp-green: #046a38;
+  --fwp-red: #b3252e;
+  --fwp-yellow: #ffc72c;
+  --fwp-bg: #f4f5f7;
+  --fwp-surface: #ffffff;
+  --fwp-border: #dee1e6;
+  --fwp-text: #0f1419;
+  --fwp-text-2: #636a76;
+  --fwp-radius: 8px;
+  --fwp-space: 8px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--fwp-bg); color: var(--fwp-text); }
+
+.app-shell { display: flex; min-height: 100vh; }
+.app-nav {
+  width: 220px; background: var(--fwp-blue); color: #fff; padding: 16px;
+  display: flex; flex-direction: column; gap: 6px;
+  /* Pin the nav while long pages (Help, district detail) scroll — it must never scroll away. */
+  position: sticky; top: 0; height: 100vh; overflow-y: auto; flex-shrink: 0;
+}
+.app-nav h1 { font-size: 1rem; margin: 0 0 16px; letter-spacing: 0.02em; }
+.app-nav a { color: #cdd7e5; text-decoration: none; padding: 8px 10px; border-radius: 6px; font-size: 0.9rem; }
+.app-nav a.active, .app-nav a:hover { background: rgba(255,255,255,0.12); color: #fff; }
+.app-nav .spacer { flex: 1; }
+.app-main { flex: 1; padding: 24px 32px; max-width: 1200px; }
+
+.topbar { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+.topbar .year-select { margin-left: auto; }
+
+h2 { font-size: 1.4rem; margin: 0 0 4px; }
+.subtle { color: var(--fwp-text-2); font-size: 0.85rem; }
+
+.card { background: var(--fwp-surface); border: 1px solid var(--fwp-border); border-radius: var(--fwp-radius); padding: 16px; margin-bottom: 12px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+
+button, .btn {
+  font: inherit; border: none; border-radius: 6px; padding: 8px 14px; cursor: pointer;
+  background: var(--fwp-green); color: #fff; min-height: 40px;
+}
+button.secondary { background: var(--fwp-surface); color: var(--fwp-text); border: 1px solid var(--fwp-border); }
+button.danger { background: var(--fwp-red); }
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+input, select {
+  font: inherit; padding: 8px 10px; border: 1px solid var(--fwp-border); border-radius: 6px;
+  min-height: 40px; background: var(--fwp-surface); color: var(--fwp-text);
+}
+label { display: block; font-size: 0.85rem; color: var(--fwp-text-2); margin-bottom: 4px; }
+
+table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--fwp-border); vertical-align: top; }
+th { background: #eff1f4; position: sticky; top: 0; }
+.table-scroll { overflow-x: auto; }
+
+.chip { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 0.72rem; font-weight: 600; }
+.chip-draft { background: #fff3d6; color: #7a5b00; }
+.chip-published { background: #d8f0e2; color: #045a30; }
+.chip-error { background: #fbe0e2; color: #8a1c24; }
+.chip-warning { background: #fff3d6; color: #7a5b00; }
+.chip-species { background: #e6ecf5; color: var(--fwp-blue); }
+
+.login-wrap { display: grid; place-items: center; min-height: 100vh; }
+.login-card { width: 340px; }
+.error-text { color: var(--fwp-red); font-size: 0.85rem; }
+.accent-stripe { border-left: 4px solid var(--fwp-green); padding-left: 10px; }
+a.district-link { color: var(--fwp-blue); font-weight: 600; text-decoration: none; }
+a.district-link:hover { text-decoration: underline; }
+
+/* ── Grouped nav (Season / Regulations / Reference / Help / Admin) ─────────── */
+.nav-section {
+  color: #8ea3c0; font-size: 0.68rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.06em; margin: 14px 0 2px; padding: 0 10px;
+}
+.nav-section:first-of-type { margin-top: 4px; }
+
+/* ── Help-page prose (How it fits together + Glossary) ────────────────────── */
+.help-prose h3 { color: var(--fwp-blue); margin: 0 0 6px; font-size: 1.05rem; }
+.help-prose p { line-height: 1.55; margin: 0 0 10px; }
+.help-prose ul, .help-prose ol { line-height: 1.55; margin: 0 0 10px; padding-left: 20px; }
+.help-prose li { margin-bottom: 4px; }
+.help-diagram { display: block; max-width: 100%; height: auto; margin: 8px 0 12px; padding: 12px; background: var(--fwp-bg); border: 1px solid var(--fwp-border); border-radius: var(--fwp-radius); }
+.help-lead { font-size: 1rem; color: var(--fwp-text-2); line-height: 1.55; max-width: 60ch; margin: 4px 0 16px; }
+a.glossary-link { color: var(--fwp-blue); font-weight: 600; text-decoration: none; }
+a.glossary-link:hover { text-decoration: underline; }
+
+/* ── Workflow pipeline (Draft → Validate → Publish …) ─────────────────────── */
+.pipeline { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 8px 0; }
+.pipeline .step {
+  background: #eff4fb; border: 1px solid var(--fwp-border); border-radius: 999px;
+  padding: 6px 14px; font-size: 0.85rem; font-weight: 600; color: var(--fwp-blue);
+}
+.pipeline .arrow { color: var(--fwp-text-2); font-weight: 700; }
+
+/* ── Glossary ─────────────────────────────────────────────────────────────── */
+.glossary-group { margin-bottom: 8px; }
+.glossary-group h3 { color: var(--fwp-blue); margin: 0 0 8px; font-size: 1.05rem; }
+.glossary-term { padding: 8px 0; border-bottom: 1px solid var(--fwp-border); scroll-margin-top: 60px; }
+.glossary-term:last-child { border-bottom: none; }
+.glossary-term dt { font-weight: 700; margin-bottom: 2px; scroll-margin-top: 16px; }
+.glossary-term dd { margin: 0; color: var(--fwp-text-2); line-height: 1.5; }
+.glossary-term dd .example { display: block; margin-top: 4px; font-style: italic; }
+.glossary-term:target dt { color: var(--fwp-green); }
+.glossary-term:target { background: #fff6d9; border-radius: 6px; padding: 8px; }
+
+/* ── User guide (/help/guide) ─────────────────────────────────────────────── */
+/* Warm "paper" surface so a reproduced printed-book row reads as *the page*,
+   visually distinct from live app chrome. Deliberately solid (no dashed border —
+   dashed reads "draft"). */
+:root { --fwp-paper: #f6f4ee; --fwp-paper-line: #e3e1d8; --fwp-paper-ink: #2a2f36; }
+
+.guide-toc { background: var(--fwp-surface); border: 1px solid var(--fwp-border); border-radius: var(--fwp-radius); padding: 14px 16px; margin: 0 0 20px; }
+.guide-toc h3 { margin: 0 0 8px; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--fwp-text-2); }
+.guide-toc ol { margin: 0; padding-left: 20px; columns: 2; column-gap: 24px; }
+.guide-toc li { margin-bottom: 4px; break-inside: avoid; }
+.guide-toc a { color: var(--fwp-blue); font-weight: 600; text-decoration: none; }
+.guide-toc a:hover { text-decoration: underline; }
+
+/* Each chapter is an anchor target; offset the scroll so the sticky-nothing top
+   still leaves the heading clear of the viewport edge. */
+.guide-chapter { scroll-margin-top: 16px; }
+.guide-chapter > h3 { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.guide-chapter h4 { color: var(--fwp-blue); font-size: 0.95rem; margin: 14px 0 6px; }
+.guide-bookref { font-size: 0.72rem; font-weight: 600; color: var(--fwp-text-2); background: var(--fwp-paper); border: 1px solid var(--fwp-paper-line); border-radius: 999px; padding: 2px 9px; text-transform: none; letter-spacing: 0; }
+
+/* The signature print → app translation. Book face on the left (paper), app face
+   on the right (live surface), a mapping arrow between. Collapses to a stack on
+   narrow viewports with the arrow pointing down. */
+.guide-split { display: grid; grid-template-columns: 1fr auto 1fr; gap: 14px; align-items: stretch; margin: 4px 0 8px; }
+.guide-split-arrow { align-self: center; color: var(--fwp-text-2); font-weight: 700; font-size: 1.3rem; }
+.guide-eyebrow { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--fwp-text-2); margin: 0 0 6px; }
+.guide-face { border: 1px solid var(--fwp-border); border-radius: var(--fwp-radius); padding: 12px; min-width: 0; }
+.guide-face--book { background: var(--fwp-paper); border-color: var(--fwp-paper-line); color: var(--fwp-paper-ink); }
+.guide-face--book .guide-eyebrow { color: #7a6f56; }
+.guide-caption { font-size: 0.85rem; color: var(--fwp-text-2); line-height: 1.5; margin: 6px 0 0; }
+@media (max-width: 720px) {
+  .guide-split { grid-template-columns: 1fr; }
+  .guide-split-arrow { transform: rotate(90deg); justify-self: center; }
+}
+
+/* Reproduced printed district-table row — same column order + chip shape as the
+   real DistrictDetailScreen table, so the mock can never drift from what staff see. */
+.guide-bookrow { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+.guide-bookrow th, .guide-bookrow td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--fwp-paper-line); vertical-align: top; white-space: nowrap; }
+.guide-bookrow th { background: transparent; font-size: 0.64rem; text-transform: uppercase; letter-spacing: 0.04em; color: #7a6f56; position: static; }
+.guide-app-table th { background: #eff1f4; }
+
+/* Numbered step list. */
+.guide-steps { list-style: none; counter-reset: step; margin: 8px 0; padding: 0; }
+.guide-steps > li { counter-increment: step; position: relative; padding: 0 0 12px 40px; }
+.guide-steps > li::before { content: counter(step); position: absolute; left: 0; top: 0; width: 26px; height: 26px; border-radius: 999px; background: var(--fwp-blue); color: #fff; font-size: 0.8rem; font-weight: 700; display: grid; place-items: center; }
+.guide-steps > li:last-child { padding-bottom: 0; }
+.guide-steps .guide-step-title { font-weight: 700; display: block; margin-bottom: 2px; }
+.guide-steps .guide-step-title + * { color: var(--fwp-text-2); }
+
+/* Deep-link that opens the real live screen (beats a screenshot — never stale). */
+a.guide-open-link { display: inline-block; color: var(--fwp-green); font-weight: 600; text-decoration: none; }
+a.guide-open-link::after { content: " ↗"; }
+a.guide-open-link:hover { text-decoration: underline; }
+
+/* Lightweight aside. */
+.guide-note { border-left: 4px solid var(--fwp-border); border-radius: 4px; padding: 8px 12px; margin: 10px 0; font-size: 0.9rem; line-height: 1.5; background: var(--fwp-bg); }
+.guide-note--tip { border-left-color: var(--fwp-green); background: #f1f9f4; }
+.guide-note--warning { border-left-color: var(--fwp-yellow); background: #fff8e6; }
+.guide-note-title { display: block; margin-bottom: 2px; }
+
+/* Keyboard focus ring — the app had no :focus-visible rule; give the new guide
+   links (and every control app-wide) a visible FWP-gold ring. */
+:focus-visible { outline: 2px solid var(--fwp-yellow); outline-offset: 2px; border-radius: 3px; }
+
+/* ── Confirm panel (inline) + modal dialog ────────────────────────────────── */
+.confirm-panel { border-color: var(--fwp-blue); }
+.dialog-backdrop {
+  position: fixed; inset: 0; background: rgba(15,20,25,0.45); display: grid;
+  place-items: center; z-index: 50; padding: 16px;
+}
+.dialog {
+  background: var(--fwp-surface); border-radius: var(--fwp-radius); padding: 20px;
+  width: 480px; max-width: 100%; box-shadow: 0 12px 40px rgba(0,0,0,0.28);
+}
+.dialog h3 { margin-top: 0; }
+.dialog-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 16px; }
+
+/* ── Live-snapshot banner (what the public reads right now) ────────────────── */
+.live-banner {
+  border: 1px solid #b7e0c8; background: #eaf7ef; border-left: 4px solid var(--fwp-green);
+  border-radius: var(--fwp-radius); padding: 10px 14px; margin: 12px 0; font-size: 0.85rem;
+}
+.live-banner--none { border-color: #f0d9a8; background: #fff6e6; border-left-color: var(--fwp-yellow); }
+.live-banner--loading { border: 1px dashed var(--fwp-border); background: transparent; padding: 8px 14px; }
+.live-banner__line { display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.live-banner__note { margin-top: 4px; font-style: italic; }
+.live-banner__pending {
+  margin-top: 6px; padding-top: 6px; border-top: 1px solid #cbe6d6; color: #7a5b00; font-size: 0.82rem;
+}
+.live-banner--none strong { display: block; margin-bottom: 2px; }
+.live-dot {
+  width: 8px; height: 8px; border-radius: 999px; background: var(--fwp-green);
+  display: inline-block; align-self: center;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .live-dot { animation: live-pulse 2s ease-in-out infinite; }
+}
+@keyframes live-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+/* ── Segmented control (species filter) ───────────────────────────────────── */
+.segmented { display: inline-flex; gap: 4px; flex-wrap: wrap; }
+.segmented button { min-height: 36px; padding: 6px 14px; }
+.segmented .seg-active { background: var(--fwp-blue); color: #fff; border: 1px solid var(--fwp-blue); }
+
+/* ── Live-snapshot district accordion ─────────────────────────────────────── */
+.live-district-head {
+  width: 100%; background: transparent; color: var(--fwp-text); border: none;
+  border-radius: 0; padding: 12px 16px; min-height: 44px; cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center; gap: 12px; text-align: left;
+}
+.live-district-head:hover { background: var(--fwp-bg); }

@@ -1,0 +1,30 @@
+/**
+ * @file OfflineBanner.css
+ * @module engage-mt/shared
+ * @description Layout for the offline inline notice. Sticks below the app
+ *              header; takes the full content width; does not overlap the
+ *              map canvas. Per `docs/rules/notifications.md`.
+ * @author Jamie Ellis / Engage MT
+ * @created 2026-06-07
+ * @updated 2026-07-03
+ * @version 1.0.0
+ *
+ * FWP Engage MT — Montana's Official Gateway to the Outdoors
+ * Licensed under the MIT License.
+ */
+
+.offline-banner {
+  padding: var(--fwp-space-2) var(--fwp-space-4);
+  background: var(--fwp-bg-page);
+}
+
+.offline-banner__action {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  font-weight: 600;
+  color: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}

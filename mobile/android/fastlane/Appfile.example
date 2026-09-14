@@ -1,0 +1,4 @@
+# Copy to Appfile (gitignored).
+
+json_key_file("fastlane/play-key.json")
+package_name("gov.mt.fwp.engagemt")

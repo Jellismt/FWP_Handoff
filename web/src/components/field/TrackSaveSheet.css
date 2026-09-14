@@ -1,0 +1,64 @@
+/**
+ * @file TrackSaveSheet.css
+ * @module engage-mt/field
+ * @description Shared "Save this track" form styling. Namespaced under
+ *              `.track-save-sheet` so it renders identically inside the
+ *              Field-Tools recorder panel and the on-map tracker HUD.
+ * @author Jamie Ellis / Engage MT
+ * @created 2026-07-01
+ * @updated 2026-07-01
+ * @version 1.0.0
+ *
+ * FWP Engage MT — Montana's Official Gateway to the Outdoors
+ * Licensed under the MIT License.
+ */
+
+.track-save-sheet {
+  margin-top: var(--fwp-space-3);
+  padding: var(--fwp-space-3);
+  background: var(--fwp-bg-surface-sunken);
+  border-radius: var(--fwp-radius-md);
+  border: 1px solid var(--fwp-border-subtle);
+}
+
+.track-save-sheet__heading {
+  margin: 0 0 var(--fwp-space-3);
+  font-size: var(--fwp-text-md);
+  font-weight: var(--fwp-weight-bold);
+  color: var(--fwp-text-primary);
+}
+
+.track-save-sheet__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fwp-space-1);
+  margin-bottom: var(--fwp-space-2);
+}
+
+.track-save-sheet__field > span {
+  font-size: var(--fwp-text-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--fwp-letter-spacing-label);
+  font-weight: var(--fwp-weight-bold);
+  color: var(--fwp-text-secondary);
+}
+
+.track-save-sheet__field input,
+.track-save-sheet__field textarea {
+  padding: var(--fwp-space-2) var(--fwp-space-3);
+  border-radius: var(--fwp-radius-md);
+  border: 1px solid var(--fwp-border-default);
+  background: var(--fwp-bg-surface);
+  font-size: var(--fwp-text-md);
+  font-family: inherit;
+  color: var(--fwp-text-primary);
+  min-height: var(--fwp-touch-min);
+}
+
+.track-save-sheet__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--fwp-space-2);
+  justify-content: flex-end;
+  margin-top: var(--fwp-space-3);
+}

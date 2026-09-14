@@ -1,0 +1,591 @@
+/**
+ * @file cardPrimitives.css
+ * @module engage-mt/map/featureCards
+ * @description Visual treatment for primitives every renderer composes (MetricPill,
+ *              KeyValueRow, Paragraph, ChipRow, HeroValue, MetricCallout, TipBlock,
+ *              BadgeRow, ListCard, Details). Tied to the 9-step type ramp + solid
+ *              1px dividers (no more dashed). Intent colors read --fwp-success /
+ *              --fwp-warning / --fwp-danger. Renamed from `_shared.css` in
+ * @author Jamie Ellis / Engage MT
+ * @created 2026-05-29
+ * @updated 2026-07-06
+ * @version 1.3.4
+ *
+ * FWP Engage MT — Montana's Official Gateway to the Outdoors
+ * Licensed under the MIT License.
+ */
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: var(--fwp-space-2);
+  margin: 0 0 var(--fwp-space-3);
+}
+
+/* Stacked variant — one pill per row for long free-text values. */
+.metric-grid--stack {
+  grid-template-columns: 1fr;
+}
+
+/* HeroPair — two hero blocks side by side */
+.fwp-hero-pair {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--fwp-space-2);
+  margin: 0 0 var(--fwp-space-3);
+}
+
+.fwp-hero-pair > * {
+  margin: 0;
+}
+
+/* Flat pills: the module/intent left stripe is gone (see the
+   HeroBlock note above). Intent still reaches the value text where it
+   carries meaning, not as chrome. */
+.metric-pill {
+  background: var(--fwp-bg-surface-sunken);
+  border-radius: var(--fwp-radius-md);
+  padding: var(--fwp-space-2) var(--fwp-space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--fwp-space-1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .metric-pill--live::after {
+    animation: none;
+  }
+}
+
+.metric-pill__label {
+  font-size: var(--fwp-text-xs);
+  letter-spacing: var(--fwp-letter-spacing-label);
+  text-transform: uppercase;
+  /* Meta-accessible clears WCAG AA 4.5:1 on neutral-100 sunken;
+     fwp-text-secondary would land at ~4.1:1. */
+  color: var(--fwp-text-meta-accessible);
+  font-weight: var(--fwp-weight-bold);
+  margin: 0;
+}
+
+.metric-pill__value {
+  font-size: var(--fwp-text-md);
+  font-weight: var(--fwp-weight-bold);
+  color: var(--fwp-text-primary);
+  margin: 0;
+  line-height: 1.25;
+}
+
+.kv-row {
+  display: grid;
+  grid-template-columns: minmax(110px, 35%) 1fr;
+  gap: var(--fwp-space-2);
+  padding: var(--fwp-space-2) 0;
+  border-bottom: 1px solid var(--fwp-border-subtle);
+  font-size: var(--fwp-text-base);
+}
+
+.kv-row:last-child {
+  border-bottom: none;
+}
+
+/* Stacked variant — label row, then the value starting on its own line,
+   left-aligned (long free text like waypoint notes). */
+.kv-row--stack {
+  grid-template-columns: 1fr;
+  gap: var(--fwp-space-1);
+}
+
+.kv-row__label {
+  color: var(--fwp-text-secondary);
+  font-weight: var(--fwp-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: var(--fwp-letter-spacing-label);
+  font-size: var(--fwp-text-xs);
+}
+
+.kv-row__value {
+  color: var(--fwp-text-primary);
+  word-break: break-word;
+}
+
+.feature-paragraph {
+  margin: 0 0 var(--fwp-space-2);
+  font-size: var(--fwp-text-base);
+  /* Meta-accessible token holds AA contrast on TipBlock tinted
+     backgrounds (amber/blue/red) where text-secondary falls below 4.5:1. */
+  color: var(--fwp-text-meta-accessible);
+  line-height: 1.5;
+}
+
+.feature-paragraph--top-gap {
+  margin-top: var(--fwp-space-2);
+}
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--fwp-space-1);
+  margin: 0 0 var(--fwp-space-2);
+}
+
+.chip-row__chip {
+  background: var(--fwp-bg-surface-sunken);
+  border: 1px solid var(--fwp-border-subtle);
+  border-radius: var(--fwp-radius-pill);
+  padding: var(--fwp-space-1) var(--fwp-space-3);
+  font-size: var(--fwp-text-xs);
+  font-weight: var(--fwp-weight-medium);
+  color: var(--fwp-text-primary);
+}
+
+/* ---------- popup primitives ---------- */
+
+.fwp-hero-value {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fwp-space-1);
+}
+
+.fwp-hero-value__caption {
+  margin: 0;
+  font-size: var(--fwp-text-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--fwp-letter-spacing-label);
+  color: var(--fwp-text-secondary);
+  font-weight: var(--fwp-weight-bold);
+}
+
+.fwp-hero-value__row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--fwp-space-2);
+}
+
+/* Dominant numerals wear the display serif with tabular
+   figures: the "field journal" idiom. Only the hero number is serif;
+   units, deltas, and pill values stay sans for dense-read utility. */
+.fwp-hero-value__number {
+  font-family: var(--fwp-font-display);
+  font-size: var(--fwp-text-3xl);
+  line-height: 1;
+  font-weight: var(--fwp-weight-display);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: var(--fwp-letter-spacing-heading);
+  color: var(--fwp-text-primary);
+}
+
+.fwp-hero-value__unit {
+  font-size: var(--fwp-text-md);
+  color: var(--fwp-text-secondary);
+  font-weight: var(--fwp-weight-bold);
+}
+
+.fwp-hero-value__delta {
+  margin: 0;
+  font-size: var(--fwp-text-base);
+  font-weight: var(--fwp-weight-medium);
+}
+
+.fwp-hero-value__delta--up {
+  color: var(--fwp-success);
+}
+.fwp-hero-value__delta--down {
+  color: var(--fwp-danger);
+}
+.fwp-hero-value__delta--flat {
+  color: var(--fwp-text-secondary);
+}
+
+.fwp-metric-callout {
+  border: 1px solid var(--fwp-border-subtle);
+  border-radius: var(--fwp-radius-md);
+  padding: var(--fwp-space-4);
+  background: var(--fwp-bg-surface-sunken);
+  display: flex;
+  flex-direction: column;
+  gap: var(--fwp-space-1);
+}
+
+.fwp-metric-callout__title {
+  margin: 0;
+  font-size: var(--fwp-text-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--fwp-letter-spacing-label);
+  color: var(--fwp-text-secondary);
+  font-weight: var(--fwp-weight-bold);
+}
+
+.fwp-metric-callout__value {
+  margin: 0;
+  font-size: var(--fwp-text-xl);
+  font-weight: var(--fwp-weight-bold);
+  color: var(--fwp-text-primary);
+  letter-spacing: var(--fwp-letter-spacing-heading);
+}
+
+.fwp-metric-callout__sub {
+  margin: 0;
+  font-size: var(--fwp-text-base);
+  color: var(--fwp-text-secondary);
+}
+
+.fwp-tip-block {
+  border-radius: var(--fwp-radius-md);
+  padding: var(--fwp-space-4);
+  background: var(--fwp-bg-surface-sunken);
+}
+
+.fwp-tip-block__heading {
+  margin: 0 0 var(--fwp-space-1);
+  font-size: var(--fwp-text-base);
+  font-weight: var(--fwp-weight-bold);
+  color: var(--fwp-text-primary);
+}
+
+.fwp-tip-block__body {
+  font-size: var(--fwp-text-base);
+  color: var(--fwp-text-primary);
+  line-height: 1.5;
+}
+
+/* Normalize paragraph stacking inside a TipBlock so callers don't ship
+   inline margin styles. Tokens flow from the global spacing scale. */
+.fwp-tip-block__body > p {
+  margin: 0 0 var(--fwp-space-2);
+}
+
+.fwp-tip-block__body > p:last-child {
+  margin-bottom: 0;
+}
+
+.fwp-tip-block__link {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font: inherit;
+  font-weight: var(--fwp-weight-bold);
+  color: var(--fwp-cta-primary);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color var(--fwp-motion-quick);
+}
+
+.fwp-tip-block__link:hover {
+  color: var(--fwp-cta-primary-hover);
+}
+
+.fwp-badge-row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fwp-space-1);
+}
+
+.fwp-badge-row__label {
+  font-size: var(--fwp-text-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--fwp-letter-spacing-label);
+  /* Meta-accessible clears AA on tinted/sunken backgrounds. */
+  color: var(--fwp-text-meta-accessible);
+  font-weight: var(--fwp-weight-bold);
+}
+
+.fwp-badge-row__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--fwp-space-1);
+}
+
+.fwp-badge-row__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--module-accent, var(--fwp-bg-surface-sunken));
+  color: var(--fwp-text-on-brand);
+  padding: var(--fwp-space-1) var(--fwp-space-3);
+  border-radius: var(--fwp-radius-pill);
+  font-size: var(--fwp-text-xs);
+  font-weight: var(--fwp-weight-bold);
+  letter-spacing: 0.02em;
+}
+
+/* Intent variants for status-flag badges (Native, SOGC, ESA, …).
+   `default` keeps the existing module-accent background; success/warning/
+   danger swap to a tinted surface + matching foreground for affinity with
+   MetricPill intent colors. */
+
+/* The `.fwp-badge-row__badge` base rule sets color to
+   --fwp-text-on-brand (white), which assumes --module-accent provides
+   a dark background. In contexts that don't set a module accent
+   (the standalone severity legend, the Resolved-as chip row), the
+   background falls through to the sunken neutral surface and the
+   white text vanishes. Pin the default badge's foreground to
+   meta-accessible so it holds AA contrast against the sunken fallback,
+   and let modules that DO set their accent override via the
+   .fwp-badge-row__badge--accent variant if/when needed. */
+.fwp-badge-row__badge--default {
+  color: var(--fwp-text-meta-accessible);
+}
+
+.fwp-badge-row__badge--success {
+  background: rgba(4, 106, 56, 0.12);
+  color: var(--fwp-green-dark);
+}
+
+/* Theme yellow — the app's standard accent chip (wildfire incident type). */
+.fwp-badge-row__badge--accent {
+  background: var(--fwp-yellow);
+  color: var(--fwp-blue);
+  font-weight: var(--fwp-weight-bold);
+}
+
+.fwp-badge-row__badge--warning {
+  background: rgba(229, 114, 0, 0.12);
+  /* Fwp-amber on its own 12% tint lands at ~3.5:1; the
+     -text-on-tint token shifts to a deeper amber that clears AA. */
+  color: var(--fwp-warning-text-on-tint);
+}
+
+.fwp-badge-row__badge--danger {
+  background: rgba(197, 40, 61, 0.12);
+  /* Deeper red token for AA on the 12% danger tint. */
+  color: var(--fwp-danger-text-on-tint);
+}
+
+/* `muted` reads as "not offered / not applicable"
+   WITHOUT the alarm of danger-red. Absence of an amenity is not an error, and
+   staff reported the red/green X/check pair was both semantically off and
+   hard to see in light mode. Neutral sunken surface + AA-accessible meta text;
+   the accompanying X icon + label carry the meaning (color is never the only
+   signal). Holds in dark mode via the flipping tokens. */
+.fwp-badge-row__badge--muted {
+  background: var(--fwp-bg-surface-sunken);
+  color: var(--fwp-text-meta-accessible);
+}
+
+/* Popup-internal key/value card primitive (cardPrimitives.tsx `ListCard`).
+   Uses the `fwp-kv-card` prefix — NOT `fwp-list-card` — to avoid colliding
+   with the page-level ListCard (components/shared/ListCard.css), whose
+   night-glass surface + night-ink text tokens would otherwise mix with this
+   light surface and wash the text out. */
+.fwp-kv-card {
+  border: 1px solid var(--fwp-border-subtle);
+  border-radius: var(--fwp-radius-md);
+  background: var(--fwp-bg-surface);
+  padding: var(--fwp-space-3) var(--fwp-space-4);
+  box-shadow: var(--fwp-shadow-1);
+}
+
+.fwp-kv-card__title {
+  margin: 0 0 var(--fwp-space-2);
+  font-size: var(--fwp-text-base);
+  font-weight: var(--fwp-weight-bold);
+  color: var(--module-accent, var(--fwp-text-primary));
+  letter-spacing: var(--fwp-letter-spacing-heading);
+}
+
+.fwp-kv-card__list {
+  margin: 0;
+}
+
+.fwp-kv-card__row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--fwp-space-2);
+  padding: var(--fwp-space-2) 0;
+  border-bottom: 1px solid var(--fwp-border-subtle);
+  font-size: var(--fwp-text-base);
+}
+
+.fwp-kv-card__row:last-child {
+  border-bottom: none;
+}
+
+.fwp-kv-card__row dt {
+  color: var(--fwp-text-secondary);
+  margin: 0;
+}
+
+.fwp-kv-card__row dd {
+  margin: 0;
+  font-weight: var(--fwp-weight-medium);
+  color: var(--fwp-text-primary);
+}
+
+/* ---------- Hover-state metric primitives ----------
+   Subtle hover affordance on MetricPill, ListCard rows, and HeroValue.
+   Reads as "interactive surface" without overcommitting. */
+.metric-pill,
+.fwp-kv-card__row {
+  transition: background var(--fwp-motion-quick);
+}
+
+.metric-pill:hover {
+  background: var(--fwp-state-hover-overlay);
+}
+
+.fwp-kv-card__row:hover {
+  background: var(--fwp-state-hover-overlay);
+  margin: 0 calc(-1 * var(--fwp-space-3));
+  padding-left: var(--fwp-space-3);
+  padding-right: var(--fwp-space-3);
+  border-radius: var(--fwp-radius-sm);
+}
+
+.fwp-hero-value {
+  transition: box-shadow var(--fwp-motion-quick);
+}
+
+.fwp-hero-value:hover {
+  box-shadow: var(--fwp-shadow-2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .metric-pill,
+  .fwp-kv-card__row,
+  .fwp-hero-value {
+    transition: none;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────
+ * HeroBlock
+ * Wraps HeroValue in a glass-style surface: top-edge accent gradient
+ * stripe, soft gradient background, subtle glow on the numeral. This
+ * is the visual-hierarchy polish — the single dominant headline on
+ * every Tier-2 card lives here. Inherits --module-accent from the
+ * FeatureCardShell wrapper; can be overridden per renderer by setting
+ * --domain-accent inline.
+ * ───────────────────────────────────────────────────────────────── */
+/* Flat single-colour hero surface — the gradient wash, the
+   glow and the hover lift are gone; popups read like the app's tool cards. */
+.fwp-hero-block {
+  position: relative;
+  padding: var(--fwp-space-4);
+  background: var(--fwp-hero-surface);
+  border: var(--fwp-hero-border);
+  border-radius: var(--fwp-radius-lg);
+  overflow: hidden;
+}
+
+.fwp-hero-block .fwp-hero-value {
+  margin: 0;
+}
+
+/* The hero numeral reads as plain ink. The accent-colored
+   numeral + glow (and the top accent stripe + live pulse dot above) were
+   the "colored eyebrow" chrome Jamie asked to strip from every popup.
+   --fwp-hero-ink (not --fwp-text-primary) because the hero card keeps the
+   :root surface while the popup shell re-scopes the text tokens to night
+   ink — see the token's note in brand-tokens.css. */
+.fwp-hero-block .fwp-hero-value__number {
+  color: var(--fwp-hero-ink, var(--fwp-text-primary));
+}
+
+.fwp-hero-block--takeover {
+  padding: var(--fwp-space-5) var(--fwp-space-5);
+}
+
+.fwp-hero-block--takeover .fwp-hero-value__number {
+  font-size: var(--fwp-text-4xl);
+}
+
+/* ─────────────────────────────────────────────────────────────────
+ * DomainPill
+ * MetricPill variant that adds a leading domain icon tinted to the
+ * domain color, plus a soft tinted background halo. Composes on top
+ * of the existing metric-pill rules so intent + domain coexist —
+ * intent owns the left stripe, domain owns the icon halo + value tint.
+ * ───────────────────────────────────────────────────────────────── */
+.metric-pill__icon {
+  width: 26px;
+  height: 26px;
+  border-radius: var(--fwp-radius-pill);
+  background: var(--domain-tint, transparent);
+  color: var(--domain-accent, var(--fwp-text-secondary));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.metric-pill--with-icon {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--fwp-space-2);
+}
+
+.metric-pill--with-icon .metric-pill__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fwp-space-1);
+  min-width: 0;
+}
+
+/* Tinted value when a domain is set (intent overrides via parent rules). */
+.metric-pill[data-domain] .metric-pill__value {
+  color: var(--fwp-text-primary);
+}
+
+.metric-pill[data-domain] .metric-pill__value-accent {
+  color: var(--domain-accent, var(--fwp-text-primary));
+}
+
+/* ─────────────────────────────────────────────────────────────────
+ * SubtleText
+ * Inline secondary text (qualifiers, separators). Replaces the
+ * ad-hoc `style={{ opacity: 0.7, fontWeight: 400 }}` pattern. Use
+ * for trailing context like " · group label" after a heading.
+ * ───────────────────────────────────────────────────────────────── */
+.fwp-subtle-text {
+  opacity: 0.7;
+  font-weight: var(--fwp-weight-regular);
+}
+
+/* ─────────────────────────────────────────────────────────────────
+ * SectionHeading
+ * In-card sub-section heading. Use to break a long card body into
+ * labeled sections — replaces the ad-hoc
+ * `<p style={{ marginTop: 12, fontWeight: 600 }}>` pattern.
+ * ───────────────────────────────────────────────────────────────── */
+.fwp-section-heading {
+  margin: var(--fwp-space-3) 0 var(--fwp-space-1) 0;
+  font-size: var(--fwp-text-base);
+  font-weight: var(--fwp-weight-bold);
+  letter-spacing: var(--fwp-letter-spacing-heading);
+  color: var(--fwp-text-primary);
+}
+
+.fwp-section-heading:first-child {
+  margin-top: 0;
+}
+
+/* In the full-screen takeover preset the section heads join
+   the editorial serif tier (the takeover is a reading surface, like an
+   atlas page). Compact panel cards keep the sans base rule above. */
+.feature-card--takeover .fwp-section-heading {
+  font-family: var(--fwp-font-display);
+  font-weight: var(--fwp-weight-display);
+  font-size: var(--fwp-text-lg);
+}
+
+/* ─────────────────────────────────────────────────────────────────
+ * ExplainerNote
+ * Muted 1–3 sentence caption that sits under a SectionHeading or
+ * chart heading and explains a technical term (Fulton's K, CFS,
+ * bonus-point squaring, etc.). Visually lighter than a TipBlock so
+ * it doesn't compete with the metric it captions; max-width keeps
+ * it readable inside takeover panels.
+ * ───────────────────────────────────────────────────────────────── */
+.fwp-explainer-note {
+  margin: var(--fwp-space-1) 0 var(--fwp-space-3) 0;
+  font-size: var(--fwp-text-sm);
+  font-weight: var(--fwp-weight-regular);
+  line-height: 1.45;
+  color: var(--fwp-text-secondary);
+  max-width: 60ch;
+}

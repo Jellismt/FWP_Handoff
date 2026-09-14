@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!--
+	  Engage MT — App-level Apple Privacy Manifest (required since iOS 17.4).
+	  © 2026 Jamie Ellis. Licensed under the MIT License.
+
+	  Data collection: NONE. Per docs/rules/privacy.md the app is
+	  local-first — location, photos, tracks, and waypoints never leave the
+	  device except via a user-initiated Share, and no analytics/telemetry is
+	  ever transmitted to us or a third party. So NSPrivacyTracking is false,
+	  the tracking-domains list is empty, and no data types are collected.
+	  This must stay consistent with the App Store Connect "App Privacy"
+	  answers (set to "Data Not Collected").
+
+	  Required-reason APIs: declared for the platform APIs our bundled
+	  Capacitor plugins reach through the app container. Capacitor's own pods
+	  ship their own manifests too; Apple merges all of them.
+	-->
+	<key>NSPrivacyTracking</key>
+	<false/>
+	<key>NSPrivacyTrackingDomains</key>
+	<array/>
+	<key>NSPrivacyCollectedDataTypes</key>
+	<array/>
+	<key>NSPrivacyAccessedAPITypes</key>
+	<array>
+		<!-- @capacitor/preferences persists local UI/settings + the cached
+		     license wallet to UserDefaults. Reason CA92.1: access info stored
+		     by this app, from this app, for this app. -->
+		<dict>
+			<key>NSPrivacyAccessedAPIType</key>
+			<string>NSPrivacyAccessedAPICategoryUserDefaults</string>
+			<key>NSPrivacyAccessedAPITypeReasons</key>
+			<array>
+				<string>CA92.1</string>
+			</array>
+		</dict>
+		<!-- @capacitor/filesystem reads/writes files inside the app container
+		     (offline tiles, bundled Tier-2 parquet, waypoint photos, staged
+		     GPX/KML imports), which touches file timestamps. Reason C617.1:
+		     timestamps for files inside the app container. -->
+		<dict>
+			<key>NSPrivacyAccessedAPIType</key>
+			<string>NSPrivacyAccessedAPICategoryFileTimestamp</string>
+			<key>NSPrivacyAccessedAPITypeReasons</key>
+			<array>
+				<string>C617.1</string>
+			</array>
+		</dict>
+	</array>
+</dict>
+</plist>

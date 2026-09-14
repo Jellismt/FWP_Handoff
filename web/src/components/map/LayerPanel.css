@@ -1,0 +1,511 @@
+/**
+ * @file LayerPanel.css
+ * @module engage-mt/map
+ * @description LayerPanel sizing + native layer-row toggles.
+ *              Glass-morphic floating panel with shadow-3 elevation.
+ *              Each row is a pill-styled native button (replaces Calcite list to dodge
+ *              a Calcite 3.3 aria-live render crash).
+ * @author Jamie Ellis / Engage MT
+ * @created 2026-05-29
+ * @updated 2026-06-30
+ * @version 2.2.0
+ *
+ * FWP Engage MT — Montana's Official Gateway to the Outdoors
+ * Licensed under the MIT License.
+ */
+
+.layer-panel {
+  width: 340px;
+  max-height: min(calc(100vh - 160px), 720px);
+  box-shadow: var(--fwp-shadow-3);
+  border-radius: var(--fwp-radius-xl);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  /* Solid theme-blue surface (light blue / dark blue) — no glass, no border.
+     The CalcitePanel paints --calcite-color-foreground-1 inside its shadow root,
+     so the token goes transparent and the host carries the fill. */
+  --calcite-color-foreground-1: transparent;
+  background: var(--fwp-surface-blue);
+}
+
+/* Soft slide-in from the panel's resting edge (top-left of the map). */
+@media (prefers-reduced-motion: no-preference) {
+  .layer-panel {
+    animation: layer-panel-in var(--fwp-motion-soft) both;
+  }
+  @keyframes layer-panel-in {
+    from {
+      opacity: 0;
+      transform: translateX(-14px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+}
+
+.layer-panel__group {
+  padding: var(--fwp-space-3) var(--fwp-space-3) var(--fwp-space-4);
+  border-bottom: 1px solid var(--fwp-border-subtle);
+}
+
+.layer-panel__group:last-child {
+  border-bottom: none;
+}
+
+.layer-panel__group-heading {
+  margin: 0 0 var(--fwp-space-2);
+  font-size: var(--fwp-text-xs);
+  font-weight: var(--fwp-weight-bold);
+  letter-spacing: var(--fwp-letter-spacing-label);
+  text-transform: uppercase;
+  /* text-primary, not text-secondary: at 11px bold on the glass panel
+     surface the secondary token measures 3.93:1 — under the 4.5:1 AA
+     floor (caught by the e2e axe sweep). */
+  color: var(--fwp-text-primary);
+  padding-left: var(--fwp-space-1);
+}
+
+/* Module-group heading rendered as a button so it can fold/unfold */
+.layer-panel__group-toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--fwp-space-2);
+  width: 100%;
+  background: transparent;
+  border: none;
+  font: inherit;
+  font-size: var(--fwp-text-xs);
+  font-weight: var(--fwp-weight-bold);
+  letter-spacing: var(--fwp-letter-spacing-label);
+  text-transform: uppercase;
+  color: var(--fwp-text-secondary);
+  padding: var(--fwp-space-1) var(--fwp-space-1);
+  cursor: pointer;
+  min-height: 32px;
+  border-radius: var(--fwp-radius-sm);
+}
+
+.layer-panel__group-toggle:hover {
+  background: var(--fwp-state-hover-overlay);
+  color: var(--fwp-text-primary);
+}
+
+.layer-panel__group-count {
+  margin-left: auto;
+  padding: 1px 8px;
+  background: color-mix(in srgb, var(--fwp-accent-fish) 12%, transparent);
+  color: var(--fwp-text-primary);
+  border-radius: var(--fwp-radius-pill);
+  font-size: var(--fwp-text-xs);
+  letter-spacing: 0.04em;
+}
+
+/* Collapsed-state pill (mobile default + dismissed desktop) */
+.layer-panel__collapsed-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--fwp-space-2);
+  padding: 0 var(--fwp-space-3);
+  height: 44px;
+  background: var(--fwp-surface-blue);
+  /* Reset the UA button border (2px outset) — the pill is a flat solid chip,
+     matching the expanded panel (no border/glass). */
+  border: none;
+  border-radius: var(--fwp-radius-pill);
+  color: var(--fwp-text-primary);
+  font: inherit;
+  font-size: var(--fwp-text-base);
+  font-weight: var(--fwp-weight-bold);
+  cursor: pointer;
+  transition:
+    box-shadow var(--fwp-motion-base),
+    transform var(--fwp-motion-base),
+    background var(--fwp-motion-quick);
+}
+
+.layer-panel__collapsed-pill:hover {
+  box-shadow: var(--fwp-shadow-4);
+  transform: translateY(-1px);
+}
+
+.layer-panel__collapsed-label {
+  letter-spacing: 0.02em;
+}
+
+.layer-panel__collapsed-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  background: var(--fwp-cta-primary);
+  color: var(--fwp-cta-primary-text);
+  border-radius: var(--fwp-radius-pill);
+  font-size: var(--fwp-text-xs);
+  font-weight: var(--fwp-weight-bold);
+}
+
+.layer-panel__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--fwp-space-1);
+}
+
+/* ─────────────────────────────────────────────────────────────────
+ * LAYER ROW — pill-styled native button
+ * Tighter row (≥44px touch target preserved), module-
+ * accent left stripe on active rows, inline freshness chip, single-
+ * line description. Fits ~10 rows in the panel viewport instead of 6.
+ * ───────────────────────────────────────────────────────────────── */
+.layer-panel__row {
+  position: relative;
+  border-radius: var(--fwp-radius-md);
+  transition: background var(--fwp-motion-quick);
+}
+
+.layer-panel__row--on {
+  background: var(--fwp-state-selected-bg);
+}
+
+.layer-panel__row--failed {
+  background: color-mix(in srgb, var(--fwp-danger) 8%, transparent);
+}
+
+/* Failed pill renders inline (top-right) inside the row
+   content so it never overlaps the title even at narrow widths. */
+.layer-panel__row-failed-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 1px 8px;
+  border-radius: var(--fwp-radius-pill);
+  background: var(--fwp-danger);
+  color: var(--fwp-cta-primary-text);
+  font-size: var(--fwp-text-xs);
+  font-weight: var(--fwp-weight-bold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+  line-height: 1.1;
+}
+
+.layer-panel__row-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--fwp-space-2);
+  padding: 6px var(--fwp-space-3);
+  background: transparent;
+  border: none;
+  border-radius: var(--fwp-radius-md);
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+  color: var(--fwp-text-primary);
+  min-height: 48px;
+  transition: background var(--fwp-motion-quick);
+}
+
+.layer-panel__row-button:hover {
+  background: var(--fwp-state-hover-overlay);
+}
+
+.layer-panel__row-button:active {
+  background: var(--fwp-state-press-overlay);
+}
+
+.layer-panel__row-button:focus-visible {
+  outline: 2px solid var(--fwp-focus);
+  outline-offset: -2px;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+ * TOGGLE — simple iOS-style on/off switch on the right edge of each row.
+ * Track 32×18 with a 14px thumb that slides on activation. The parent
+ * row-button still meets the 44×44 touch-target floor.
+ * ───────────────────────────────────────────────────────────────── */
+.layer-panel__toggle {
+  position: relative;
+  display: inline-block;
+  width: 32px;
+  height: 18px;
+  margin-left: auto;
+  border-radius: var(--fwp-radius-pill);
+  /* Track matches the theme surface (grey in light, blue in dark) with the
+     inverse-ink outline; only the yellow knob's position marks on vs off. */
+  background: var(--fwp-bg-surface);
+  border: 1px solid var(--fwp-card-outline);
+  flex-shrink: 0;
+}
+
+.layer-panel__toggle::before {
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--fwp-cta-primary);
+  transition: transform var(--fwp-motion-quick);
+}
+
+.layer-panel__toggle--on::before {
+  transform: translateX(14px);
+  background: var(--fwp-cta-primary);
+  box-shadow: 0 1px 2px rgba(15, 20, 25, 0.25);
+}
+
+/* Per-row symbology swatch. 14×14 SVG that mirrors the
+   on-map renderer at panel scale; sits between the visibility toggle
+   and the row title so the panel reads as a real cartographic
+   legend. Tightened from 16 → 14 to slim the row.  */
+.layer-panel__swatch {
+  flex: 0 0 14px;
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* PNG-backed swatches (PNG raster glyphs — FAS, AIS, gages,
+   agency rec sites). The
+   raster art has built-in padding so it reads visibly smaller than the
+   geometry-fallback swatches at the same box size. Doubling the box
+   brings them up to legibility parity with the row title. Lucide-glyph
+   and geometry swatches keep the compact 14px size. */
+.layer-panel__swatch--png {
+  flex: 0 0 28px;
+  width: 28px;
+  height: 28px;
+}
+
+.layer-panel__row-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+  flex: 1;
+}
+
+/* Title + freshness chip share a baseline row so the chip
+   sits inline with the title rather than its own line. The
+   description below clamps to a single line.  */
+.layer-panel__row-titlerow {
+  display: flex;
+  align-items: center;
+  gap: var(--fwp-space-2);
+  min-width: 0;
+}
+
+.layer-panel__row-title {
+  font-size: var(--fwp-text-base);
+  font-weight: var(--fwp-weight-bold);
+  color: var(--fwp-text-primary);
+  line-height: 1.25;
+  letter-spacing: var(--fwp-letter-spacing-heading);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+  min-width: 0;
+}
+
+.layer-panel__row-description {
+  font-size: var(--fwp-text-xs);
+  color: var(--fwp-text-secondary);
+  line-height: 1.35;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Inline freshness chip in each row. Compact variant so the
+   chip slots beside the title without stealing vertical space.
+   Moved inline (was below description). */
+.layer-panel__row-titlerow > .freshness-chip {
+  flex-shrink: 0;
+}
+
+/* Module accent stripe on hover/active rows */
+.layer-panel__row[data-module="hunt"] {
+  --module-accent: var(--fwp-accent-hunt);
+}
+.layer-panel__row[data-module="fish"] {
+  --module-accent: var(--fwp-accent-fish);
+}
+.layer-panel__row[data-module="explore"] {
+  --module-accent: var(--fwp-accent-explore);
+}
+.layer-panel__row[data-module="access"] {
+  --module-accent: var(--fwp-accent-access);
+}
+.layer-panel__row[data-module="manage"] {
+  --module-accent: var(--fwp-accent-manage);
+}
+/* Shared layers (weather, fires, alerts) use FWP Blue so they
+   read as cross-cutting rather than borrowing a module's accent.
+   Same treatment for the new top-level "reference" group. */
+.layer-panel__row[data-module="shared"] {
+  --module-accent: var(--fwp-blue);
+}
+.layer-panel__row[data-module="reference"] {
+  --module-accent: var(--fwp-blue);
+}
+
+/* ─────────────────────────────────────────────────────────────────
+ * DEFERRED ROW — sign-in-required treatment
+ * ───────────────────────────────────────────────────────────────── */
+.layer-panel__row--deferred {
+  padding: var(--fwp-space-2) var(--fwp-space-3);
+  display: flex;
+  align-items: center;
+  gap: var(--fwp-space-3);
+  min-height: 56px;
+  opacity: 0.85;
+}
+
+.layer-panel__row--deferred .layer-panel__row-content {
+  flex: 1;
+}
+
+.layer-panel__deferred-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--fwp-space-1);
+  padding: var(--fwp-space-1) var(--fwp-space-3);
+  border-radius: var(--fwp-radius-pill);
+  background: var(--fwp-bg-surface-sunken);
+  border: 1px solid var(--fwp-border-default);
+  font-size: var(--fwp-text-xs);
+  font-weight: var(--fwp-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--fwp-letter-spacing-label);
+  color: var(--fwp-text-secondary);
+  cursor: help;
+  flex-shrink: 0;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+ * OFFLINE ROW — upstream temporarily unavailable (e.g. FWP Block
+ * Management out of season). Non-interactive; explains why + when back.
+ * ───────────────────────────────────────────────────────────────── */
+.layer-panel__row--offline {
+  padding: var(--fwp-space-2) var(--fwp-space-3);
+  display: flex;
+  align-items: center;
+  gap: var(--fwp-space-3);
+  min-height: 56px;
+  opacity: 0.85;
+}
+
+.layer-panel__row--offline .layer-panel__row-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.layer-panel__row-subtitle {
+  display: block;
+  margin-top: 2px;
+  font-size: var(--fwp-text-xs);
+  line-height: 1.35;
+  color: var(--fwp-text-secondary);
+}
+
+.layer-panel__offline-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--fwp-space-1);
+  padding: var(--fwp-space-1) var(--fwp-space-3);
+  border-radius: var(--fwp-radius-pill);
+  background: var(--fwp-bg-surface-sunken);
+  border: 1px solid var(--fwp-warning);
+  font-size: var(--fwp-text-xs);
+  font-weight: var(--fwp-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--fwp-letter-spacing-label);
+  color: var(--fwp-warning);
+  cursor: help;
+  flex-shrink: 0;
+  align-self: flex-start;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+ * SUBGROUP — collapsible cohort within a module group
+ * (e.g. the six Hunting Districts variants under Hunt). Header
+ * styled like a slim toggle pill; children indent so they read as
+ * scoped under the group.
+ * ───────────────────────────────────────────────────────────────── */
+.layer-panel__subgroup {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--fwp-space-1);
+}
+
+.layer-panel__subgroup-toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--fwp-space-2);
+  width: 100%;
+  background: transparent;
+  border: none;
+  font: inherit;
+  font-size: var(--fwp-text-sm);
+  font-weight: var(--fwp-weight-bold);
+  color: var(--fwp-text-primary);
+  padding: 6px var(--fwp-space-2);
+  border-radius: var(--fwp-radius-sm);
+  cursor: pointer;
+  min-height: var(--fwp-touch-min);
+  transition: background var(--fwp-motion-quick);
+}
+
+.layer-panel__subgroup-toggle:hover {
+  background: var(--fwp-state-hover-overlay);
+}
+
+.layer-panel__subgroup-name {
+  flex: 1;
+  text-align: left;
+}
+
+.layer-panel__subgroup-count {
+  margin-left: auto;
+  padding: 1px 8px;
+  background: color-mix(in srgb, var(--module-accent, var(--fwp-blue)) 14%, transparent);
+  color: var(--fwp-text-secondary);
+  border-radius: var(--fwp-radius-pill);
+  font-size: var(--fwp-text-xs);
+  font-weight: var(--fwp-weight-bold);
+  letter-spacing: 0.04em;
+}
+
+.layer-panel__subgroup-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  /* Indent so children visually nest under the subgroup header. */
+  padding-left: var(--fwp-space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--fwp-space-1);
+}
+
+/* Reference module gets a neutral data-blue accent in the panel. */
+.layer-panel__group[data-module="reference"] {
+  --module-accent: var(--fwp-blue);
+}
+
+@media (max-width: 767px) {
+  .layer-panel {
+    width: min(calc(100vw - 24px), 380px);
+  }
+}

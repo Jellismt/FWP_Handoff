@@ -1,0 +1,44 @@
+/**
+ * @file PrivacyBadge.css
+ * @module engage-mt/shared
+ * @description Subtle pill chip for the "Local-only" privacy signal.
+ * @author Jamie Ellis / Engage MT
+ * @created 2026-05-29
+ * @updated 2026-07-03
+ * @version 1.0.0
+ *
+ * FWP Engage MT — Montana's Official Gateway to the Outdoors
+ * Licensed under the MIT License.
+ */
+
+.privacy-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--fwp-space-1);
+  background: var(--fwp-state-selected-bg);
+  color: var(--fwp-cta-primary);
+  border: 1px solid color-mix(in srgb, var(--fwp-cta-primary) 30%, transparent);
+  border-radius: var(--fwp-radius-pill);
+  padding: var(--fwp-space-1) var(--fwp-space-2);
+  font-size: var(--fwp-text-xs);
+  font-weight: var(--fwp-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--fwp-letter-spacing-label);
+  white-space: nowrap;
+  cursor: help;
+}
+
+@supports not (background: color-mix(in srgb, red 30%, blue)) {
+  .privacy-badge {
+    border-color: var(--fwp-cta-primary);
+  }
+}
+
+.privacy-badge--md {
+  padding: var(--fwp-space-1) var(--fwp-space-3);
+  font-size: var(--fwp-text-sm);
+}
+
+[data-color-scheme="dark"] .privacy-badge {
+  color: var(--fwp-green-light);
+}

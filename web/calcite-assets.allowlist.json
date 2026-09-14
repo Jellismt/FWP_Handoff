@@ -1,0 +1,20 @@
+{
+  "$comment": "Calcite assets shipped with the app. `icons` are kebab-case Calcite icon names: every icon the app passes as a prop plus the ones the Calcite components in use (Notice, Alert, Dialog, Panel) render internally. `check:calcite-assets` fails when web/src uses an icon that is not listed here. Icons chosen at runtime from a map (ToastViewport) are listed by hand.",
+  "icons": [
+    "check-circle",
+    "check-square",
+    "chevron-down",
+    "chevron-up",
+    "ellipsis",
+    "exclamation-mark-circle",
+    "exclamation-mark-triangle",
+    "information",
+    "license",
+    "map-pin",
+    "offline",
+    "x"
+  ],
+  "t9nLocales": [
+    "en"
+  ]
+}

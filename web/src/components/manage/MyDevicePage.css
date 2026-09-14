@@ -1,0 +1,176 @@
+/**
+ * @file MyDevicePage.css
+ * @module engage-mt/manage
+ * @description Layout for the My Device data dashboard. Night-glass bucket cards and
+ *              tile-storage panel with manage-accent glow.
+ * @author Jamie Ellis / Engage MT
+ * @created 2026-05-29
+ * @updated 2026-06-16
+ * @version 1.1.0
+ *
+ * FWP Engage MT — Montana's Official Gateway to the Outdoors
+ * Licensed under the MIT License.
+ */
+
+.mydevice {
+  padding: var(--fwp-space-6) var(--fwp-space-7);
+  margin: 0 auto;
+  width: 100%;
+}
+
+@media (max-width: 767px) {
+  .mydevice {
+    padding: var(--fwp-space-4);
+  }
+}
+
+.mydevice__back {
+  color: var(--fwp-text-secondary);
+  text-decoration: underline;
+  font-weight: 600;
+  font-size: var(--fwp-text-base);
+}
+
+.mydevice__header h1 {
+  margin: var(--fwp-space-2) 0 var(--fwp-space-1);
+  color: var(--fwp-heading-accent);
+}
+
+.mydevice__header p {
+  color: var(--fwp-text-secondary);
+  margin: 0 0 var(--fwp-space-3);
+}
+
+.mydevice__buckets {
+  list-style: none;
+  padding: 0;
+  margin: var(--fwp-space-3) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--fwp-space-2);
+}
+
+/* Night-glass data bucket card. */
+.mydevice__bucket {
+  background: var(--fwp-bg-surface);
+  border: 1px solid var(--fwp-card-outline);
+  border-radius: var(--fwp-radius-md);
+  padding: var(--fwp-space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--fwp-space-2);
+  color: var(--fwp-text-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+@supports not (background: color-mix(in srgb, red 50%, blue)) {
+  .mydevice__bucket {
+    background: var(--fwp-bg-surface);
+  }
+}
+
+.mydevice__bucket-head {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--fwp-space-3);
+  align-items: flex-start;
+}
+
+.mydevice__bucket-title {
+  margin: 0;
+  font-size: var(--fwp-text-lg);
+  color: var(--fwp-text-primary);
+}
+
+.mydevice__bucket-desc {
+  margin: 2px 0 0;
+  color: var(--fwp-text-secondary);
+  font-size: var(--fwp-text-base);
+}
+
+.mydevice__bucket-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.mydevice__count {
+  font-weight: 700;
+  font-size: var(--fwp-text-sm);
+  color: var(--fwp-text-primary);
+}
+
+.mydevice__size {
+  font-family: var(--fwp-font-mono, monospace);
+  color: var(--fwp-text-secondary);
+  font-size: var(--fwp-text-sm);
+}
+
+.mydevice__bucket-actions {
+  display: flex;
+  gap: var(--fwp-space-2);
+  flex-wrap: wrap;
+}
+
+.mydevice__danger {
+  margin-top: var(--fwp-space-4);
+  display: flex;
+  justify-content: center;
+}
+
+/* Night-glass tile-storage panel. */
+.mydevice__tile-storage {
+  margin-top: var(--fwp-space-4);
+  padding: var(--fwp-space-4);
+  background: var(--fwp-bg-surface);
+  border: 1px solid var(--fwp-card-outline);
+  border-radius: var(--fwp-radius-md);
+  color: var(--fwp-text-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+@supports not (background: color-mix(in srgb, red 50%, blue)) {
+  .mydevice__tile-storage {
+    background: var(--fwp-bg-surface);
+  }
+}
+
+.mydevice__tile-storage-title {
+  margin: 0 0 var(--fwp-space-2);
+  font-size: var(--fwp-text-lg);
+  color: var(--fwp-heading-accent);
+}
+
+.mydevice__tile-storage-meta {
+  margin: 0 0 var(--fwp-space-2);
+  color: var(--fwp-text-secondary);
+  font-size: var(--fwp-text-sm);
+}
+
+.mydevice__tile-storage-bar {
+  height: 8px;
+  background: var(--fwp-bg-surface-sunken);
+  border-radius: var(--fwp-radius-pill);
+  overflow: hidden;
+}
+
+.mydevice__tile-storage-fill {
+  height: 100%;
+  background: var(--fwp-accent-manage);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .mydevice__tile-storage-fill {
+    transition: width var(--fwp-motion-base);
+  }
+}
+
+.mydevice__tile-storage-note {
+  margin: var(--fwp-space-2) 0 0;
+  color: var(--fwp-text-secondary);
+  font-size: var(--fwp-text-sm);
+}

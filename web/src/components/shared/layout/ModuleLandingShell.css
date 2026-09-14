@@ -1,0 +1,440 @@
+/**
+ * @file ModuleLandingShell.css
+ * @module engage-mt/shared
+ * @description Module landing — flat night-chrome hero band (matches the
+ *              AppHeader / bottom tab bar surface) and a uniform-square tool
+ *              tile grid on the same flat surface, with a canonical left-edge
+ *              module stripe.
+ *              Tool tiles always read clearly (no opacity dimming).
+ * @author Jamie Ellis / Engage MT
+ * @created 2026-05-29
+ * @updated 2026-07-16
+ * @version 2.4.0
+ *
+ * FWP Engage MT — Montana's Official Gateway to the Outdoors
+ * Licensed under the MIT License.
+ */
+
+.module-landing {
+  --module-accent: var(--fwp-cta-primary);
+  flex: 1 1 auto;
+  overflow-y: auto;
+  /* The one theme grey in light mode, the one theme blue in dark — the same
+     canonical chrome color behind the cards. */
+  background: var(--fwp-chrome-bg);
+  padding: var(--fwp-space-6) var(--fwp-space-7);
+  /* No max-width cap — fill the full available width. Internal cards
+     have their own readable line lengths. */
+  margin: 0 auto;
+  width: 100%;
+  min-height: calc(100vh - 64px);
+  position: relative;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+ * STICKY VIEW MAP CTA — pinned top-center, follows scroll
+ * ───────────────────────────────────────────────────────────────── */
+/* "View map" — yellow pill pinned to the hero card's upper-right corner.
+   FWP Yellow + Blue: WCAG AA contrast ≥ 7:1 — strongest combo in the
+   brand palette; identical in both themes on the always-dark hero. */
+.module-landing__map-cta {
+  position: absolute;
+  top: var(--fwp-space-4);
+  right: var(--fwp-space-4);
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--fwp-space-2);
+  padding: var(--fwp-space-2) var(--fwp-space-4);
+  min-height: var(--fwp-touch-min);
+  background: var(--fwp-yellow);
+  color: var(--fwp-blue);
+  border: 1px solid color-mix(in srgb, var(--fwp-yellow) 70%, var(--fwp-blue) 30%);
+  border-radius: var(--fwp-radius-pill);
+  font-size: var(--fwp-text-base);
+  font-weight: var(--fwp-weight-bold);
+  text-decoration: none;
+}
+
+.module-landing__map-cta:hover {
+  /* Slightly deeper yellow on hover so the button reads as a
+     clickable lift rather than a flat shape. color-mix avoids
+     introducing a fresh hex outside the token system. */
+  background: color-mix(in srgb, var(--fwp-yellow) 88%, var(--fwp-neutral-900) 12%);
+}
+
+.module-landing__map-cta:active {
+  background: color-mix(in srgb, var(--fwp-yellow) 80%, var(--fwp-neutral-900) 20%);
+}
+
+@media (max-width: 767px) {
+  .module-landing {
+    padding: var(--fwp-space-4);
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────
+ * HERO — flat night-chrome content card
+ * ───────────────────────────────────────────────────────────────── */
+.module-landing__hero {
+  position: relative;
+  margin-bottom: var(--fwp-space-7);
+  isolation: isolate;
+}
+
+.module-landing__hero-card {
+  position: relative;
+  /* Theme surface (grey light / blue dark) + a 1px inverse-ink outline so the
+     card separates from the same-color page behind it. */
+  background: var(--fwp-bg-surface);
+  color: var(--fwp-text-primary);
+  border: 1px solid var(--fwp-card-outline);
+  border-radius: var(--fwp-radius-xl);
+  padding: var(--fwp-space-7) var(--fwp-space-8);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: var(--fwp-space-8);
+}
+
+/* Always-dark hero → re-map --module-accent to the BRIGHT variants so
+   Fish (navy) and Access (green) don't vanish on the dark band. Applies
+   to the stripe, glows, and stat numerals at once. */
+.module-landing[data-module="hunt"] .module-landing__hero-card {
+  --module-accent: var(--fwp-accent-hunt);
+}
+.module-landing[data-module="fish"] .module-landing__hero-card {
+  --module-accent: var(--fwp-accent-fish);
+}
+.module-landing[data-module="explore"] .module-landing__hero-card {
+  --module-accent: var(--fwp-accent-explore);
+}
+.module-landing[data-module="access"] .module-landing__hero-card {
+  --module-accent: var(--fwp-accent-access);
+}
+.module-landing[data-module="manage"] .module-landing__hero-card {
+  --module-accent: var(--fwp-accent-manage);
+}
+
+@media (max-width: 767px) {
+  .module-landing__hero-card {
+    padding: var(--fwp-space-5);
+  }
+}
+
+.module-landing__hero-text {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--fwp-space-3);
+  /* flex: 1 so the text column claims all space left after the icon column. */
+  flex: 1;
+  min-width: 0;
+  max-width: 800px;
+  /* Clear the corner-pinned "View map" pill so the title never runs under it. */
+  padding-right: 132px;
+}
+
+@media (max-width: 767px) {
+  .module-landing__hero-text {
+    padding-right: 0;
+    /* On phones the pill still pins to the corner; push the text below it. */
+    padding-top: calc(var(--fwp-touch-min) + var(--fwp-space-2));
+  }
+}
+
+.module-landing__title {
+  margin: 0;
+  font-family: var(--fwp-font-display);
+  font-size: var(--fwp-text-3xl);
+  font-weight: var(--fwp-weight-display);
+  letter-spacing: var(--fwp-letter-spacing-heading);
+  line-height: 1.08;
+  color: var(--fwp-heading-accent);
+  text-wrap: balance;
+}
+
+@media (max-width: 767px) {
+  .module-landing__title {
+    font-size: var(--fwp-text-2xl);
+  }
+}
+
+.module-landing__intro {
+  margin: 0;
+  color: var(--fwp-text-secondary);
+  font-size: var(--fwp-text-lg);
+  line-height: 1.55;
+  max-width: 64ch;
+  font-weight: var(--fwp-weight-regular);
+}
+
+/* Three-beat creed: short litany under the intro,
+   lead phrase in the module accent (TU's "cold / connected / protected"
+   idiom, FWP voice). */
+.module-landing__creed {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--fwp-space-1);
+  margin: 0;
+  padding: 0;
+  font-size: var(--fwp-text-base);
+  line-height: 1.5;
+  color: var(--fwp-text-secondary);
+}
+
+.module-landing__creed strong {
+  font-weight: var(--fwp-weight-bold);
+  /* Theme gold — the single accent on the dark hero band. */
+  color: var(--fwp-heading-accent);
+}
+
+.module-landing__cta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--fwp-space-5);
+  margin-top: var(--fwp-space-3);
+}
+
+.module-landing__stats {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--fwp-space-2);
+  color: var(--fwp-text-secondary);
+}
+
+.module-landing__stat-count {
+  font-size: var(--fwp-text-xl);
+  font-weight: var(--fwp-weight-bold);
+  /* Theme gold — matches the creed leads. */
+  color: var(--fwp-heading-accent);
+  letter-spacing: var(--fwp-letter-spacing-heading);
+  /* Tabular-nums so the "8 OF 14" hero counter doesn't
+     jitter when tools come/go between sessions. */
+  font-variant-numeric: tabular-nums;
+}
+
+.module-landing__stat-label {
+  font-size: var(--fwp-text-sm);
+  text-transform: uppercase;
+  letter-spacing: var(--fwp-letter-spacing-label);
+  font-weight: var(--fwp-weight-medium);
+}
+
+.module-landing__notice {
+  margin-bottom: var(--fwp-space-5);
+}
+
+/* ─────────────────────────────────────────────────────────────────
+ * TOOLS SECTION
+ * ───────────────────────────────────────────────────────────────── */
+.module-landing__tools-heading {
+  font-size: var(--fwp-text-xs);
+  letter-spacing: var(--fwp-letter-spacing-label);
+  text-transform: uppercase;
+  color: var(--fwp-text-secondary);
+  font-weight: var(--fwp-weight-bold);
+  margin: 0 0 var(--fwp-space-4);
+}
+
+.module-landing__grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  /* Explicit breakpoint ladder so the grid steps cleanly:
+     1 col on small mobile / 2 on large mobile / 3 on tablet+small
+     desktop (the screenshot's viewport) / 4 on desktop / 5 on wide
+     laptop. The previous auto-fill minmax(280px, 1fr) was width-
+     responsive but produced "2 columns at almost-laptop width" because
+     280px × 2 + gap is wider than ~900px. Explicit breakpoints give
+     us the column count the design wants at each device class. */
+  grid-template-columns: 1fr;
+  gap: var(--fwp-space-4);
+  /* Shorter, equal-height tiles. The previous `1fr` made every
+     tile stretch to its tallest row sibling; combined with `aspect-ratio: 1/1`
+     below, tiles ballooned vertically. Switching to `auto` lets the tile's
+     fixed min-height + max-height pin the height uniformly across rows AND
+     across modules, regardless of description length. */
+  grid-auto-rows: auto;
+}
+
+@media (min-width: 480px) {
+  .module-landing__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .module-landing__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .module-landing__grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 1440px) {
+  .module-landing__grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+/* Always-dark tiles → re-map --module-accent to the BRIGHT variants so the
+   stripe + glow + hover read on the night-glass surface (Fish navy / Access
+   green would otherwise vanish). Mirrors the hero-card remapping. */
+.module-landing[data-module="hunt"] .module-landing__grid {
+  --module-accent: var(--fwp-accent-hunt);
+}
+.module-landing[data-module="fish"] .module-landing__grid {
+  --module-accent: var(--fwp-accent-fish);
+}
+.module-landing[data-module="explore"] .module-landing__grid {
+  --module-accent: var(--fwp-accent-explore);
+}
+.module-landing[data-module="access"] .module-landing__grid {
+  --module-accent: var(--fwp-accent-access);
+}
+.module-landing[data-module="manage"] .module-landing__grid {
+  --module-accent: var(--fwp-accent-manage);
+}
+
+/* ─────────────────────────────────────────────────────────────────
+ * TOOL TILE — night-glass "operate" surface, uniform height
+ * Mirrors the hero band so the launch tiles read as the same lit,
+ * premium scene rather than flat white content cards. Status is
+ * communicated via colored pill + icon, not by fading text.
+ * ───────────────────────────────────────────────────────────────── */
+.module-landing__tool {
+  display: flex;
+  flex-direction: column;
+  /* Theme surface (grey light / blue dark) + 1px inverse-ink outline. */
+  background: var(--fwp-bg-surface);
+  color: var(--fwp-text-primary);
+  border: 1px solid var(--fwp-card-outline);
+  border-radius: var(--fwp-radius-lg);
+  overflow: hidden;
+  /* Shorter, uniform-height tiles. Capped at 13rem (~208px)
+     across every module so Hunt's 13-tile grid matches Manage's 5-tile
+     grid. Descriptions clip to 3 lines via -webkit-line-clamp below so
+     long ones don't force the tile taller. The old aspect-ratio 1:1 +
+     200px floor made tiles bloom to ~280px tall; this caps them shorter
+     and consistent. */
+  min-height: 13rem;
+  max-height: 13rem;
+  position: relative;
+  transition:
+    box-shadow var(--fwp-motion-base),
+    transform var(--fwp-motion-base),
+    border-color var(--fwp-motion-base);
+}
+
+/* color-mix-less browsers fall back to the flat night base. */
+@supports not (background: color-mix(in srgb, red 50%, blue)) {
+  .module-landing__tool {
+    background: var(--fwp-bg-surface);
+  }
+}
+
+.module-landing__tool--link {
+  cursor: pointer;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .module-landing__tool--link:hover {
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--module-accent) 45%, transparent);
+    transform: translateY(-3px);
+    border-color: var(--fwp-card-outline);
+  }
+  .module-landing__tool--link:hover .module-landing__tool-arrow {
+    color: var(--module-accent);
+    transform: translateX(2px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .module-landing__tool--link:hover {
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--module-accent) 45%, transparent);
+  }
+}
+
+.module-landing__tool-link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+  padding: var(--fwp-space-5);
+  gap: var(--fwp-space-3);
+}
+
+.module-landing__tool:not(.module-landing__tool--link) {
+  padding: var(--fwp-space-5);
+  gap: var(--fwp-space-3);
+}
+
+/* Inset focus ring (offset -2px): tool-link tiles can sit at the edge
+   of a tile grid row with a tight gap, where an outset ring would
+   visually merge with the neighbor tile's border. Inset keeps each
+   tile's focus indicator self-contained. Per
+   docs/rules/accessibility.md. */
+.module-landing__tool-link:focus-visible {
+  outline: 2px solid var(--fwp-focus);
+  outline-offset: -2px;
+  border-radius: var(--fwp-radius-lg);
+}
+
+.module-landing__tool-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--fwp-space-2);
+  min-height: 24px;
+}
+
+.module-landing__tool-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--fwp-text-secondary);
+  transition:
+    color var(--fwp-motion-base),
+    transform var(--fwp-motion-base);
+}
+
+.module-landing__tool-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fwp-space-2);
+  flex: 1;
+}
+
+.module-landing__tool-title {
+  margin: 0;
+  font-weight: var(--fwp-weight-bold);
+  font-size: var(--fwp-text-lg);
+  color: var(--fwp-heading-accent);
+  letter-spacing: var(--fwp-letter-spacing-heading);
+  line-height: 1.25;
+}
+
+.module-landing__tool-description {
+  margin: 0;
+  font-size: var(--fwp-text-base);
+  line-height: 1.5;
+  color: var(--fwp-text-secondary);
+  /* Clamp long descriptions to 3 lines with an ellipsis so
+     they don't force the tile to grow taller than the 13rem cap above.
+     The full text is still in the accessible tree + appears in the
+     tile's tooltip/aria-label via the title attribute. */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

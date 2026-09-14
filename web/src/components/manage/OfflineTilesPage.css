@@ -1,0 +1,340 @@
+/**
+ * @file OfflineTilesPage.css
+ * @module engage-mt/manage
+ * @description Layout for the offline-tiles staging page.
+ * @author Jamie Ellis / Engage MT
+ * @created 2026-05-29
+ * @updated 2026-06-30
+ * @version 1.1.0
+ *
+ * FWP Engage MT — Montana's Official Gateway to the Outdoors
+ * Licensed under the MIT License.
+ */
+
+.offline {
+  padding: var(--fwp-space-6) var(--fwp-space-7);
+  margin: 0 auto;
+  width: 100%;
+}
+
+@media (max-width: 767px) {
+  .offline {
+    padding: var(--fwp-space-4);
+  }
+}
+
+.offline__back {
+  color: var(--fwp-text-secondary);
+  text-decoration: underline;
+  font-weight: 600;
+  font-size: var(--fwp-text-base);
+}
+
+.offline__header h1 {
+  margin: var(--fwp-space-2) 0 var(--fwp-space-1);
+  color: var(--fwp-accent-manage);
+}
+
+.offline__header p {
+  color: var(--fwp-text-secondary);
+  margin: 0 0 var(--fwp-space-3);
+}
+
+.offline__group {
+  background: var(--fwp-bg-surface);
+  border: 1px solid var(--fwp-border-subtle);
+  border-radius: var(--fwp-radius-md);
+  padding: var(--fwp-space-4);
+  margin-top: var(--fwp-space-3);
+}
+
+.offline__group h2 {
+  margin-top: 0;
+  color: var(--fwp-accent-manage);
+}
+
+.offline__inputs {
+  display: grid;
+  /* minmax(0, 1fr) — not a bare 1fr — so the number inputs can shrink below
+     their intrinsic content width instead of forcing the grid (and the page)
+     wider than a phone viewport. */
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--fwp-space-3);
+  margin-bottom: var(--fwp-space-3);
+}
+
+@media (max-width: 767px) {
+  .offline__inputs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.offline__estimate {
+  margin: var(--fwp-space-2) 0;
+  font-size: var(--fwp-text-lg);
+}
+
+.offline__estimate-warn {
+  color: var(--fwp-danger);
+  font-weight: 700;
+}
+
+.offline__total {
+  margin: 0 0 var(--fwp-space-3);
+  color: var(--fwp-text-secondary);
+}
+
+.offline__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--fwp-space-2);
+}
+
+.offline__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--fwp-space-3);
+  padding: var(--fwp-space-2) var(--fwp-space-3);
+  border: 1px solid var(--fwp-border-subtle);
+  border-radius: var(--fwp-radius-md);
+}
+
+.offline__row-main {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.offline__row-actions {
+  display: flex;
+  gap: var(--fwp-space-2);
+  flex-shrink: 0;
+}
+
+.offline__progress {
+  position: relative;
+  margin-top: var(--fwp-space-1);
+  height: 18px;
+  background: var(--fwp-bg-surface-sunken);
+  border-radius: var(--fwp-radius-sm);
+  overflow: hidden;
+}
+
+.offline__progress-fill {
+  height: 100%;
+  background: var(--fwp-green-light);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .offline__progress-fill {
+    transition: width var(--fwp-motion-base);
+  }
+}
+
+.offline__progress-label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--fwp-text-sm);
+  font-weight: 700;
+  color: var(--fwp-text-primary);
+}
+
+.offline__start {
+  background: var(--fwp-accent-manage);
+  color: var(--fwp-text-on-brand);
+  border: none;
+  border-radius: var(--fwp-radius-sm);
+  padding: var(--fwp-space-1) var(--fwp-space-3);
+  cursor: pointer;
+  font-weight: 600;
+  min-height: var(--fwp-touch-min, 44px);
+}
+
+.offline__start:hover {
+  filter: brightness(1.05);
+}
+
+.offline__row small {
+  color: var(--fwp-text-secondary);
+  font-size: var(--fwp-text-sm);
+  font-family: var(--fwp-font-mono, monospace);
+}
+
+.offline__rm {
+  background: transparent;
+  border: 1px solid var(--fwp-border-subtle);
+  border-radius: var(--fwp-radius-sm);
+  color: var(--fwp-text-secondary);
+  padding: var(--fwp-space-1) var(--fwp-space-3);
+  cursor: pointer;
+  min-height: var(--fwp-touch-min, 44px);
+  font-weight: 600;
+}
+
+.offline__rm:hover {
+  border-color: var(--fwp-red);
+  color: var(--fwp-red);
+}
+
+/* --- Storage cap readout ------------------------------------------------- */
+
+.offline__cap {
+  margin-top: var(--fwp-space-3);
+  padding: var(--fwp-space-3) var(--fwp-space-4);
+  background: var(--fwp-bg-surface-sunken);
+  border-radius: var(--fwp-radius-md);
+  font-size: var(--fwp-text-sm);
+}
+
+.offline__cap-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--fwp-space-3);
+}
+
+.offline__cap-pct {
+  font-weight: var(--fwp-weight-bold);
+  color: var(--fwp-text-secondary);
+}
+
+.offline__cap-bar {
+  margin-top: var(--fwp-space-2);
+  height: 8px;
+  background: var(--fwp-border-subtle);
+  border-radius: var(--fwp-radius-pill);
+  overflow: hidden;
+}
+
+.offline__cap-bar-fill {
+  height: 100%;
+  background: var(--fwp-accent-manage);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .offline__cap-bar-fill {
+    transition: width var(--fwp-motion-base);
+  }
+}
+
+/* --- FWP packs list ------------------------------------------------------ */
+
+.offline__group-lede {
+  margin: 0 0 var(--fwp-space-3);
+  color: var(--fwp-text-secondary);
+}
+
+.offline__muted {
+  color: var(--fwp-text-secondary);
+  font-size: var(--fwp-text-sm);
+}
+
+.offline__packs {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--fwp-space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--fwp-space-2);
+}
+
+.offline__pack {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--fwp-space-3);
+  padding: var(--fwp-space-3);
+  border: 1px solid var(--fwp-border-subtle);
+  border-radius: var(--fwp-radius-md);
+}
+
+.offline__pack-main {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.offline__pack-main small {
+  color: var(--fwp-text-secondary);
+  font-size: var(--fwp-text-sm);
+}
+
+.offline__pack-actions {
+  flex-shrink: 0;
+}
+
+.offline__pack-badge {
+  display: inline-block;
+  padding: var(--fwp-space-1) var(--fwp-space-3);
+  border-radius: var(--fwp-radius-pill);
+  background: var(--fwp-bg-surface-sunken);
+  color: var(--fwp-text-secondary);
+  font-size: var(--fwp-text-sm);
+  font-weight: var(--fwp-weight-medium);
+}
+
+/* --- Basemap picker fieldset -------------------------------------------- */
+
+.offline__basemap {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--fwp-space-3);
+  border: 0;
+  padding: 0;
+  margin: 0 0 var(--fwp-space-3);
+}
+
+.offline__basemap-option {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--fwp-space-3);
+  border: 1px solid var(--fwp-border-subtle);
+  border-radius: var(--fwp-radius-md);
+  cursor: pointer;
+  min-height: var(--fwp-touch-min, 44px);
+}
+
+.offline__basemap-option--active {
+  border-color: var(--fwp-state-selected-border);
+  background: var(--fwp-state-selected-bg);
+}
+
+.offline__basemap-option input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.offline__basemap-label {
+  font-weight: var(--fwp-weight-bold);
+}
+
+.offline__basemap-description {
+  color: var(--fwp-text-secondary);
+  font-size: var(--fwp-text-sm);
+}
+
+.offline__picker-toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--fwp-space-3);
+  flex-wrap: wrap;
+  margin-bottom: var(--fwp-space-3);
+}
+
+.offline__picker-hint {
+  color: var(--fwp-text-secondary);
+  font-size: var(--fwp-text-sm);
+}

@@ -1,0 +1,37 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:base",
+    ":dependencyDashboard",
+    ":disableMajorUpdates"
+  ],
+  "schedule": ["before 7am on monday"],
+  "labels": ["dependencies"],
+  "rangeStrategy": "bump",
+  "commitMessagePrefix": "chore(deps):",
+  "packageRules": [
+    {
+      "description": "Group all @capacitor/* packages so plugin alignment across iOS + Android stays atomic (Q.22.A.C1 incident).",
+      "matchPackagePrefixes": ["@capacitor/"],
+      "groupName": "capacitor",
+      "groupSlug": "capacitor",
+      "schedule": ["before 7am on monday"]
+    },
+    {
+      "description": "Group ArcGIS SDK packages so @arcgis/core + arcgis-map-components stay in lockstep with assetsPath URLs.",
+      "matchPackagePrefixes": ["@arcgis/", "@esri/"],
+      "groupName": "arcgis",
+      "groupSlug": "arcgis",
+      "schedule": ["before 7am on monday"]
+    },
+    {
+      "description": "Pin major bumps to manual approval per ADR-defaults — minor + patch flow automatically.",
+      "matchUpdateTypes": ["major"],
+      "dependencyDashboardApproval": true
+    }
+  ],
+  "vulnerabilityAlerts": {
+    "enabled": true,
+    "labels": ["security"]
+  }
+}

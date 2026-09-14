@@ -1,0 +1,153 @@
+/**
+ * @file ManageCard.css
+ * @module engage-mt/manage
+ * @description Shared card primitive styles. Anchor + button
+ *              render identically; night-glass "operate" surface with module-
+ *              accent radial glow, left-edge stripe, hover lift, and inset
+ *              focus ring — matches the ModuleLandingShell tool tile idiom.
+ * @author Jamie Ellis / Engage MT
+ * @created 2026-06-01
+ * @updated 2026-06-16
+ * @version 2.0.0
+ *
+ * FWP Engage MT — Montana's Official Gateway to the Outdoors
+ * Licensed under the MIT License.
+ */
+
+.fwp-manage-card {
+  /* Module accent — the flipping --fwp-accent-manage reads on both the grey
+     (light) and blue (dark) card surfaces (graphite / bright graphite). */
+  --manage-card-accent: var(--fwp-accent-manage);
+
+  appearance: none;
+  /* Theme surface (grey light / blue dark) + 1px inverse-ink outline. */
+  background: var(--fwp-bg-surface);
+  border: 1px solid var(--fwp-card-outline);
+  border-radius: var(--fwp-radius-lg);
+  padding: var(--fwp-space-4) var(--fwp-space-5);
+  display: flex;
+  align-items: center;
+  gap: var(--fwp-space-3);
+  width: 100%;
+  text-align: left;
+  text-decoration: none;
+  color: var(--fwp-text-primary);
+  cursor: pointer;
+  font: inherit;
+  min-height: var(--fwp-touch-min);
+  position: relative;
+  overflow: hidden;
+}
+
+@supports not (background: color-mix(in srgb, red 50%, blue)) {
+  .fwp-manage-card {
+    background: var(--fwp-bg-surface);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .fwp-manage-card {
+    transition:
+      box-shadow var(--fwp-motion-base),
+      transform var(--fwp-motion-base),
+      border-color var(--fwp-motion-base);
+  }
+  .fwp-manage-card:hover {
+    transform: translateY(-2px);
+  }
+}
+
+/* Inset focus ring — tile sits inside a scrollable grid where an outset
+   ring can visually bleed into the adjacent card. Per accessibility rules. */
+.fwp-manage-card:focus-visible {
+  outline: 2px solid var(--fwp-focus);
+  outline-offset: -2px;
+  border-radius: var(--fwp-radius-lg);
+}
+
+.fwp-manage-card--primary {
+  --manage-card-accent: var(--fwp-yellow);
+}
+
+.fwp-manage-card--warning {
+  --manage-card-accent: var(--fwp-warning);
+}
+
+.fwp-manage-card--success {
+  --manage-card-accent: var(--fwp-success);
+}
+
+.fwp-manage-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: var(--fwp-radius-md);
+  background: color-mix(in srgb, var(--manage-card-accent) 16%, transparent);
+  color: var(--manage-card-accent);
+}
+
+.fwp-manage-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.fwp-manage-card__title {
+  font-size: var(--fwp-text-md);
+  font-weight: var(--fwp-weight-bold);
+  letter-spacing: var(--fwp-letter-spacing-heading);
+  color: var(--fwp-heading-accent);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--fwp-space-2);
+}
+
+.fwp-manage-card__badge {
+  font-size: var(--fwp-text-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--fwp-letter-spacing-label);
+  font-weight: var(--fwp-weight-bold);
+  padding: var(--fwp-space-1) var(--fwp-space-2);
+  border-radius: var(--fwp-radius-pill);
+  /* Count badge wears the app's one accent (yellow) with the blue label — a
+     theme-independent pair, unlike the flipping module accent whose contrast
+     would invert. */
+  background: var(--fwp-cta-primary);
+  color: var(--fwp-cta-primary-text);
+  font-variant-numeric: tabular-nums;
+}
+
+.fwp-manage-card__description {
+  font-size: var(--fwp-text-sm);
+  color: var(--fwp-text-secondary);
+  line-height: 1.45;
+}
+
+.fwp-manage-card__chevron {
+  color: var(--fwp-text-secondary);
+  flex-shrink: 0;
+}
+
+.fwp-manage-card-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--fwp-space-3);
+  /* Stretch grid items so every row is the same height as the tallest card. */
+  align-items: stretch;
+}
+
+.fwp-manage-card-grid > li {
+  display: flex;
+}
+
+.fwp-manage-card-grid > li > .fwp-manage-card {
+  height: 100%;
+}

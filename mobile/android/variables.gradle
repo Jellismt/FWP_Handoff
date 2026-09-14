@@ -1,0 +1,20 @@
+ext {
+    // Modernized for Capacitor 8.4 plugins (camera forces core-ktx 1.17.0 →
+    // compileSdk 36; its ioncamera-android native lib requires minSdk 24).
+    // compileSdk 36 needs AGP 8.9 + Gradle 8.11.1 (see build.gradle +
+    // gradle-wrapper.properties).
+    minSdkVersion = 24
+    compileSdkVersion = 36
+    targetSdkVersion = 35
+    androidxActivityVersion = '1.8.0'
+    androidxAppCompatVersion = '1.6.1'
+    androidxCoordinatorLayoutVersion = '1.2.0'
+    androidxCoreVersion = '1.17.0'
+    androidxFragmentVersion = '1.6.2'
+    coreSplashScreenVersion = '1.0.1'
+    androidxWebkitVersion = '1.9.0'
+    junitVersion = '4.13.2'
+    androidxJunitVersion = '1.1.5'
+    androidxEspressoCoreVersion = '3.5.1'
+    cordovaAndroidVersion = '10.1.1'
+}

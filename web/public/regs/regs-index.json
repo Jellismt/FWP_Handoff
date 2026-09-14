@@ -1,0 +1,29 @@
+{
+  "_meta": {
+    "schemaVersion": "1.0",
+    "description": "Metadata index for the authoritative FWP regulation documents. Every reg/water dataset row carries a _source.regId that maps into this file; the citation component reads from here to render the citation chip + a source link to the document's canonical FWP page (onlineUrl). The documents are NOT bundled with the app.",
+    "regenerated": "2026-06-02"
+  },
+  "regs": [
+    {
+      "id": "dea-regs-2026",
+      "filename": "dea-2026.pdf",
+      "title": "2026 Deer, Elk & Antelope Hunting Regulations",
+      "publisher": "Montana FWP",
+      "pageCount": 141,
+      "commissionAdoptedAt": "2025-12-04",
+      "effectiveFrom": "2026-03-01",
+      "validUntil": "2027-02-28",
+      "url": "/regs/dea-2026.pdf",
+      "onlineUrl": "https://fwp.mt.gov/hunt/regulations",
+      "scope": [
+        "hunting",
+        "districts",
+        "deer",
+        "elk",
+        "antelope",
+        "cwd"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Engage MT — Montana FWP brand colors used by native Android theming.
+
+  splashBackground tracks the web app's primary brand token (FWP Blue,
+  #002855). When @capacitor/assets regenerates the splash drawable from
+  mobile/assets/splash.png, the logo overlays this color while the OS
+  window background paints before the React root mounts.
+-->
+<resources>
+    <color name="splashBackground">#002855</color>
+    <color name="colorPrimary">#002855</color>
+    <color name="colorPrimaryDark">#001A3B</color>
+    <color name="colorAccent">#046A38</color>
+</resources>

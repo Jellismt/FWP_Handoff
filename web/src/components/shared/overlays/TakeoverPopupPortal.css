@@ -1,0 +1,31 @@
+/**
+ * @file TakeoverPopupPortal.css
+ * @module engage-mt/shared
+ * @description Layout for the takeover popup. CalciteDialog handles backdrop +
+ *              focus trap + Esc; we just scope the inner body to give cards
+ *              room to breathe.
+ * @author Jamie Ellis / Engage MT
+ * @created 2026-05-29
+ * @updated 2026-07-16
+ * @version 2.0.0
+ *
+ * FWP Engage MT — Montana's Official Gateway to the Outdoors
+ * Licensed under the MIT License.
+ */
+
+.takeover-popup {
+  --calcite-dialog-size-l: min(960px, 92vw);
+}
+
+.takeover-popup__body {
+  padding: var(--fwp-space-4) var(--fwp-space-5);
+  max-height: 78vh;
+  overflow-y: auto;
+}
+
+@media (max-width: 767px) {
+  .takeover-popup__body {
+    padding: var(--fwp-space-3);
+    max-height: 88vh;
+  }
+}

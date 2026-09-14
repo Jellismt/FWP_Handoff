@@ -1,0 +1,170 @@
+/**
+ * @file ReceiveSharePage.css
+ * @module engage-mt/field
+ * @description Receive-share page styles. Centered card on desktop,
+ *              full-width on mobile. Token-only; dark-mode safe.
+ * @author Jamie Ellis / Engage MT
+ * @created 2026-06-30
+ * @updated 2026-07-07
+ * @version 1.1.0
+ *
+ * FWP Engage MT — Montana's Official Gateway to the Outdoors
+ * Licensed under the MIT License.
+ */
+
+.receive-share {
+  display: flex;
+  justify-content: center;
+  padding: var(--fwp-space-6) var(--fwp-space-4);
+  width: 100%;
+}
+
+.receive-share__card {
+  background: var(--fwp-bg-surface);
+  border: 1px solid var(--fwp-border-subtle);
+  border-radius: var(--fwp-radius-xl);
+  box-shadow: var(--fwp-shadow-2);
+  max-width: 540px;
+  padding: var(--fwp-space-6);
+  width: 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .receive-share__card {
+    animation: receive-share-in var(--fwp-motion-soft);
+  }
+}
+
+@keyframes receive-share-in {
+  from {
+    opacity: 0;
+    transform: translateY(var(--fwp-space-3));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Bottom-sheet feel on phones: anchor to the bottom with a rounded top edge
+   and honor the home-indicator safe area. */
+@media (max-width: 767px) {
+  .receive-share {
+    align-items: flex-end;
+    min-height: 100%;
+    padding: var(--fwp-space-4) 0 0;
+  }
+
+  .receive-share__card {
+    border-bottom: none;
+    border-radius: var(--fwp-radius-xl) var(--fwp-radius-xl) 0 0;
+    max-width: none;
+    padding-bottom: calc(var(--fwp-space-6) + env(safe-area-inset-bottom));
+  }
+}
+
+.receive-share__title {
+  align-items: center;
+  color: var(--fwp-text-primary);
+  display: flex;
+  font-size: var(--fwp-text-xl);
+  font-weight: var(--fwp-weight-bold);
+  gap: var(--fwp-space-2);
+  margin: 0 0 var(--fwp-space-2);
+}
+
+.receive-share__lede {
+  color: var(--fwp-text-secondary);
+  font-size: var(--fwp-text-base);
+  margin: 0 0 var(--fwp-space-4);
+}
+
+.receive-share__counts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fwp-space-2);
+  list-style: none;
+  margin: 0 0 var(--fwp-space-4);
+  padding: 0;
+}
+
+.receive-share__counts li {
+  align-items: center;
+  color: var(--fwp-text-primary);
+  display: flex;
+  font-size: var(--fwp-text-md);
+  gap: var(--fwp-space-2);
+}
+
+.receive-share__hint {
+  background: var(--fwp-state-selected-bg);
+  border-radius: var(--fwp-radius-md);
+  color: var(--fwp-text-primary);
+  font-size: var(--fwp-text-sm);
+  margin: 0 0 var(--fwp-space-3);
+  padding: var(--fwp-space-2) var(--fwp-space-3);
+}
+
+.receive-share__note {
+  color: var(--fwp-text-secondary);
+  font-size: var(--fwp-text-sm);
+  margin: 0 0 var(--fwp-space-4);
+}
+
+.receive-share__guidance {
+  background: var(--fwp-bg-surface-sunken);
+  border-radius: var(--fwp-radius-md);
+  color: var(--fwp-text-primary);
+  font-size: var(--fwp-text-base);
+  line-height: 1.5;
+  margin: 0 0 var(--fwp-space-4);
+  padding: var(--fwp-space-4);
+}
+
+.receive-share__choice {
+  border: 1px solid var(--fwp-border-default);
+  border-radius: var(--fwp-radius-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--fwp-space-1);
+  margin: 0 0 var(--fwp-space-4);
+  padding: var(--fwp-space-3);
+}
+
+.receive-share__choice legend {
+  color: var(--fwp-text-secondary);
+  font-size: var(--fwp-text-sm);
+  padding: 0 var(--fwp-space-1);
+}
+
+.receive-share__radio {
+  align-items: center;
+  color: var(--fwp-text-primary);
+  cursor: pointer;
+  display: flex;
+  font-size: var(--fwp-text-md);
+  gap: var(--fwp-space-2);
+  min-height: var(--fwp-touch-min);
+}
+
+.receive-share__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--fwp-space-2);
+}
+
+/* "open in the app instead" hand-off link (web only). */
+.receive-share__applink {
+  align-items: center;
+  color: var(--fwp-accent-access);
+  display: inline-flex;
+  font-size: var(--fwp-text-sm);
+  font-weight: var(--fwp-weight-medium);
+  margin-top: var(--fwp-space-4);
+  min-height: var(--fwp-touch-min);
+  text-decoration: underline;
+}
+
+.receive-share__applink:hover {
+  color: var(--fwp-cta-primary-hover);
+}

@@ -1,0 +1,7 @@
+# Generated Tier-2 data — written by scripts/build-data, which computes each
+# file's sha256 into data-manifest.json. Prettier reformatting these (e.g.
+# adding a trailing newline) changes the bytes and breaks the
+# `check:data-freshness` sha256 gate. Build artifacts, not source.
+# (Mirrors the repo-root .prettierignore for the web-scoped lint-staged run,
+# which executes prettier with CWD=web/.)
+public/data/

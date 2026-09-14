@@ -1,0 +1,245 @@
+/**
+ * @file FieldToolsPage.css
+ * @module engage-mt/field
+ * @description Layout for the consumer-grade Field Tools dashboard.
+ * @author Jamie Ellis / Engage MT
+ * @created 2026-05-29
+ * @updated 2026-07-14
+ * @version 1.0.1
+ *
+ * FWP Engage MT — Montana's Official Gateway to the Outdoors
+ * Licensed under the MIT License.
+ */
+
+.field-tools {
+  padding: var(--fwp-space-6) var(--fwp-space-7);
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--fwp-space-5);
+}
+
+@media (max-width: 767px) {
+  .field-tools {
+    padding: var(--fwp-space-4);
+  }
+}
+
+@media (max-width: 767px) {
+  .field-tools {
+    padding: var(--fwp-space-4);
+  }
+}
+
+.field-tools__back {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--fwp-space-1);
+  font-size: var(--fwp-text-sm);
+  font-weight: var(--fwp-weight-medium);
+  color: var(--fwp-text-secondary);
+  text-decoration: none;
+  margin-bottom: var(--fwp-space-2);
+}
+
+.field-tools__back:hover {
+  color: var(--fwp-text-primary);
+}
+
+.field-tools__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--fwp-space-2);
+  padding-bottom: var(--fwp-space-2);
+  border-bottom: 1px solid var(--fwp-border-subtle);
+}
+
+/* Standard yellow pill for every tab (matches the app's yellow-button
+   language); the ACTIVE tab is marked by the navy inner ring + bold. */
+.field-tools__tab {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--fwp-space-2);
+  padding: var(--fwp-space-2) var(--fwp-space-4);
+  background: var(--fwp-cta-primary);
+  border: 1px solid color-mix(in srgb, var(--fwp-yellow) 70%, var(--fwp-blue) 30%);
+  border-radius: var(--fwp-radius-pill);
+  font: inherit;
+  font-size: var(--fwp-text-base);
+  font-weight: var(--fwp-weight-medium);
+  color: var(--fwp-cta-primary-text);
+  cursor: pointer;
+  min-height: 44px;
+  transition:
+    background var(--fwp-motion-quick),
+    color var(--fwp-motion-quick),
+    border-color var(--fwp-motion-quick),
+    box-shadow var(--fwp-motion-quick);
+}
+
+.field-tools__tab:hover {
+  background: var(--fwp-cta-primary-hover);
+}
+
+.field-tools__tab--active {
+  font-weight: var(--fwp-weight-bold);
+  box-shadow:
+    inset 0 0 0 2px var(--fwp-blue),
+    var(--fwp-shadow-1);
+}
+
+.field-tools__panel {
+  padding: var(--fwp-space-5);
+  background: var(--fwp-bg-surface);
+  border: 1px solid var(--fwp-border-subtle);
+  border-radius: var(--fwp-radius-lg);
+  box-shadow: var(--fwp-shadow-1);
+}
+
+.field-tools__panel-heading {
+  margin: 0 0 var(--fwp-space-3);
+  font-size: var(--fwp-text-lg);
+  font-weight: var(--fwp-weight-bold);
+  color: var(--fwp-text-primary);
+}
+
+.field-tools__empty {
+  margin: 0;
+  padding: var(--fwp-space-6);
+  text-align: center;
+  font-size: var(--fwp-text-base);
+  color: var(--fwp-text-secondary);
+  font-style: italic;
+  background: var(--fwp-bg-surface);
+  border: 1px solid var(--fwp-border-default);
+  border-radius: var(--fwp-radius-lg);
+}
+
+.field-tools__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--fwp-space-3);
+}
+
+.field-tools__entry {
+  display: flex;
+  gap: var(--fwp-space-3);
+  align-items: stretch;
+  padding: var(--fwp-space-4);
+  background: var(--fwp-bg-surface);
+  border: 1px solid var(--fwp-border-subtle);
+  border-radius: var(--fwp-radius-lg);
+  box-shadow: var(--fwp-shadow-1);
+  transition: box-shadow var(--fwp-motion-base);
+}
+
+.field-tools__entry:hover {
+  box-shadow: var(--fwp-shadow-2);
+}
+
+.field-tools__kind-stripe {
+  width: 6px;
+  border-radius: 3px;
+  flex-shrink: 0;
+  /* Consumers set --stripe to a token (e.g., var(--fwp-yellow)) — keeps
+     the inline style boundary at the CSS custom property layer. */
+  background: var(--stripe, var(--fwp-text-secondary));
+}
+
+.field-tools__kind-stripe--explore {
+  --stripe: var(--fwp-accent-explore);
+}
+
+.field-tools__kind-stripe--yellow {
+  --stripe: var(--fwp-yellow);
+}
+
+.field-tools__entry-body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.field-tools__entry-title {
+  font-size: var(--fwp-text-lg);
+  font-weight: var(--fwp-weight-bold);
+  color: var(--fwp-text-primary);
+  margin-bottom: 2px;
+}
+
+.field-tools__entry-sub {
+  font-size: var(--fwp-text-sm);
+  color: var(--fwp-text-secondary);
+}
+
+.field-tools__entry-notes {
+  margin: var(--fwp-space-2) 0 0;
+  font-size: var(--fwp-text-base);
+  color: var(--fwp-text-primary);
+  line-height: 1.4;
+}
+
+.field-tools__entry-photo {
+  margin-top: var(--fwp-space-2);
+  max-width: 240px;
+  max-height: 160px;
+  border-radius: var(--fwp-radius-md);
+  border: 1px solid var(--fwp-border-subtle);
+}
+
+.field-tools__entry-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fwp-space-2);
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+
+.field-tools__hint {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--fwp-space-2);
+  margin: var(--fwp-space-4) 0 0;
+  font-size: var(--fwp-text-base);
+  color: var(--fwp-text-secondary);
+  font-style: italic;
+}
+
+/* Inline edit form — swaps in for the entry body while editing. */
+.field-tools__edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fwp-space-3);
+  width: 100%;
+}
+
+.field-tools__edit-label {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fwp-space-1);
+  font-size: var(--fwp-text-sm);
+  font-weight: var(--fwp-weight-medium);
+  color: var(--fwp-text-secondary);
+}
+
+.field-tools__edit-input,
+.field-tools__edit-textarea {
+  font: inherit;
+  color: var(--fwp-text-primary);
+  background: var(--fwp-bg-surface);
+  border: 1px solid var(--fwp-border-subtle);
+  border-radius: var(--fwp-radius-md);
+  padding: var(--fwp-space-2) var(--fwp-space-3);
+}
+
+.field-tools__edit-textarea {
+  resize: vertical;
+}
+
+.field-tools__edit-actions {
+  display: flex;
+  gap: var(--fwp-space-2);
+}

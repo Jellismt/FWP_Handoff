@@ -1,0 +1,172 @@
+/**
+ * @file TrackRecorderPanel.css
+ * @module engage-mt/field
+ * @description Track recorder panel layout.
+ * @author Jamie Ellis / Engage MT
+ * @created 2026-06-02
+ * @updated 2026-07-01
+ * @version 1.1.0
+ *
+ * FWP Engage MT — Montana's Official Gateway to the Outdoors
+ * Licensed under the MIT License.
+ */
+
+.track-recorder {
+  margin: var(--fwp-space-4) 0;
+  padding: var(--fwp-space-4);
+  background: var(--fwp-bg-surface);
+  border: 1px solid var(--fwp-border-subtle);
+  border-left: 4px solid var(--fwp-blue);
+  border-radius: var(--fwp-radius-md);
+  box-shadow: var(--fwp-shadow-1);
+}
+
+.track-recorder--recording {
+  border-left-color: var(--fwp-danger);
+}
+
+.track-recorder--paused {
+  border-left-color: var(--fwp-warning);
+}
+
+.track-recorder__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--fwp-space-3);
+  gap: var(--fwp-space-2);
+}
+
+.track-recorder__heading {
+  margin: 0;
+  font-size: var(--fwp-text-lg);
+  font-weight: var(--fwp-weight-bold);
+  letter-spacing: var(--fwp-letter-spacing-heading);
+  color: var(--fwp-text-primary);
+}
+
+.track-recorder__status {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+  border-radius: var(--fwp-radius-pill);
+  font-size: var(--fwp-text-xs);
+  font-weight: var(--fwp-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--fwp-letter-spacing-label);
+  background: var(--fwp-neutral-100);
+  color: var(--fwp-text-secondary);
+}
+
+.track-recorder__status--recording {
+  background: color-mix(in srgb, var(--fwp-danger) 18%, transparent);
+  color: var(--fwp-danger);
+}
+
+.track-recorder__status--paused {
+  background: color-mix(in srgb, var(--fwp-warning) 22%, transparent);
+  color: var(--fwp-warning);
+}
+
+.track-recorder__status--recording::before {
+  content: "●";
+  margin-right: 6px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .track-recorder--recording .track-recorder__status--recording::before {
+    animation: track-recorder-pulse 1.2s ease-in-out infinite;
+  }
+
+  @keyframes track-recorder-pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.35;
+    }
+  }
+}
+
+.track-recorder__stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--fwp-space-3);
+  margin: 0 0 var(--fwp-space-3);
+  padding: var(--fwp-space-3);
+  background: var(--fwp-bg-surface-sunken);
+  border-radius: var(--fwp-radius-md);
+}
+
+.track-recorder__stats > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.track-recorder__stats dt {
+  margin: 0;
+  font-size: var(--fwp-text-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--fwp-letter-spacing-label);
+  color: var(--fwp-text-secondary);
+  font-weight: var(--fwp-weight-bold);
+}
+
+.track-recorder__stats dd {
+  margin: 0;
+  font-size: var(--fwp-text-lg);
+  font-weight: var(--fwp-weight-bold);
+  color: var(--fwp-text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.track-recorder__controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--fwp-space-2);
+  margin-bottom: var(--fwp-space-3);
+}
+
+/* The "Save this track" form moved to the shared
+   TrackSaveSheet component (.track-save-sheet) so the Field-Tools panel
+   and the on-map tracker HUD share one save experience. */
+
+.track-recorder__hint {
+  margin: 0;
+  font-size: var(--fwp-text-xs);
+  color: var(--fwp-text-secondary);
+  font-style: italic;
+}
+
+/* GPS error banner. Renders only when watchPosition fires
+   an error (permission denied / no fix / timeout). Auto-pauses the
+   recorder; user can re-grant permission + tap Resume. */
+.track-recorder__error {
+  margin: 0 0 var(--fwp-space-3);
+  padding: var(--fwp-space-3);
+  background: color-mix(in srgb, var(--fwp-warning) 16%, transparent);
+  border: 1px solid color-mix(in srgb, var(--fwp-warning) 40%, transparent);
+  border-radius: var(--fwp-radius-md);
+  font-size: var(--fwp-text-sm);
+  color: var(--fwp-text-primary);
+  line-height: 1.4;
+}
+
+.track-recorder__error strong {
+  color: var(--fwp-warning);
+}
+
+@media (max-width: 480px) {
+  .track-recorder__stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.track-recorder__note {
+  margin: 0 0 0.75rem;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: var(--fwp-text-secondary);
+}

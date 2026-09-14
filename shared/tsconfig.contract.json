@@ -1,0 +1,16 @@
+{
+  "//": "Type-checks the conformance test (which imports the web NormalizedRegulation) WITHOUT composite/rootDir so the cross-workspace import doesn't trip TS6059. This is the real cutover tripwire — `npm run verify` runs it.",
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "lib": ["ES2022", "DOM"],
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "types": []
+  },
+  "include": ["src/**/*.ts"]
+}

@@ -1,0 +1,6 @@
+{
+  "name": "engage-mt-build-data",
+  "type": "module",
+  "private": true,
+  "description": "Local scope marker so Node treats .mjs/.ts as ES modules without a warning. See README.md."
+}

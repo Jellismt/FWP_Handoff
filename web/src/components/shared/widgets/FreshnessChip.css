@@ -1,0 +1,149 @@
+/**
+ * @file FreshnessChip.css
+ * @module engage-mt/shared
+ * @description Visual styling for FreshnessChip — small inline pill with a colored dot.
+ * @author Jamie Ellis / Engage MT
+ * @created 2026-05-29
+ * @updated 2026-07-03
+ * @version 1.1.0
+ *
+ * FWP Engage MT — Montana's Official Gateway to the Outdoors
+ * Licensed under the MIT License.
+ */
+
+.freshness-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--fwp-text-xs);
+  /* Meta-accessible holds AA contrast at 11.2px on the page
+     background. text-secondary lands at ~4.5:1 (borderline). */
+  color: var(--fwp-text-meta-accessible);
+  letter-spacing: var(--fwp-letter-spacing-label);
+  text-transform: uppercase;
+  font-weight: 600;
+  /* Keep the chip on a single line. The label
+     ("Static / Live / Daily") + source ("FWP Public Hub") would otherwise wrap
+     mid-phrase in narrow popup headers ("STATIC REFERENCE · FWP PUBLIC
+     HUB" → "STATIC<wrap>REFERENCE · FWP PUBLIC<wrap>HUB"). Single-line
+     truncation with overflow hidden + ellipsis on the source segment
+     reads cleanly at every width. */
+  flex-wrap: nowrap;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.freshness-chip__label {
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
+
+.freshness-chip__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--fwp-neutral-600);
+  display: inline-block;
+}
+
+.freshness-chip--realtime .freshness-chip__dot {
+  background: var(--fwp-sky);
+  animation: freshness-pulse 2s ease-in-out infinite;
+}
+
+.freshness-chip--hourly .freshness-chip__dot,
+.freshness-chip--daily .freshness-chip__dot {
+  background: var(--fwp-green-light);
+}
+
+.freshness-chip--weekly .freshness-chip__dot {
+  background: var(--fwp-gold);
+}
+
+.freshness-chip--static .freshness-chip__dot,
+.freshness-chip--versioned .freshness-chip__dot {
+  background: var(--fwp-neutral-600);
+}
+
+@keyframes freshness-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .freshness-chip__dot {
+    animation: none !important;
+  }
+}
+
+.freshness-chip__source,
+.freshness-chip__updated {
+  white-space: nowrap;
+  /* Source can be long ("Montana State Library (MSDI Parcels)"). Allow
+     it to truncate with an ellipsis rather than wrap. */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+.freshness-chip__source {
+  flex: 1 1 auto;
+}
+
+.freshness-chip__sep {
+  flex: 0 0 auto;
+  opacity: 0.6;
+}
+
+/* Compact variant for LayerPanel inline rendering. Hides the
+   source + lastUpdate segments so only the dot + label show, keeping
+   the layer row from over-flowing on narrow viewports. */
+.freshness-chip--compact {
+  font-size: var(--fwp-text-xs);
+  gap: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.freshness-chip--compact .freshness-chip__dot {
+  width: 5px;
+  height: 5px;
+}
+
+/* Stale-data amber state. Per docs/rules/data-freshness.md
+   § "Stale-data handling" — the chip turns amber + appends "Stale" so
+   the user knows the layer is past its expected refresh window. */
+.freshness-chip--stale {
+  color: var(--fwp-warning);
+}
+
+.freshness-chip--stale .freshness-chip__dot {
+  background: var(--fwp-warning) !important;
+  animation: none !important;
+}
+
+/* Offline-cached state. Realtime + hourly chips render in
+   amber with "Offline · cached" suffix when connectivityStore reports
+   no network so users know they're reading a snapshot, not the live
+   feed. Uses the stale rule's color; dot animation is already killed
+   by the shared .freshness-chip--stale rule that's also applied. */
+.freshness-chip--offline {
+  color: var(--fwp-warning);
+}
+
+/* Sample-fixture amber treatment. Same visual cue as stale
+   but the label text reads "· Sample" so the user knows the gap is
+   "awaiting wiring" not "data went out of date". */
+.freshness-chip--sample {
+  color: var(--fwp-warning);
+}
+
+.freshness-chip--sample .freshness-chip__dot {
+  background: var(--fwp-warning) !important;
+  animation: none !important;
+}

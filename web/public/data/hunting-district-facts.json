@@ -1,0 +1,1114 @@
+[
+  {
+    "district": "100",
+    "region": 1,
+    "name": "North Kootenai",
+    "acres": 900622,
+    "counties": "Lincoln",
+    "weapon_restriction": false
+  },
+  {
+    "district": "101",
+    "region": 1,
+    "name": "Eureka",
+    "acres": 515732,
+    "counties": "Lincoln, Flathead",
+    "weapon_restriction": false
+  },
+  {
+    "district": "103",
+    "region": 1,
+    "name": "South Salish",
+    "acres": 927024,
+    "counties": "Lincoln, Flathead",
+    "weapon_restriction": true
+  },
+  {
+    "district": "104",
+    "region": 1,
+    "name": "Cabinets",
+    "acres": 483714,
+    "counties": "Lincoln",
+    "weapon_restriction": false
+  },
+  {
+    "district": "110",
+    "region": 1,
+    "name": "North Fork",
+    "acres": 507772,
+    "counties": "Flathead, Lincoln",
+    "weapon_restriction": false
+  },
+  {
+    "district": "120",
+    "region": 1,
+    "name": "Blacktail",
+    "acres": 315450,
+    "counties": "Flathead, Lincoln",
+    "weapon_restriction": true
+  },
+  {
+    "district": "121",
+    "region": 1,
+    "name": "West Clark Fork",
+    "acres": 627168,
+    "counties": "Sanders",
+    "weapon_restriction": false
+  },
+  {
+    "district": "122",
+    "region": 1,
+    "name": "Thompson River",
+    "acres": 458508,
+    "counties": "Flathead, Sanders, Lincoln",
+    "weapon_restriction": false
+  },
+  {
+    "district": "123",
+    "region": 1,
+    "name": "Clark Mountain",
+    "acres": 152606,
+    "counties": "Sanders",
+    "weapon_restriction": false
+  },
+  {
+    "district": "124",
+    "region": 1,
+    "name": "Arvilla",
+    "acres": 82508,
+    "counties": "Sanders",
+    "weapon_restriction": false
+  },
+  {
+    "district": "130",
+    "region": 1,
+    "name": "Swan",
+    "acres": 430174,
+    "counties": "Lake, Missoula",
+    "weapon_restriction": false
+  },
+  {
+    "district": "140",
+    "region": 1,
+    "name": "Lower South Fork",
+    "acres": 561813,
+    "counties": "Flathead",
+    "weapon_restriction": false
+  },
+  {
+    "district": "141",
+    "region": 1,
+    "name": "Lower Middle Fork",
+    "acres": 216894,
+    "counties": "Flathead",
+    "weapon_restriction": false
+  },
+  {
+    "district": "150",
+    "region": 1,
+    "name": "Upper South Fork",
+    "acres": 747939,
+    "counties": "Flathead, Missoula, Powell",
+    "weapon_restriction": false
+  },
+  {
+    "district": "170",
+    "region": 1,
+    "name": "Flathead River",
+    "acres": 231608,
+    "counties": "Flathead",
+    "weapon_restriction": true
+  },
+  {
+    "district": "200",
+    "region": 2,
+    "name": "North St. Regis",
+    "acres": 152000,
+    "counties": "Mineral, Sanders",
+    "weapon_restriction": false
+  },
+  {
+    "district": "201",
+    "region": 2,
+    "name": "Missoula - Ninemile - North Superior",
+    "acres": 668845,
+    "counties": "Missoula, Mineral, Sanders",
+    "weapon_restriction": false
+  },
+  {
+    "district": "202",
+    "region": 2,
+    "name": "South Superior",
+    "acres": 614049,
+    "counties": "Missoula, Mineral",
+    "weapon_restriction": false
+  },
+  {
+    "district": "204",
+    "region": 2,
+    "name": "North Sapphire",
+    "acres": 257923,
+    "counties": "Ravalli, Granite, Missoula",
+    "weapon_restriction": false
+  },
+  {
+    "district": "210",
+    "region": 2,
+    "name": "John Long Range",
+    "acres": 312492,
+    "counties": "Missoula, Granite",
+    "weapon_restriction": false
+  },
+  {
+    "district": "211",
+    "region": 2,
+    "name": "Upper Rock Creek-Georgetown Lake",
+    "acres": 260612,
+    "counties": "Lake, Granite",
+    "weapon_restriction": false
+  },
+  {
+    "district": "212",
+    "region": 2,
+    "name": "West Flint Range",
+    "acres": 85155,
+    "counties": "Granite",
+    "weapon_restriction": true
+  },
+  {
+    "district": "213",
+    "region": 2,
+    "name": "East Flint Range",
+    "acres": 317147,
+    "counties": "Granite, Powell, Deer Lodge",
+    "weapon_restriction": true
+  },
+  {
+    "district": "214",
+    "region": 2,
+    "name": "Mill Creek-Storm Lake",
+    "acres": 74280,
+    "counties": "Lake, Deer Lodge",
+    "weapon_restriction": false
+  },
+  {
+    "district": "215",
+    "region": 2,
+    "name": "East Deer Lodge",
+    "acres": 370345,
+    "counties": "Deer Lodge, Silver Bow, Powell",
+    "weapon_restriction": false
+  },
+  {
+    "district": "216",
+    "region": 2,
+    "name": "West Rock Creek-Quigg Peak",
+    "acres": 189603,
+    "counties": "Granite, Missoula",
+    "weapon_restriction": false
+  },
+  {
+    "district": "217",
+    "region": 2,
+    "name": "Northwest Flint Range",
+    "acres": 91173,
+    "counties": "Granite, Powell",
+    "weapon_restriction": false
+  },
+  {
+    "district": "240",
+    "region": 2,
+    "name": "West Bitterroot",
+    "acres": 429757,
+    "counties": "Missoula, Ravalli",
+    "weapon_restriction": false
+  },
+  {
+    "district": "250",
+    "region": 2,
+    "name": "West Fork Bitterroot",
+    "acres": 355100,
+    "counties": "Ravalli",
+    "weapon_restriction": false
+  },
+  {
+    "district": "260",
+    "region": 2,
+    "name": "Bitterroot-Clark Fork Archery District",
+    "acres": 98901,
+    "counties": "Missoula, Ravalli",
+    "weapon_restriction": false
+  },
+  {
+    "district": "261",
+    "region": 2,
+    "name": "East Bitterroot",
+    "acres": 137273,
+    "counties": "Ravalli",
+    "weapon_restriction": false
+  },
+  {
+    "district": "262",
+    "region": 2,
+    "name": "Bitterroot Farmlands",
+    "acres": 79845,
+    "counties": "Missoula, Ravalli",
+    "weapon_restriction": false
+  },
+  {
+    "district": "270",
+    "region": 2,
+    "name": "East Fork Bitterroot",
+    "acres": 424844,
+    "counties": "Ravalli",
+    "weapon_restriction": false
+  },
+  {
+    "district": "280",
+    "region": 2,
+    "name": "North Blackfoot",
+    "acres": 194951,
+    "counties": "Powell, Lewis and Clark",
+    "weapon_restriction": false
+  },
+  {
+    "district": "281",
+    "region": 2,
+    "name": "Upper Blackfoot",
+    "acres": 242333,
+    "counties": "Powell, Lewis and Clark",
+    "weapon_restriction": true
+  },
+  {
+    "district": "282",
+    "region": 2,
+    "name": "Blackfoot-Clearwater WMA",
+    "acres": 26136,
+    "counties": "Missoula, Powell",
+    "weapon_restriction": false
+  },
+  {
+    "district": "284",
+    "region": 2,
+    "name": "Lincoln Archery District",
+    "acres": 10901,
+    "counties": "Lincoln, Lewis and Clark",
+    "weapon_restriction": false
+  },
+  {
+    "district": "285",
+    "region": 2,
+    "name": "Monture",
+    "acres": 423419,
+    "counties": "Missoula, Powell",
+    "weapon_restriction": false
+  },
+  {
+    "district": "290",
+    "region": 2,
+    "name": "Helmville-Ovando Archery District",
+    "acres": 33726,
+    "counties": "Powell",
+    "weapon_restriction": false
+  },
+  {
+    "district": "291",
+    "region": 2,
+    "name": "East Garnet Range",
+    "acres": 205834,
+    "counties": "Powell",
+    "weapon_restriction": false
+  },
+  {
+    "district": "292",
+    "region": 2,
+    "name": "West Garnet Range",
+    "acres": 309755,
+    "counties": "Missoula, Granite, Powell",
+    "weapon_restriction": false
+  },
+  {
+    "district": "293",
+    "region": 2,
+    "name": "South Lincoln-Nevada Creek",
+    "acres": 284423,
+    "counties": "Lincoln, Powell, Lewis and Clark",
+    "weapon_restriction": false
+  },
+  {
+    "district": "298",
+    "region": 2,
+    "name": "Ovando-Helmville",
+    "acres": 96987,
+    "counties": "Powell",
+    "weapon_restriction": false
+  },
+  {
+    "district": "301",
+    "region": 3,
+    "name": "Hyalite-Portal",
+    "acres": 210216,
+    "counties": "",
+    "weapon_restriction": false
+  },
+  {
+    "district": "302",
+    "region": 3,
+    "name": "Tendoys",
+    "acres": 383510,
+    "counties": "Beaverhead",
+    "weapon_restriction": false
+  },
+  {
+    "district": "303",
+    "region": 3,
+    "name": "Lima Peaks-Nicholia",
+    "acres": 208966,
+    "counties": "Beaverhead",
+    "weapon_restriction": false
+  },
+  {
+    "district": "304",
+    "region": 3,
+    "name": "Spanish Peaks",
+    "acres": 280740,
+    "counties": "Madison, Gallatin",
+    "weapon_restriction": false
+  },
+  {
+    "district": "309",
+    "region": 3,
+    "name": "Gallatin Valley Weapons Restriction Area",
+    "acres": 110484,
+    "counties": "Gallatin, Valley",
+    "weapon_restriction": true
+  },
+  {
+    "district": "310",
+    "region": 3,
+    "name": "Upper Gallatin",
+    "acres": 200780,
+    "counties": "Gallatin, Madison",
+    "weapon_restriction": false
+  },
+  {
+    "district": "311",
+    "region": 3,
+    "name": "Lower Madison",
+    "acres": 361847,
+    "counties": "Madison, Gallatin, Jefferson, Broadwater",
+    "weapon_restriction": false
+  },
+  {
+    "district": "312",
+    "region": 3,
+    "name": "West Bridger",
+    "acres": 316815,
+    "counties": "Gallatin",
+    "weapon_restriction": false
+  },
+  {
+    "district": "313",
+    "region": 3,
+    "name": "Gardiner",
+    "acres": 124625,
+    "counties": "Park",
+    "weapon_restriction": false
+  },
+  {
+    "district": "314",
+    "region": 3,
+    "name": "Upper Yellowstone West",
+    "acres": 346731,
+    "counties": "Yellowstone, Gallatin, Park",
+    "weapon_restriction": false
+  },
+  {
+    "district": "315",
+    "region": 3,
+    "name": "West Slope Crazy Mountains",
+    "acres": 371145,
+    "counties": "Meagher, Park, Sweet Grass",
+    "weapon_restriction": false
+  },
+  {
+    "district": "316",
+    "region": 3,
+    "name": "Absaroka",
+    "acres": 298510,
+    "counties": "Carbon, Sweet Grass, Park",
+    "weapon_restriction": false
+  },
+  {
+    "district": "317",
+    "region": 3,
+    "name": "Upper Yellowstone East",
+    "acres": 271101,
+    "counties": "Yellowstone, Park",
+    "weapon_restriction": false
+  },
+  {
+    "district": "318",
+    "region": 3,
+    "name": "Butte-Basin",
+    "acres": 172815,
+    "counties": "Jefferson",
+    "weapon_restriction": false
+  },
+  {
+    "district": "319",
+    "region": 3,
+    "name": "Fleecer-High Rye",
+    "acres": 396943,
+    "counties": "Silver Bow, Deer Lodge",
+    "weapon_restriction": false
+  },
+  {
+    "district": "320",
+    "region": 3,
+    "name": "Tobacco Root Mountains",
+    "acres": 513842,
+    "counties": "Madison, Jefferson",
+    "weapon_restriction": false
+  },
+  {
+    "district": "321",
+    "region": 3,
+    "name": "West Big Hole-Mussigbrod",
+    "acres": 503557,
+    "counties": "Beaverhead",
+    "weapon_restriction": false
+  },
+  {
+    "district": "322",
+    "region": 3,
+    "name": "HD 322",
+    "acres": 291680,
+    "counties": "Stillwater, Park",
+    "weapon_restriction": false
+  },
+  {
+    "district": "323",
+    "region": 3,
+    "name": "Gravelly-Centennial",
+    "acres": 1322016,
+    "counties": "Madison, Beaverhead",
+    "weapon_restriction": false
+  },
+  {
+    "district": "324",
+    "region": 3,
+    "name": "Blacktail Mountains",
+    "acres": 331149,
+    "counties": "Beaverhead",
+    "weapon_restriction": false
+  },
+  {
+    "district": "329",
+    "region": 3,
+    "name": "Big Hole Divide - Horse Prairie",
+    "acres": 505668,
+    "counties": "Prairie, Beaverhead",
+    "weapon_restriction": false
+  },
+  {
+    "district": "331",
+    "region": 3,
+    "name": "Pioneer Mountains-East Big Hole",
+    "acres": 871114,
+    "counties": "Beaverhead, Deer Lodge, Madison",
+    "weapon_restriction": false
+  },
+  {
+    "district": "335",
+    "region": 3,
+    "name": "Helena-South",
+    "acres": 139142,
+    "counties": "Lewis and Clark, Jefferson",
+    "weapon_restriction": false
+  },
+  {
+    "district": "339",
+    "region": 3,
+    "name": "Sieben-Sleeping Giant",
+    "acres": 188147,
+    "counties": "Lewis and Clark",
+    "weapon_restriction": false
+  },
+  {
+    "district": "340",
+    "region": 3,
+    "name": "Highlands",
+    "acres": 544659,
+    "counties": "Beaverhead, Madison, Jefferson, Silver Bow",
+    "weapon_restriction": false
+  },
+  {
+    "district": "343",
+    "region": 3,
+    "name": "Helena-North",
+    "acres": 157138,
+    "counties": "Lewis and Clark",
+    "weapon_restriction": false
+  },
+  {
+    "district": "350",
+    "region": 3,
+    "name": "Whitetail-Bull Mountains",
+    "acres": 228206,
+    "counties": "Silver Bow, Jefferson",
+    "weapon_restriction": false
+  },
+  {
+    "district": "360",
+    "region": 3,
+    "name": "Madison Range",
+    "acres": 434100,
+    "counties": "Madison, Gallatin",
+    "weapon_restriction": true
+  },
+  {
+    "district": "361",
+    "region": 3,
+    "name": "Hebgen-Upper Madison",
+    "acres": 143660,
+    "counties": "Madison, Gallatin",
+    "weapon_restriction": false
+  },
+  {
+    "district": "370",
+    "region": 3,
+    "name": "Bull Mountains",
+    "acres": 118440,
+    "counties": "Jefferson",
+    "weapon_restriction": false
+  },
+  {
+    "district": "380",
+    "region": 3,
+    "name": "Radersburg",
+    "acres": 668199,
+    "counties": "Jefferson, Broadwater, Lewis and Clark",
+    "weapon_restriction": true
+  },
+  {
+    "district": "388",
+    "region": 3,
+    "name": "Tenmile - Prickly Pear Valley",
+    "acres": 125263,
+    "counties": "Valley, Lewis and Clark, Jefferson",
+    "weapon_restriction": true
+  },
+  {
+    "district": "390",
+    "region": 3,
+    "name": "Sixteenmile Creek",
+    "acres": 217786,
+    "counties": "Broadwater, Gallatin, Meagher",
+    "weapon_restriction": false
+  },
+  {
+    "district": "391",
+    "region": 3,
+    "name": "Dry Creek-Avalanche",
+    "acres": 302372,
+    "counties": "Broadwater, Lewis and Clark",
+    "weapon_restriction": true
+  },
+  {
+    "district": "392",
+    "region": 3,
+    "name": "Avalanche-Gates of the Mountains",
+    "acres": 160457,
+    "counties": "Broadwater, Lewis and Clark",
+    "weapon_restriction": false
+  },
+  {
+    "district": "393",
+    "region": 3,
+    "name": "East Bridger",
+    "acres": 395126,
+    "counties": "Park, Gallatin, Meagher",
+    "weapon_restriction": false
+  },
+  {
+    "district": "400",
+    "region": 4,
+    "name": "Lower Marias River",
+    "acres": 1210034,
+    "counties": "Toole, Pondera, Liberty, Chouteau",
+    "weapon_restriction": false
+  },
+  {
+    "district": "401",
+    "region": 4,
+    "name": "Sweet Grass Hills",
+    "acres": 1158706,
+    "counties": "Sweet Grass, Toole, Liberty",
+    "weapon_restriction": false
+  },
+  {
+    "district": "403",
+    "region": 4,
+    "name": "Cut Bank",
+    "acres": 422850,
+    "counties": "Glacier, Toole",
+    "weapon_restriction": false
+  },
+  {
+    "district": "404",
+    "region": 4,
+    "name": "Lower Teton River",
+    "acres": 1244220,
+    "counties": "Teton, Pondera, Chouteau, Cascade",
+    "weapon_restriction": false
+  },
+  {
+    "district": "405",
+    "region": 4,
+    "name": "Carter",
+    "acres": 301315,
+    "counties": "Carter, Cascade, Chouteau",
+    "weapon_restriction": false
+  },
+  {
+    "district": "406",
+    "region": 4,
+    "name": "Upper Marias-Dupuyer",
+    "acres": 452168,
+    "counties": "Glacier, Toole, Pondera, Teton",
+    "weapon_restriction": false
+  },
+  {
+    "district": "410",
+    "region": 4,
+    "name": "Missouri River Breaks",
+    "acres": 1018915,
+    "counties": "Fergus, Petroleum, Garfield",
+    "weapon_restriction": false
+  },
+  {
+    "district": "411",
+    "region": 4,
+    "name": "Snowy Mountains",
+    "acres": 754384,
+    "counties": "Golden Valley, Valley, Fergus, Judith Basin",
+    "weapon_restriction": false
+  },
+  {
+    "district": "412",
+    "region": 4,
+    "name": "Judith and Moccasin Mountains",
+    "acres": 422638,
+    "counties": "Fergus",
+    "weapon_restriction": false
+  },
+  {
+    "district": "413",
+    "region": 4,
+    "name": "Northwest Little Belt Mountains",
+    "acres": 562362,
+    "counties": "Cascade, Meagher",
+    "weapon_restriction": false
+  },
+  {
+    "district": "415",
+    "region": 4,
+    "name": "Summit-North Fork Birch Creek",
+    "acres": 132176,
+    "counties": "Pondera, Glacier",
+    "weapon_restriction": false
+  },
+  {
+    "district": "416",
+    "region": 4,
+    "name": "Southwest Little Belt Mountains",
+    "acres": 418364,
+    "counties": "Cascade, Meagher, Judith Basin",
+    "weapon_restriction": false
+  },
+  {
+    "district": "417",
+    "region": 4,
+    "name": "Armells Creek",
+    "acres": 550278,
+    "counties": "Fergus",
+    "weapon_restriction": false
+  },
+  {
+    "district": "418",
+    "region": 4,
+    "name": "South Judith Basin",
+    "acres": 307293,
+    "counties": "Judith Basin, Fergus",
+    "weapon_restriction": false
+  },
+  {
+    "district": "419",
+    "region": 4,
+    "name": "Stanford",
+    "acres": 438660,
+    "counties": "Judith Basin, Fergus",
+    "weapon_restriction": false
+  },
+  {
+    "district": "420",
+    "region": 4,
+    "name": "Judith River WMA-Sage Creek",
+    "acres": 49506,
+    "counties": "Judith Basin",
+    "weapon_restriction": false
+  },
+  {
+    "district": "421",
+    "region": 4,
+    "name": "Birdtail Hills - South Dearborn",
+    "acres": 518688,
+    "counties": "Cascade, Lewis and Clark",
+    "weapon_restriction": false
+  },
+  {
+    "district": "422",
+    "region": 4,
+    "name": "North Dearborn",
+    "acres": 310176,
+    "counties": "Lewis and Clark",
+    "weapon_restriction": false
+  },
+  {
+    "district": "424",
+    "region": 4,
+    "name": "Benchmark",
+    "acres": 60705,
+    "counties": "Lewis and Clark",
+    "weapon_restriction": false
+  },
+  {
+    "district": "425",
+    "region": 4,
+    "name": "Sun River WMA",
+    "acres": 91417,
+    "counties": "Lewis and Clark",
+    "weapon_restriction": false
+  },
+  {
+    "district": "426",
+    "region": 4,
+    "name": "Winifred",
+    "acres": 540768,
+    "counties": "Fergus, Judith Basin",
+    "weapon_restriction": false
+  },
+  {
+    "district": "432",
+    "region": 4,
+    "name": "HD 432",
+    "acres": 314618,
+    "counties": "",
+    "weapon_restriction": false
+  },
+  {
+    "district": "441",
+    "region": 4,
+    "name": "North Fork Birch Creek-Teton",
+    "acres": 380987,
+    "counties": "Teton, Pondera",
+    "weapon_restriction": false
+  },
+  {
+    "district": "442",
+    "region": 4,
+    "name": "Sun River",
+    "acres": 190644,
+    "counties": "Lewis and Clark, Teton",
+    "weapon_restriction": false
+  },
+  {
+    "district": "444",
+    "region": 4,
+    "name": "Lower Sun River",
+    "acres": 310559,
+    "counties": "Cascade, Lewis and Clark, Teton",
+    "weapon_restriction": false
+  },
+  {
+    "district": "445",
+    "region": 4,
+    "name": "Hound Creek",
+    "acres": 445079,
+    "counties": "Cascade, Lewis and Clark, Meagher",
+    "weapon_restriction": false
+  },
+  {
+    "district": "446",
+    "region": 4,
+    "name": "Northeast Big Belt Mountains",
+    "acres": 379826,
+    "counties": "Meagher, Lewis and Clark",
+    "weapon_restriction": false
+  },
+  {
+    "district": "447",
+    "region": 4,
+    "name": "Belt-Square Butte",
+    "acres": 565507,
+    "counties": "Cascade, Chouteau, Judith Basin",
+    "weapon_restriction": false
+  },
+  {
+    "district": "448",
+    "region": 4,
+    "name": "North Judith Basin-Central Little Belts",
+    "acres": 245580,
+    "counties": "Judith Basin, Cascade, Meagher",
+    "weapon_restriction": false
+  },
+  {
+    "district": "450",
+    "region": 4,
+    "name": "Choteau",
+    "acres": 260385,
+    "counties": "Teton",
+    "weapon_restriction": false
+  },
+  {
+    "district": "451",
+    "region": 4,
+    "name": "Southeast Big Belt Mountains",
+    "acres": 90779,
+    "counties": "Meagher",
+    "weapon_restriction": false
+  },
+  {
+    "district": "452",
+    "region": 4,
+    "name": "Castle Mountains",
+    "acres": 216489,
+    "counties": "Meagher",
+    "weapon_restriction": false
+  },
+  {
+    "district": "455",
+    "region": 4,
+    "name": "Beartooth WMA",
+    "acres": 41954,
+    "counties": "Cascade, Lewis and Clark",
+    "weapon_restriction": false
+  },
+  {
+    "district": "471",
+    "region": 4,
+    "name": "Geraldine",
+    "acres": 481219,
+    "counties": "Chouteau, Fergus",
+    "weapon_restriction": false
+  },
+  {
+    "district": "502",
+    "region": 5,
+    "name": "Crow Line",
+    "acres": 469333,
+    "counties": "Carbon, Yellowstone",
+    "weapon_restriction": false
+  },
+  {
+    "district": "515",
+    "region": 5,
+    "name": "Painted Robe",
+    "acres": 1613625,
+    "counties": "Golden Valley, Valley, Stillwater, Sweet Grass, Wheatland, Yellowstone",
+    "weapon_restriction": false
+  },
+  {
+    "district": "525",
+    "region": 5,
+    "name": "Beartooth - Absaroka",
+    "acres": 1043903,
+    "counties": "Carbon, Stillwater, Sweet Grass, Park",
+    "weapon_restriction": false
+  },
+  {
+    "district": "535",
+    "region": 5,
+    "name": "Southern Snowy Mountains",
+    "acres": 1769586,
+    "counties": "Wheatland, Fergus, Golden Valley, Valley, Musselshell, Petroleum",
+    "weapon_restriction": false
+  },
+  {
+    "district": "540",
+    "region": 5,
+    "name": "Southeast Little Belt Mountains",
+    "acres": 373219,
+    "counties": "Meagher, Wheatland",
+    "weapon_restriction": false
+  },
+  {
+    "district": "555",
+    "region": 5,
+    "name": "Pryor Mountains - Cottonwood Triangle",
+    "acres": 505811,
+    "counties": "Carbon",
+    "weapon_restriction": false
+  },
+  {
+    "district": "565",
+    "region": 5,
+    "name": "Upper Boulder",
+    "acres": 131020,
+    "counties": "Park, Sweet Grass",
+    "weapon_restriction": false
+  },
+  {
+    "district": "575",
+    "region": 5,
+    "name": "Absarokee",
+    "acres": 524158,
+    "counties": "Carbon, Stillwater, Sweet Grass, Yellowstone",
+    "weapon_restriction": false
+  },
+  {
+    "district": "580",
+    "region": 5,
+    "name": "East Slope Crazy Mountains",
+    "acres": 721468,
+    "counties": "Meagher, Park, Sweet Grass, Wheatland",
+    "weapon_restriction": false
+  },
+  {
+    "district": "590",
+    "region": 5,
+    "name": "Bull Mountains-Pine Ridge",
+    "acres": 1866620,
+    "counties": "Big Horn, Golden Valley, Valley, Musselshell, Yellowstone",
+    "weapon_restriction": false
+  },
+  {
+    "district": "600",
+    "region": 6,
+    "name": "North Hill-Blaine",
+    "acres": 1959118,
+    "counties": "Hill, Blaine",
+    "weapon_restriction": true
+  },
+  {
+    "district": "620",
+    "region": 6,
+    "name": "South Phillips",
+    "acres": 1120612,
+    "counties": "Phillips, Valley",
+    "weapon_restriction": false
+  },
+  {
+    "district": "621",
+    "region": 6,
+    "name": "Upper Missouri Breaks-West",
+    "acres": 515523,
+    "counties": "Blaine, Phillips",
+    "weapon_restriction": false
+  },
+  {
+    "district": "622",
+    "region": 6,
+    "name": "Middle Missouri Breaks",
+    "acres": 460540,
+    "counties": "",
+    "weapon_restriction": false
+  },
+  {
+    "district": "630",
+    "region": 6,
+    "name": "South Valley",
+    "acres": 985082,
+    "counties": "Valley, Phillips",
+    "weapon_restriction": false
+  },
+  {
+    "district": "640",
+    "region": 6,
+    "name": "Northeast Montana",
+    "acres": 2391817,
+    "counties": "Daniels, Sheridan, Roosevelt, Valley",
+    "weapon_restriction": false
+  },
+  {
+    "district": "650",
+    "region": 6,
+    "name": "McCone-Richland",
+    "acres": 2259946,
+    "counties": "McCone, Richland, Dawson",
+    "weapon_restriction": false
+  },
+  {
+    "district": "652",
+    "region": 6,
+    "name": "McCone-Garfield",
+    "acres": 184170,
+    "counties": "McCone, Garfield",
+    "weapon_restriction": false
+  },
+  {
+    "district": "670",
+    "region": 6,
+    "name": "North Phillips-Valley",
+    "acres": 2638440,
+    "counties": "Phillips, Valley, Blaine",
+    "weapon_restriction": false
+  },
+  {
+    "district": "690",
+    "region": 6,
+    "name": "South Hill-Blaine-Chouteau",
+    "acres": 2557112,
+    "counties": "Hill, Blaine, Chouteau",
+    "weapon_restriction": false
+  },
+  {
+    "district": "700",
+    "region": 7,
+    "name": "Missouri Breaks-Prairie",
+    "acres": 1784261,
+    "counties": "Prairie, Garfield, Petroleum, McCone",
+    "weapon_restriction": false
+  },
+  {
+    "district": "701",
+    "region": 7,
+    "name": "Sagebrush Prairie",
+    "acres": 4619740,
+    "counties": "Prairie, Custer, Rosebud, Treasure, Yellowstone, Musselshell, Garfield, McCone",
+    "weapon_restriction": false
+  },
+  {
+    "district": "702",
+    "region": 7,
+    "name": "Yellowstone Pine Hills",
+    "acres": 1766800,
+    "counties": "Yellowstone, Treasure, Big Horn, Rosebud, Custer",
+    "weapon_restriction": false
+  },
+  {
+    "district": "703",
+    "region": 7,
+    "name": "Grassland-Agriculture",
+    "acres": 3493293,
+    "counties": "Prairie, McCone, Dawson, Richland, Wibaux, Fallon, Custer",
+    "weapon_restriction": false
+  },
+  {
+    "district": "704",
+    "region": 7,
+    "name": "Powder Pine Hills",
+    "acres": 3474786,
+    "counties": "Big Horn, Custer, Fallon, Powder River, Prairie, Rosebud",
+    "weapon_restriction": false
+  },
+  {
+    "district": "705",
+    "region": 7,
+    "name": "HD 705",
+    "acres": 3947231,
+    "counties": "Prairie, Carter, Custer, Powder River, Fallon",
+    "weapon_restriction": false
+  }
+]

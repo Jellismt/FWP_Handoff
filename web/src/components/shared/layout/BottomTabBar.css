@@ -1,0 +1,101 @@
+/**
+ * @file BottomTabBar.css
+ * @module engage-mt/shared
+ * @description Mobile + tablet bottom tab bar. Night-glass chrome rail matching the AppHeader,
+ *              with yellow icons/labels, upward shadow, safe-area inset padding, top-edge gold
+ *              shimmer, and a theme-yellow stripe on the active tab.
+ * @author Jamie Ellis / Engage MT
+ * @created 2026-05-29
+ * @updated 2026-07-16
+ * @version 1.4.0
+ *
+ * FWP Engage MT — Montana's Official Gateway to the Outdoors
+ * Licensed under the MIT License.
+ */
+
+.bottom-tab-bar {
+  display: block;
+  /* Flat solid navy chrome (shared --fwp-chrome-bg) — no glass, border, or
+     shadow so it flows into the header + sidebar as one color. */
+  background: var(--fwp-chrome-bg);
+  padding-bottom: env(safe-area-inset-bottom, 0);
+  flex-shrink: 0;
+  position: relative;
+}
+
+@media (min-width: 1024px) {
+  .bottom-tab-bar {
+    display: none;
+  }
+}
+
+.bottom-tab-bar__list {
+  display: grid;
+  /* One equal column per tab (driven by MODULE_NAV) so however many tabs
+     ship, they always fill the full bar width. */
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.bottom-tab-bar__link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--fwp-space-1);
+  min-height: var(--fwp-touch-target);
+  padding: var(--fwp-space-2) var(--fwp-space-1);
+  /* Theme ink on the chrome (yellow text fails AA on the grey); the active tab
+     keeps the yellow stripe. */
+  color: var(--fwp-text-secondary);
+  text-decoration: none;
+  font-size: var(--fwp-text-xs);
+  font-weight: var(--fwp-weight-medium);
+  letter-spacing: var(--fwp-letter-spacing-label);
+  text-transform: uppercase;
+  border-top: 3px solid transparent;
+  transition:
+    color var(--fwp-motion-quick),
+    background var(--fwp-motion-quick),
+    border-top-color var(--fwp-motion-quick);
+}
+
+.bottom-tab-bar__link:hover {
+  color: var(--fwp-text-primary);
+}
+
+/* Inset focus ring (offset -2px): the bottom tab bar is fixed at the
+   viewport edge with no margin, so an outset ring would extend below
+   the safe-area-bottom inset and be clipped. Inset keeps the focus
+   indicator fully visible. Per docs/rules/accessibility.md. */
+.bottom-tab-bar__link:focus-visible {
+  outline: 2px solid var(--fwp-focus);
+  outline-offset: -2px;
+}
+
+/* Active tab: theme-yellow stripe above the tab (one accent for every
+   module) + yellow bold label. */
+.bottom-tab-bar__link--active {
+  color: var(--fwp-text-primary);
+  font-weight: var(--fwp-weight-bold);
+  border-top-color: var(--fwp-yellow);
+}
+
+.bottom-tab-bar__icon svg {
+  color: inherit;
+}
+
+.bottom-tab-bar__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.bottom-tab-bar__icon svg {
+  width: 22px;
+  height: 22px;
+}

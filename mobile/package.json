@@ -1,0 +1,37 @@
+{
+  "name": "@engage-mt/mobile",
+  "private": true,
+  "license": "MIT",
+  "version": "1.0.0",
+  "description": "Engage MT — Capacitor wrapper for iOS + Android. Web source at ../web/dist.",
+  "scripts": {
+    "sync": "cap sync",
+    "open:ios": "cap open ios",
+    "open:android": "cap open android",
+    "add:ios": "cap add ios",
+    "add:android": "cap add android",
+    "test": "vitest run"
+  },
+  "_pinning_note": "Capacitor plugin pins are exact (no caret) so a minor-release auto-bump can't introduce surprise API drift. The coordinated 6→8 major bump is complete; pins now sit at exact 8.x.",
+  "dependencies": {
+    "@capacitor-community/keep-awake": "8.0.1",
+    "@capacitor/android": "8.4.0",
+    "@capacitor/app": "8.1.0",
+    "@capacitor/camera": "8.2.0",
+    "@capacitor/core": "8.4.0",
+    "@capacitor/filesystem": "8.1.2",
+    "@capacitor/geolocation": "8.2.0",
+    "@capacitor/haptics": "8.0.2",
+    "@capacitor/ios": "8.4.0",
+    "@capacitor/keyboard": "8.0.5",
+    "@capacitor/network": "8.0.1",
+    "@capacitor/preferences": "8.0.1",
+    "@capacitor/share": "8.0.1",
+    "@capacitor/splash-screen": "8.0.1",
+    "@capacitor/status-bar": "8.0.2"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "8.4.0",
+    "vitest": "^4.1.7"
+  }
+}

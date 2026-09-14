@@ -1,0 +1,153 @@
+/**
+ * @file AttributionPage.css
+ * @module engage-mt/shared
+ * @description Reading layout for the attribution page.
+ *              Five group sections with a definition-list per group;
+ *              two-column entry layout on desktop, stacked on mobile.
+ * @author Jamie Ellis / Engage MT
+ * @created 2026-06-02
+ * @updated 2026-07-03
+ * @version 1.0.0
+ *
+ * FWP Engage MT — Montana's Official Gateway to the Outdoors
+ * Licensed under the MIT License.
+ */
+
+.attribution-page {
+  padding: var(--fwp-space-6) var(--fwp-space-7);
+  margin: 0 auto;
+  width: 100%;
+}
+
+@media (max-width: 767px) {
+  .attribution-page {
+    padding: var(--fwp-space-4);
+  }
+}
+
+.attribution-page__group {
+  margin-top: var(--fwp-space-7);
+  padding-top: var(--fwp-space-5);
+  border-top: 1px solid var(--fwp-border-subtle);
+}
+
+.attribution-page__group:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+.attribution-page__group-title {
+  margin: 0 0 var(--fwp-space-2);
+  font-size: var(--fwp-text-xl);
+  font-weight: var(--fwp-weight-bold);
+  letter-spacing: var(--fwp-letter-spacing-heading);
+  color: var(--fwp-text-primary);
+}
+
+.attribution-page__group-intro {
+  margin: 0 0 var(--fwp-space-4);
+  font-size: var(--fwp-text-md);
+  color: var(--fwp-text-secondary);
+  line-height: 1.55;
+  max-width: 70ch;
+}
+
+.attribution-page__list {
+  margin: 0;
+  padding: 0;
+}
+
+.attribution-page__entry {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) 2fr;
+  gap: var(--fwp-space-3) var(--fwp-space-5);
+  padding: var(--fwp-space-3) 0;
+  border-bottom: 1px solid var(--fwp-border-subtle);
+}
+
+.attribution-page__entry:last-child {
+  border-bottom: none;
+}
+
+.attribution-page__entry-title {
+  margin: 0;
+  font-size: var(--fwp-text-md);
+  font-weight: var(--fwp-weight-bold);
+  color: var(--fwp-text-primary);
+}
+
+.attribution-page__entry-link {
+  color: var(--fwp-cta-primary);
+  text-decoration: none;
+}
+
+.attribution-page__entry-link:hover,
+.attribution-page__entry-link:focus-visible {
+  text-decoration: underline;
+}
+
+.attribution-page__entry-body {
+  margin: 0;
+}
+
+.attribution-page__entry-what {
+  margin: 0;
+  font-size: var(--fwp-text-md);
+  color: var(--fwp-text-primary);
+  line-height: 1.5;
+}
+
+.attribution-page__entry-license {
+  margin: var(--fwp-space-1) 0 0;
+  font-size: var(--fwp-text-sm);
+  color: var(--fwp-text-secondary);
+  font-style: italic;
+}
+
+.attribution-page__footnote {
+  margin-top: var(--fwp-space-7);
+  padding-top: var(--fwp-space-4);
+  border-top: 1px solid var(--fwp-border-subtle);
+  font-size: var(--fwp-text-sm);
+  color: var(--fwp-text-secondary);
+}
+
+.attribution-page__footnote a {
+  color: var(--fwp-cta-primary);
+}
+
+@media (max-width: 767px) {
+  .attribution-page__entry {
+    grid-template-columns: 1fr;
+    gap: var(--fwp-space-2);
+  }
+}
+
+.attribution-page__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.attribution-page__item {
+  display: grid;
+  gap: 0.15rem;
+  padding: 0.5rem 0.75rem;
+  border-left: 3px solid var(--fwp-green-mid);
+  background: var(--fwp-surface-elevated);
+}
+
+.attribution-page__item--expired {
+  border-left-color: var(--fwp-orange);
+}
+
+.attribution-page__item-title {
+  font-weight: 600;
+}
+
+.attribution-page__item-meta {
+  font-size: 0.85rem;
+  color: var(--fwp-text-secondary);
+}

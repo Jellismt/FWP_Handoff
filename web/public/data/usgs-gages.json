@@ -1,0 +1,1810 @@
+[
+  {
+    "site_no": "05014500",
+    "name": "Swiftcurrent Creek at Many Glacier MT",
+    "river": "Swiftcurrent Creek",
+    "lat": 48.7988,
+    "lon": -113.6567,
+    "type": "stream"
+  },
+  {
+    "site_no": "05017500",
+    "name": "St. Mary River near Babb MT",
+    "river": "St. Mary River",
+    "lat": 48.833,
+    "lon": -113.4207,
+    "type": "stream"
+  },
+  {
+    "site_no": "06006000",
+    "name": "Red Rock Cr ab Lakes, nr Lakeview, MT",
+    "river": "Red Rock Creek",
+    "lat": 44.6158,
+    "lon": -111.6257,
+    "type": "stream"
+  },
+  {
+    "site_no": "06012500",
+    "name": "Red Rock R bl Lima Reservoir nr Monida MT",
+    "river": "Red Rock River",
+    "lat": 44.6559,
+    "lon": -112.3712,
+    "type": "stream"
+  },
+  {
+    "site_no": "06016000",
+    "name": "Beaverhead River at Barretts MT",
+    "river": "Beaverhead River",
+    "lat": 45.1161,
+    "lon": -112.7505,
+    "type": "stream"
+  },
+  {
+    "site_no": "06017000",
+    "name": "Beaverhead River at Dillon MT",
+    "river": "Beaverhead River",
+    "lat": 45.2184,
+    "lon": -112.6553,
+    "type": "stream"
+  },
+  {
+    "site_no": "06018500",
+    "name": "Beaverhead River near Twin Bridges MT",
+    "river": "Beaverhead River",
+    "lat": 45.3834,
+    "lon": -112.4528,
+    "type": "stream"
+  },
+  {
+    "site_no": "06019500",
+    "name": "Ruby River above reservoir near Alder, MT",
+    "river": "Ruby River",
+    "lat": 45.1923,
+    "lon": -112.1428,
+    "type": "stream"
+  },
+  {
+    "site_no": "06020600",
+    "name": "Ruby River below reservoir near Alder, MT",
+    "river": "Ruby River",
+    "lat": 45.2419,
+    "lon": -112.1112,
+    "type": "stream"
+  },
+  {
+    "site_no": "06023000",
+    "name": "Ruby River near Twin Bridges MT",
+    "river": "Ruby River",
+    "lat": 45.5069,
+    "lon": -112.3309,
+    "type": "stream"
+  },
+  {
+    "site_no": "06023100",
+    "name": "Beaverhead River at Twin Bridges, MT",
+    "river": "Beaverhead River",
+    "lat": 45.5469,
+    "lon": -112.3381,
+    "type": "stream"
+  },
+  {
+    "site_no": "06024450",
+    "name": "Big Hole River bl Big Lake Cr at Wisdom MT",
+    "river": "Big Hole River",
+    "lat": 45.618,
+    "lon": -113.4569,
+    "type": "stream"
+  },
+  {
+    "site_no": "06024540",
+    "name": "Big Hole River bl Mudd Cr nr Wisdom MT",
+    "river": "Big Hole River",
+    "lat": 45.8075,
+    "lon": -113.3133,
+    "type": "stream"
+  },
+  {
+    "site_no": "06024580",
+    "name": "Big Hole River near Wise River MT",
+    "river": "Big Hole River",
+    "lat": 45.8508,
+    "lon": -113.0684,
+    "type": "stream"
+  },
+  {
+    "site_no": "06025250",
+    "name": "Big Hole River at Maiden Rock nr Divide MT",
+    "river": "Big Hole River",
+    "lat": 45.7013,
+    "lon": -112.736,
+    "type": "stream"
+  },
+  {
+    "site_no": "06025500",
+    "name": "Big Hole River near Melrose MT",
+    "river": "Big Hole River",
+    "lat": 45.5266,
+    "lon": -112.7017,
+    "type": "stream"
+  },
+  {
+    "site_no": "06026210",
+    "name": "Big Hole River near Glen MT",
+    "river": "Big Hole River",
+    "lat": 45.4401,
+    "lon": -112.5561,
+    "type": "stream"
+  },
+  {
+    "site_no": "06026420",
+    "name": "Big Hole R bl Hamilton Ditch nr Twin Bridges, MT",
+    "river": "Big Hole River",
+    "lat": 45.55,
+    "lon": -112.3607,
+    "type": "stream"
+  },
+  {
+    "site_no": "06026500",
+    "name": "Jefferson River near Twin Bridges, MT",
+    "river": "Jefferson River",
+    "lat": 45.6133,
+    "lon": -112.3294,
+    "type": "stream"
+  },
+  {
+    "site_no": "06027600",
+    "name": "Jefferson River at Parsons Bdg nr Silver Star, MT",
+    "river": "Jefferson River",
+    "lat": 45.7475,
+    "lon": -112.1872,
+    "type": "stream"
+  },
+  {
+    "site_no": "06033000",
+    "name": "Boulder River near Boulder, MT",
+    "river": "Boulder River",
+    "lat": 46.211,
+    "lon": -112.0916,
+    "type": "stream"
+  },
+  {
+    "site_no": "06035000",
+    "name": "Willow Creek near Harrison MT",
+    "river": "Willow Creek",
+    "lat": 45.7231,
+    "lon": -111.741,
+    "type": "stream"
+  },
+  {
+    "site_no": "06036650",
+    "name": "Jefferson River near Three Forks MT",
+    "river": "Jefferson River",
+    "lat": 45.8971,
+    "lon": -111.5957,
+    "type": "stream"
+  },
+  {
+    "site_no": "06037500",
+    "name": "Madison River near West Yellowstone, MT",
+    "river": "Madison River",
+    "lat": 44.6571,
+    "lon": -111.068,
+    "type": "stream"
+  },
+  {
+    "site_no": "06038500",
+    "name": "Madison River bl Hebgen Lake nr Grayling MT",
+    "river": "Madison River",
+    "lat": 44.8664,
+    "lon": -111.3388,
+    "type": "stream"
+  },
+  {
+    "site_no": "06038800",
+    "name": "Madison River at Kirby Ranch nr Cameron MT",
+    "river": "Madison River",
+    "lat": 44.8887,
+    "lon": -111.5809,
+    "type": "stream"
+  },
+  {
+    "site_no": "06040000",
+    "name": "Madison River near Cameron MT",
+    "river": "Madison River",
+    "lat": 45.2331,
+    "lon": -111.7516,
+    "type": "stream"
+  },
+  {
+    "site_no": "06040050",
+    "name": "Madison River at Ennis, MT",
+    "river": "Madison River",
+    "lat": 45.3476,
+    "lon": -111.7225,
+    "type": "stream"
+  },
+  {
+    "site_no": "06040800",
+    "name": "Madison River ab powerplant nr McAllister MT",
+    "river": "Madison River",
+    "lat": 45.4866,
+    "lon": -111.6339,
+    "type": "stream"
+  },
+  {
+    "site_no": "06041000",
+    "name": "Madison River bl Ennis Lake nr McAllister MT",
+    "river": "Madison River",
+    "lat": 45.4902,
+    "lon": -111.6345,
+    "type": "stream"
+  },
+  {
+    "site_no": "06041500",
+    "name": "Madison River near Norris MT",
+    "river": "Madison River",
+    "lat": 45.6076,
+    "lon": -111.5731,
+    "type": "stream"
+  },
+  {
+    "site_no": "06043120",
+    "name": "Gallatin River above Deer Creek, near Big Sky, MT",
+    "river": "Gallatin River",
+    "lat": 45.2973,
+    "lon": -111.2114,
+    "type": "stream"
+  },
+  {
+    "site_no": "06043500",
+    "name": "Gallatin River near Gallatin Gateway, MT",
+    "river": "Gallatin River",
+    "lat": 45.4973,
+    "lon": -111.2707,
+    "type": "stream"
+  },
+  {
+    "site_no": "06048650",
+    "name": "E Gallatin R ab Water Reclamation Fa nr Bozeman MT",
+    "river": "East Gallatin River",
+    "lat": 45.7257,
+    "lon": -111.0662,
+    "type": "stream"
+  },
+  {
+    "site_no": "06050000",
+    "name": "Hyalite C at Hyalite R S nr Bozeman MT",
+    "river": "Hyalite C",
+    "lat": 45.5633,
+    "lon": -111.0719,
+    "type": "stream"
+  },
+  {
+    "site_no": "06052500",
+    "name": "Gallatin River at Logan MT",
+    "river": "Gallatin River",
+    "lat": 45.8862,
+    "lon": -111.442,
+    "type": "stream"
+  },
+  {
+    "site_no": "06054500",
+    "name": "Missouri River at Toston MT",
+    "river": "Missouri River",
+    "lat": 46.1466,
+    "lon": -111.4203,
+    "type": "stream"
+  },
+  {
+    "site_no": "06061500",
+    "name": "Prickly Pear Creek near Clancy MT",
+    "river": "Prickly Pear Creek",
+    "lat": 46.5191,
+    "lon": -111.9468,
+    "type": "stream"
+  },
+  {
+    "site_no": "06062500",
+    "name": "Tenmile Creek near Rimini MT",
+    "river": "Tenmile Creek",
+    "lat": 46.5239,
+    "lon": -112.2566,
+    "type": "stream"
+  },
+  {
+    "site_no": "06063000",
+    "name": "Tenmile Creek near Helena MT",
+    "river": "Tenmile Creek",
+    "lat": 46.605,
+    "lon": -112.0883,
+    "type": "stream"
+  },
+  {
+    "site_no": "06065500",
+    "name": "Missouri River bl Hauser Dam near Helena MT",
+    "river": "Missouri River",
+    "lat": 46.7662,
+    "lon": -111.8888,
+    "type": "stream"
+  },
+  {
+    "site_no": "06066500",
+    "name": "Missouri River bl Holter Dam nr Wolf Cr MT",
+    "river": "Missouri River",
+    "lat": 46.9947,
+    "lon": -112.0107,
+    "type": "stream"
+  },
+  {
+    "site_no": "06071300",
+    "name": "Little Prickly Pear Cr at Wolf Cr MT",
+    "river": "Little Prickly Pear Creek",
+    "lat": 47.0054,
+    "lon": -112.0703,
+    "type": "stream"
+  },
+  {
+    "site_no": "06073500",
+    "name": "Dearborn River near Craig MT",
+    "river": "Dearborn River",
+    "lat": 47.199,
+    "lon": -112.0959,
+    "type": "stream"
+  },
+  {
+    "site_no": "06074000",
+    "name": "Missouri River at Cascade MT",
+    "river": "Missouri River",
+    "lat": 47.2695,
+    "lon": -111.6952,
+    "type": "stream"
+  },
+  {
+    "site_no": "06076690",
+    "name": "Smith River near Ft Logan MT",
+    "river": "Smith River",
+    "lat": 46.7958,
+    "lon": -111.1786,
+    "type": "stream"
+  },
+  {
+    "site_no": "06077200",
+    "name": "Smith River bl Eagle Cr nr Fort Logan MT",
+    "river": "Smith River",
+    "lat": 46.828,
+    "lon": -111.1922,
+    "type": "stream"
+  },
+  {
+    "site_no": "06077500",
+    "name": "Smith River near Eden MT",
+    "river": "Smith River",
+    "lat": 47.1893,
+    "lon": -111.3862,
+    "type": "stream"
+  },
+  {
+    "site_no": "06078200",
+    "name": "Missouri River near Ulm MT",
+    "river": "Missouri River",
+    "lat": 47.435,
+    "lon": -111.3884,
+    "type": "stream"
+  },
+  {
+    "site_no": "06078500",
+    "name": "North Fork Sun River near Augusta MT",
+    "river": "North Fork Sun River",
+    "lat": 47.6399,
+    "lon": -112.8593,
+    "type": "stream"
+  },
+  {
+    "site_no": "06079000",
+    "name": "South Fork Sun River near Augusta MT",
+    "river": "South Fork Sun River",
+    "lat": 47.6286,
+    "lon": -112.8658,
+    "type": "stream"
+  },
+  {
+    "site_no": "06080900",
+    "name": "Sun River bl Diversion Dam nr Augusta MT",
+    "river": "Sun River",
+    "lat": 47.6185,
+    "lon": -112.6921,
+    "type": "stream"
+  },
+  {
+    "site_no": "06082200",
+    "name": "Sun River bl Willow Cr nr Augusta MT",
+    "river": "Sun River",
+    "lat": 47.5471,
+    "lon": -112.3674,
+    "type": "stream"
+  },
+  {
+    "site_no": "06085800",
+    "name": "Sun River at Simms MT",
+    "river": "Sun River",
+    "lat": 47.5016,
+    "lon": -111.9319,
+    "type": "stream"
+  },
+  {
+    "site_no": "06088500",
+    "name": "Muddy Creek at Vaughn MT",
+    "river": "Muddy Creek",
+    "lat": 47.5613,
+    "lon": -111.5418,
+    "type": "stream"
+  },
+  {
+    "site_no": "06089000",
+    "name": "Sun River near Vaughn MT",
+    "river": "Sun River",
+    "lat": 47.5258,
+    "lon": -111.511,
+    "type": "stream"
+  },
+  {
+    "site_no": "06090300",
+    "name": "Missouri River near Great Falls MT",
+    "river": "Missouri River",
+    "lat": 47.5844,
+    "lon": -111.0606,
+    "type": "stream"
+  },
+  {
+    "site_no": "06090500",
+    "name": "Belt Creek near Monarch MT",
+    "river": "Belt Creek",
+    "lat": 47.2086,
+    "lon": -110.9317,
+    "type": "stream"
+  },
+  {
+    "site_no": "06090800",
+    "name": "Missouri River at Fort Benton MT",
+    "river": "Missouri River",
+    "lat": 47.8169,
+    "lon": -110.6661,
+    "type": "stream"
+  },
+  {
+    "site_no": "06091700",
+    "name": "Two Medicine River bl South Fork nr Browning MT",
+    "river": "Two Medicine River",
+    "lat": 48.427,
+    "lon": -112.99,
+    "type": "stream"
+  },
+  {
+    "site_no": "06092020",
+    "name": "Two Medicine River ab Badger Cr, nr Piegan, MT",
+    "river": "Two Medicine River",
+    "lat": 48.5077,
+    "lon": -112.6123,
+    "type": "stream"
+  },
+  {
+    "site_no": "06093200",
+    "name": "Badger Cr bl Four Horns Canal nr Browning MT",
+    "river": "Badger Creek",
+    "lat": 48.3695,
+    "lon": -112.8018,
+    "type": "stream"
+  },
+  {
+    "site_no": "06094900",
+    "name": "Birch Cr bl Heart Butte Road, nr Heart Butte, MT",
+    "river": "Birch Creek",
+    "lat": 48.2447,
+    "lon": -112.6979,
+    "type": "stream"
+  },
+  {
+    "site_no": "06097000",
+    "name": "Birch Creek at Robare, MT",
+    "river": "Birch Creek",
+    "lat": 48.3199,
+    "lon": -112.5658,
+    "type": "stream"
+  },
+  {
+    "site_no": "06098120",
+    "name": "Birch Creek at Bullhead Bridge, nr Valier, MT",
+    "river": "Birch Creek",
+    "lat": 48.3911,
+    "lon": -112.3197,
+    "type": "stream"
+  },
+  {
+    "site_no": "06098800",
+    "name": "Cut Bank Cr ab Gillam Coulee, nr Sundance, MT",
+    "river": "Cut Bank Creek",
+    "lat": 48.6785,
+    "lon": -112.594,
+    "type": "stream"
+  },
+  {
+    "site_no": "06099000",
+    "name": "Cut Bank Creek at Cut Bank MT",
+    "river": "Cut Bank Creek",
+    "lat": 48.6334,
+    "lon": -112.3465,
+    "type": "stream"
+  },
+  {
+    "site_no": "06099500",
+    "name": "Marias River near Shelby MT",
+    "river": "Marias River",
+    "lat": 48.4272,
+    "lon": -111.8898,
+    "type": "stream"
+  },
+  {
+    "site_no": "06101200",
+    "name": "Willow Creek near Galata, MT",
+    "river": "Willow Creek",
+    "lat": 48.4487,
+    "lon": -111.3453,
+    "type": "stream"
+  },
+  {
+    "site_no": "06101500",
+    "name": "Marias River near Chester MT",
+    "river": "Marias River",
+    "lat": 48.306,
+    "lon": -111.0805,
+    "type": "stream"
+  },
+  {
+    "site_no": "06102050",
+    "name": "Marias River near Loma MT",
+    "river": "Marias River",
+    "lat": 47.9459,
+    "lon": -110.5808,
+    "type": "stream"
+  },
+  {
+    "site_no": "06102500",
+    "name": "Teton River bl South Fork nr Choteau MT",
+    "river": "Teton River",
+    "lat": 47.8831,
+    "lon": -112.612,
+    "type": "stream"
+  },
+  {
+    "site_no": "06108800",
+    "name": "Teton River at Loma MT",
+    "river": "Teton River",
+    "lat": 47.9327,
+    "lon": -110.5144,
+    "type": "stream"
+  },
+  {
+    "site_no": "06109500",
+    "name": "Missouri River at Virgelle MT",
+    "river": "Missouri River",
+    "lat": 48.0038,
+    "lon": -110.2588,
+    "type": "stream"
+  },
+  {
+    "site_no": "06110020",
+    "name": "Judith River above Carr Creek near Utica MT",
+    "river": "Judith River",
+    "lat": 46.9177,
+    "lon": -110.1889,
+    "type": "stream"
+  },
+  {
+    "site_no": "06111800",
+    "name": "Big Spring Cr at R&B Trading Post nr Lewistown MT",
+    "river": "Big Spring Creek",
+    "lat": 47.0878,
+    "lon": -109.4575,
+    "type": "stream"
+  },
+  {
+    "site_no": "06114700",
+    "name": "Judith River nr mouth, nr Winifred MT",
+    "river": "Judith River",
+    "lat": 47.6652,
+    "lon": -109.652,
+    "type": "stream"
+  },
+  {
+    "site_no": "06115200",
+    "name": "Missouri River near Landusky MT",
+    "river": "Missouri River",
+    "lat": 47.6314,
+    "lon": -108.6877,
+    "type": "stream"
+  },
+  {
+    "site_no": "06119600",
+    "name": "Musselshell River nr Martinsdale, MT",
+    "river": "Musselshell River",
+    "lat": 46.477,
+    "lon": -110.249,
+    "type": "stream"
+  },
+  {
+    "site_no": "06120500",
+    "name": "Musselshell River at Harlowton MT",
+    "river": "Musselshell River",
+    "lat": 46.4288,
+    "lon": -109.8412,
+    "type": "stream"
+  },
+  {
+    "site_no": "06123030",
+    "name": "Musselshell River ab Mud Cr nr Shawmut MT",
+    "river": "Musselshell River",
+    "lat": 46.319,
+    "lon": -109.4605,
+    "type": "stream"
+  },
+  {
+    "site_no": "06125600",
+    "name": "Musselshell River ab Big Coulee Creek at Lavina MT",
+    "river": "Musselshell River",
+    "lat": 46.2891,
+    "lon": -108.9376,
+    "type": "stream"
+  },
+  {
+    "site_no": "06126500",
+    "name": "Musselshell River near Roundup MT",
+    "river": "Musselshell River",
+    "lat": 46.4277,
+    "lon": -108.5701,
+    "type": "stream"
+  },
+  {
+    "site_no": "06127500",
+    "name": "Musselshell River at Musselshell MT",
+    "river": "Musselshell River",
+    "lat": 46.5224,
+    "lon": -108.1089,
+    "type": "stream"
+  },
+  {
+    "site_no": "06130000",
+    "name": "Flatwillow Creek near Mosby MT",
+    "river": "Flatwillow Creek",
+    "lat": 46.9287,
+    "lon": -107.9328,
+    "type": "stream"
+  },
+  {
+    "site_no": "06130500",
+    "name": "Musselshell River at Mosby MT",
+    "river": "Musselshell River",
+    "lat": 46.9947,
+    "lon": -107.8892,
+    "type": "stream"
+  },
+  {
+    "site_no": "06131200",
+    "name": "Nelson Creek near Van Norman MT",
+    "river": "Nelson Creek",
+    "lat": 47.5366,
+    "lon": -106.1535,
+    "type": "stream"
+  },
+  {
+    "site_no": "06133500",
+    "name": "N F Milk River ab St. Mary canal nr Browning MT",
+    "river": "North F Milk River",
+    "lat": 48.9635,
+    "lon": -113.0624,
+    "type": "stream"
+  },
+  {
+    "site_no": "06135000",
+    "name": "Milk River at Eastern Crossing of Int Bndry",
+    "river": "Milk River",
+    "lat": 48.9748,
+    "lon": -110.4218,
+    "type": "stream"
+  },
+  {
+    "site_no": "06137570",
+    "name": "Boxelder Creek near Rocky Boy, MT",
+    "river": "Boxelder Creek",
+    "lat": 48.2988,
+    "lon": -109.8354,
+    "type": "stream"
+  },
+  {
+    "site_no": "06137572",
+    "name": "Boxelder Cr bl Boneau Reservoir, nr Rocky Boy, MT",
+    "river": "Boxelder Creek",
+    "lat": 48.2985,
+    "lon": -109.8631,
+    "type": "stream"
+  },
+  {
+    "site_no": "06137574",
+    "name": "Boxelder Cr bl Brown's Res Div, nr Box Elder, MT",
+    "river": "Boxelder Creek",
+    "lat": 48.3048,
+    "lon": -109.924,
+    "type": "stream"
+  },
+  {
+    "site_no": "06137575",
+    "name": "Boxelder Creek at Box Elder, MT",
+    "river": "Boxelder Creek",
+    "lat": 48.3104,
+    "lon": -110.0196,
+    "type": "stream"
+  },
+  {
+    "site_no": "06138580",
+    "name": "Big Sandy Cr ab Spring Coulee, nr Laredo, MT",
+    "river": "Big Sandy Creek",
+    "lat": 48.4527,
+    "lon": -109.9208,
+    "type": "stream"
+  },
+  {
+    "site_no": "06139500",
+    "name": "Big Sandy Creek near Havre MT",
+    "river": "Big Sandy Creek",
+    "lat": 48.5267,
+    "lon": -109.8416,
+    "type": "stream"
+  },
+  {
+    "site_no": "06139800",
+    "name": "West Fork Beaver Creek nr Rocky Boy, MT",
+    "river": "West Fork Beaver Creek",
+    "lat": 48.1761,
+    "lon": -109.6421,
+    "type": "stream"
+  },
+  {
+    "site_no": "06139850",
+    "name": "Beaver Creek ab Elk Creek, nr Rocky Boy, MT",
+    "river": "Beaver Creek",
+    "lat": 48.1793,
+    "lon": -109.6436,
+    "type": "stream"
+  },
+  {
+    "site_no": "06139900",
+    "name": "Beaver Cr at Res Bndry nr Rocky Boy MT",
+    "river": "Beaver Creek",
+    "lat": 48.2241,
+    "lon": -109.6523,
+    "type": "stream"
+  },
+  {
+    "site_no": "06140500",
+    "name": "Milk River at Havre MT",
+    "river": "Milk River",
+    "lat": 48.5637,
+    "lon": -109.696,
+    "type": "stream"
+  },
+  {
+    "site_no": "06142400",
+    "name": "Clear Creek near Chinook MT",
+    "river": "Clear Creek",
+    "lat": 48.5789,
+    "lon": -109.3911,
+    "type": "stream"
+  },
+  {
+    "site_no": "06146980",
+    "name": "Lodge Creek near Chinook, MT",
+    "river": "Lodge Creek",
+    "lat": 48.6754,
+    "lon": -109.275,
+    "type": "stream"
+  },
+  {
+    "site_no": "06151500",
+    "name": "Battle Creek near Chinook MT",
+    "river": "Battle Creek",
+    "lat": 48.6495,
+    "lon": -109.2317,
+    "type": "stream"
+  },
+  {
+    "site_no": "06153800",
+    "name": "Milk River at Merrill Rd, nr Harlem, MT",
+    "river": "Milk River",
+    "lat": 48.5243,
+    "lon": -108.8552,
+    "type": "stream"
+  },
+  {
+    "site_no": "06154100",
+    "name": "Milk River near Harlem MT",
+    "river": "Milk River",
+    "lat": 48.4896,
+    "lon": -108.7589,
+    "type": "stream"
+  },
+  {
+    "site_no": "06154390",
+    "name": "Peoples Creek near Cleveland, MT",
+    "river": "Peoples Creek",
+    "lat": 48.2641,
+    "lon": -108.8618,
+    "type": "stream"
+  },
+  {
+    "site_no": "06154400",
+    "name": "Peoples Creek near Hays MT",
+    "river": "Peoples Creek",
+    "lat": 48.2237,
+    "lon": -108.7141,
+    "type": "stream"
+  },
+  {
+    "site_no": "06154410",
+    "name": "Little Peoples Creek near Hays, MT",
+    "river": "Little Peoples Creek",
+    "lat": 47.9649,
+    "lon": -108.656,
+    "type": "stream"
+  },
+  {
+    "site_no": "06154430",
+    "name": "Lodge Pole Creek at Lodge Pole, MT",
+    "river": "Lodge Pole Creek",
+    "lat": 48.0311,
+    "lon": -108.5326,
+    "type": "stream"
+  },
+  {
+    "site_no": "06155030",
+    "name": "Milk River near Dodson MT",
+    "river": "Milk River",
+    "lat": 48.4028,
+    "lon": -108.2941,
+    "type": "stream"
+  },
+  {
+    "site_no": "06155500",
+    "name": "Milk River at Malta MT",
+    "river": "Milk River",
+    "lat": 48.3622,
+    "lon": -107.8764,
+    "type": "stream"
+  },
+  {
+    "site_no": "06164510",
+    "name": "Milk River at Juneberg Bridge nr Saco MT",
+    "river": "Milk River",
+    "lat": 48.5092,
+    "lon": -107.2188,
+    "type": "stream"
+  },
+  {
+    "site_no": "06164623",
+    "name": "Little Warm Cr Tributary nr Lodge Pole MT",
+    "river": "Little Warm Creek Tributary",
+    "lat": 47.9952,
+    "lon": -108.3201,
+    "type": "stream"
+  },
+  {
+    "site_no": "06166000",
+    "name": "Beaver Cr bl Guston Coulee nr Saco MT",
+    "river": "Beaver Creek",
+    "lat": 48.3568,
+    "lon": -107.5822,
+    "type": "stream"
+  },
+  {
+    "site_no": "06167500",
+    "name": "Beaver Creek near Hinsdale MT",
+    "river": "Beaver Creek",
+    "lat": 48.4203,
+    "lon": -107.1711,
+    "type": "stream"
+  },
+  {
+    "site_no": "06169500",
+    "name": "Rock Creek bl Horse Creek nr int'l boundary",
+    "river": "Rock Creek",
+    "lat": 48.9694,
+    "lon": -106.8398,
+    "type": "stream"
+  },
+  {
+    "site_no": "06172310",
+    "name": "Milk River at Tampico MT",
+    "river": "Milk River",
+    "lat": 48.3079,
+    "lon": -106.8223,
+    "type": "stream"
+  },
+  {
+    "site_no": "06174500",
+    "name": "Milk River at Nashua MT",
+    "river": "Milk River",
+    "lat": 48.1301,
+    "lon": -106.3643,
+    "type": "stream"
+  },
+  {
+    "site_no": "06177000",
+    "name": "Missouri River near Wolf Point MT",
+    "river": "Missouri River",
+    "lat": 48.0673,
+    "lon": -105.5331,
+    "type": "stream"
+  },
+  {
+    "site_no": "06177500",
+    "name": "Redwater River at Circle MT",
+    "river": "Redwater River",
+    "lat": 47.414,
+    "lon": -105.5756,
+    "type": "stream"
+  },
+  {
+    "site_no": "06178000",
+    "name": "Poplar River at international boundary",
+    "river": "Poplar River",
+    "lat": 48.9903,
+    "lon": -105.6969,
+    "type": "stream"
+  },
+  {
+    "site_no": "06181000",
+    "name": "Poplar River near Poplar MT",
+    "river": "Poplar River",
+    "lat": 48.1179,
+    "lon": -105.1928,
+    "type": "stream"
+  },
+  {
+    "site_no": "06183450",
+    "name": "Big Muddy Creek near Antelope MT",
+    "river": "Big Muddy Creek",
+    "lat": 48.6729,
+    "lon": -104.5121,
+    "type": "stream"
+  },
+  {
+    "site_no": "06185110",
+    "name": "Big Muddy Creek nr mouth nr Culbertson MT",
+    "river": "Big Muddy Creek",
+    "lat": 48.1645,
+    "lon": -104.6295,
+    "type": "stream"
+  },
+  {
+    "site_no": "06185500",
+    "name": "Missouri River near Culbertson MT",
+    "river": "Missouri River",
+    "lat": 48.1235,
+    "lon": -104.4733,
+    "type": "stream"
+  },
+  {
+    "site_no": "06187915",
+    "name": "Soda Butte Cr at Park Bndry at Silver Gate",
+    "river": "Soda Butte Creek",
+    "lat": 45.0028,
+    "lon": -110.0019,
+    "type": "stream"
+  },
+  {
+    "site_no": "06191000",
+    "name": "Gardner River near Mammoth, YNP",
+    "river": "Gardner River",
+    "lat": 44.9923,
+    "lon": -110.691,
+    "type": "stream"
+  },
+  {
+    "site_no": "06191500",
+    "name": "Yellowstone River at Corwin Springs MT",
+    "river": "Yellowstone River",
+    "lat": 45.1121,
+    "lon": -110.7937,
+    "type": "stream"
+  },
+  {
+    "site_no": "06192500",
+    "name": "Yellowstone River near Livingston, MT",
+    "river": "Yellowstone River",
+    "lat": 45.5972,
+    "lon": -110.5665,
+    "type": "stream"
+  },
+  {
+    "site_no": "06192978",
+    "name": "Shields River bl SF Shields River nr Wilsall, MT",
+    "river": "Shields River",
+    "lat": 46.1671,
+    "lon": -110.4919,
+    "type": "stream"
+  },
+  {
+    "site_no": "06195600",
+    "name": "Shields River nr Livingston MT",
+    "river": "Shields River",
+    "lat": 45.7384,
+    "lon": -110.4795,
+    "type": "stream"
+  },
+  {
+    "site_no": "06197800",
+    "name": "East Boulder River bl Dry Fork Cr nr Mcleod, MT",
+    "river": "East Boulder River",
+    "lat": 45.5123,
+    "lon": -110.0877,
+    "type": "stream"
+  },
+  {
+    "site_no": "06200000",
+    "name": "Boulder River at Big Timber MT",
+    "river": "Boulder River",
+    "lat": 45.8338,
+    "lon": -109.9387,
+    "type": "stream"
+  },
+  {
+    "site_no": "06204050",
+    "name": "West Rosebud Creek near Roscoe MT",
+    "river": "West Rosebud Creek",
+    "lat": 45.2432,
+    "lon": -109.7313,
+    "type": "stream"
+  },
+  {
+    "site_no": "06204070",
+    "name": "W Rosebud Cr at Emerald Lk Campground nr Roscoe",
+    "river": "West Rosebud Creek",
+    "lat": 45.2544,
+    "lon": -109.6999,
+    "type": "stream"
+  },
+  {
+    "site_no": "06205000",
+    "name": "Stillwater River near Absarokee, MT",
+    "river": "Stillwater River",
+    "lat": 45.5367,
+    "lon": -109.4221,
+    "type": "stream"
+  },
+  {
+    "site_no": "06207500",
+    "name": "Clarks Fork Yellowstone River nr Belfry MT",
+    "river": "Clarks Fork Yellowstone River",
+    "lat": 45.0099,
+    "lon": -109.0654,
+    "type": "stream"
+  },
+  {
+    "site_no": "06208500",
+    "name": "Clarks Fork Yellowstone River at Edgar MT",
+    "river": "Clarks Fork Yellowstone River",
+    "lat": 45.4657,
+    "lon": -108.8441,
+    "type": "stream"
+  },
+  {
+    "site_no": "06209500",
+    "name": "Rock Creek near Red Lodge MT",
+    "river": "Rock Creek",
+    "lat": 45.0861,
+    "lon": -109.3292,
+    "type": "stream"
+  },
+  {
+    "site_no": "06211000",
+    "name": "Red Lodge Cr ab Cooney Re nr Boyd MT",
+    "river": "Red Lodge Creek",
+    "lat": 45.4379,
+    "lon": -109.2533,
+    "type": "stream"
+  },
+  {
+    "site_no": "06211500",
+    "name": "Willow Creek near Boyd MT",
+    "river": "Willow Creek",
+    "lat": 45.4221,
+    "lon": -109.2305,
+    "type": "stream"
+  },
+  {
+    "site_no": "06214500",
+    "name": "Yellowstone River at Billings MT",
+    "river": "Yellowstone River",
+    "lat": 45.8001,
+    "lon": -108.468,
+    "type": "stream"
+  },
+  {
+    "site_no": "06287000",
+    "name": "Bighorn R bl Yellowtail Afterbay Dam nr St. Xavier",
+    "river": "Bighorn River",
+    "lat": 45.3169,
+    "lon": -107.9189,
+    "type": "stream"
+  },
+  {
+    "site_no": "06287800",
+    "name": "Bighorn River at bridge, at St. Xavier, MT",
+    "river": "Bighorn River",
+    "lat": 45.4608,
+    "lon": -107.7493,
+    "type": "stream"
+  },
+  {
+    "site_no": "06288400",
+    "name": "Bighorn River at Two Leggins Bridge, near Hardin",
+    "river": "Bighorn River",
+    "lat": 45.6441,
+    "lon": -107.6582,
+    "type": "stream"
+  },
+  {
+    "site_no": "06289000",
+    "name": "Little Bighorn River at State Line nr Wyola MT",
+    "river": "Little Bighorn River",
+    "lat": 45.0071,
+    "lon": -107.6154,
+    "type": "stream"
+  },
+  {
+    "site_no": "06290500",
+    "name": "Little Bighorn R bl Pass Cr nr Wyola MT",
+    "river": "Little Bighorn River",
+    "lat": 45.1771,
+    "lon": -107.3945,
+    "type": "stream"
+  },
+  {
+    "site_no": "06291500",
+    "name": "Lodge Grass Cr ab Willow Cr diversion, nr Wyola MT",
+    "river": "Lodge Grass Creek",
+    "lat": 45.1199,
+    "lon": -107.6068,
+    "type": "stream"
+  },
+  {
+    "site_no": "06293500",
+    "name": "Little Bighorn River nr Crow Agency MT",
+    "river": "Little Bighorn River",
+    "lat": 45.5683,
+    "lon": -107.4528,
+    "type": "stream"
+  },
+  {
+    "site_no": "06294000",
+    "name": "Little Bighorn River near Hardin MT",
+    "river": "Little Bighorn River",
+    "lat": 45.7357,
+    "lon": -107.5575,
+    "type": "stream"
+  },
+  {
+    "site_no": "06294500",
+    "name": "Bighorn River ab Tullock Cr nr Bighorn MT",
+    "river": "Bighorn River",
+    "lat": 46.1245,
+    "lon": -107.4688,
+    "type": "stream"
+  },
+  {
+    "site_no": "06295000",
+    "name": "Yellowstone River at Forsyth MT",
+    "river": "Yellowstone River",
+    "lat": 46.2666,
+    "lon": -106.6913,
+    "type": "stream"
+  },
+  {
+    "site_no": "06295113",
+    "name": "Rosebud C at Reservation Bndry nr Kirby MT",
+    "river": "Rosebud C",
+    "lat": 45.3612,
+    "lon": -106.9904,
+    "type": "stream"
+  },
+  {
+    "site_no": "06295220",
+    "name": "Rosebud C Bel Lame Deer C nr Lame Deer MT",
+    "river": "Rosebud C Bel Lame Deer C",
+    "lat": 45.6758,
+    "lon": -106.7003,
+    "type": "stream"
+  },
+  {
+    "site_no": "06306300",
+    "name": "Tongue River at State Line nr Decker MT",
+    "river": "Tongue River",
+    "lat": 45.0091,
+    "lon": -106.8359,
+    "type": "stream"
+  },
+  {
+    "site_no": "06307500",
+    "name": "Tongue River at Tongue R Dam nr Decker MT",
+    "river": "Tongue River",
+    "lat": 45.1413,
+    "lon": -106.7714,
+    "type": "stream"
+  },
+  {
+    "site_no": "06307616",
+    "name": "Tongue R at Birney Day School Br nr Birney MT",
+    "river": "Tongue River",
+    "lat": 45.4116,
+    "lon": -106.4574,
+    "type": "stream"
+  },
+  {
+    "site_no": "06307662",
+    "name": "Tongue River at Ashland, MT",
+    "river": "Tongue River",
+    "lat": 45.5978,
+    "lon": -106.2749,
+    "type": "stream"
+  },
+  {
+    "site_no": "06307830",
+    "name": "Tongue R bl Brandenberg bridge nr Ashland MT",
+    "river": "Tongue River",
+    "lat": 45.8404,
+    "lon": -106.2234,
+    "type": "stream"
+  },
+  {
+    "site_no": "06308500",
+    "name": "Tongue River at Miles City, MT",
+    "river": "Tongue River",
+    "lat": 46.3846,
+    "lon": -105.8455,
+    "type": "stream"
+  },
+  {
+    "site_no": "06309000",
+    "name": "Yellowstone River at Miles City, MT",
+    "river": "Yellowstone River",
+    "lat": 46.4208,
+    "lon": -105.86,
+    "type": "stream"
+  },
+  {
+    "site_no": "06324500",
+    "name": "Powder River at Moorhead MT",
+    "river": "Powder River",
+    "lat": 45.0572,
+    "lon": -105.8784,
+    "type": "stream"
+  },
+  {
+    "site_no": "06326500",
+    "name": "Powder River near Locate MT",
+    "river": "Powder River",
+    "lat": 46.4294,
+    "lon": -105.3103,
+    "type": "stream"
+  },
+  {
+    "site_no": "06327450",
+    "name": "Cains Coulee at Glendive MT",
+    "river": "Cains Coulee",
+    "lat": 47.0942,
+    "lon": -104.7133,
+    "type": "stream"
+  },
+  {
+    "site_no": "06327500",
+    "name": "Yellowstone River at Glendive, MT",
+    "river": "Yellowstone River",
+    "lat": 47.1059,
+    "lon": -104.7184,
+    "type": "stream"
+  },
+  {
+    "site_no": "06329500",
+    "name": "Yellowstone River near Sidney MT",
+    "river": "Yellowstone River",
+    "lat": 47.6774,
+    "lon": -104.1554,
+    "type": "stream"
+  },
+  {
+    "site_no": "12301250",
+    "name": "Tobacco River at Eureka, MT",
+    "river": "Tobacco River",
+    "lat": 48.8779,
+    "lon": -115.0545,
+    "type": "stream"
+  },
+  {
+    "site_no": "12301933",
+    "name": "Kootenai River bl Libby Dam nr Libby MT",
+    "river": "Kootenai River",
+    "lat": 48.4007,
+    "lon": -115.3187,
+    "type": "stream"
+  },
+  {
+    "site_no": "12302055",
+    "name": "Fisher River near Libby MT",
+    "river": "Fisher River",
+    "lat": 48.3556,
+    "lon": -115.3146,
+    "type": "stream"
+  },
+  {
+    "site_no": "12303500",
+    "name": "Lake Creek at Troy MT",
+    "river": "Lake Creek",
+    "lat": 48.4469,
+    "lon": -115.8771,
+    "type": "stream"
+  },
+  {
+    "site_no": "12304500",
+    "name": "Yaak River near Troy MT",
+    "river": "Yaak River",
+    "lat": 48.5617,
+    "lon": -115.9702,
+    "type": "stream"
+  },
+  {
+    "site_no": "12323233",
+    "name": "Blacktail Creek above Grove Gulch, at Butte, MT",
+    "river": "Blacktail Creek",
+    "lat": 45.9913,
+    "lon": -112.5274,
+    "type": "stream"
+  },
+  {
+    "site_no": "12323242",
+    "name": "Silver Bow Creek at Montana Street, at Butte, MT",
+    "river": "Silver Bow Creek",
+    "lat": 45.9957,
+    "lon": -112.5388,
+    "type": "stream"
+  },
+  {
+    "site_no": "12323250",
+    "name": "Silver Bow Cr bl Blacktail Cr, at Butte, MT",
+    "river": "Silver Bow Creek",
+    "lat": 45.9992,
+    "lon": -112.5773,
+    "type": "stream"
+  },
+  {
+    "site_no": "12323600",
+    "name": "Silver Bow Creek at Opportunity MT",
+    "river": "Silver Bow Creek",
+    "lat": 46.1078,
+    "lon": -112.8053,
+    "type": "stream"
+  },
+  {
+    "site_no": "12323670",
+    "name": "Mill Creek nr Anaconda, MT",
+    "river": "Mill Creek",
+    "lat": 46.083,
+    "lon": -112.9172,
+    "type": "stream"
+  },
+  {
+    "site_no": "12323700",
+    "name": "Mill Creek at Opportunity, MT",
+    "river": "Mill Creek",
+    "lat": 46.1136,
+    "lon": -112.8281,
+    "type": "stream"
+  },
+  {
+    "site_no": "12323710",
+    "name": "Willow Creek nr Anaconda, MT",
+    "river": "Willow Creek",
+    "lat": 46.0645,
+    "lon": -112.8935,
+    "type": "stream"
+  },
+  {
+    "site_no": "12323720",
+    "name": "Willow Creek at Opportunity, MT",
+    "river": "Willow Creek",
+    "lat": 46.1072,
+    "lon": -112.8106,
+    "type": "stream"
+  },
+  {
+    "site_no": "12323750",
+    "name": "Silver Bow Creek at Warm Springs MT",
+    "river": "Silver Bow Creek",
+    "lat": 46.1795,
+    "lon": -112.7806,
+    "type": "stream"
+  },
+  {
+    "site_no": "12323760",
+    "name": "Warm Springs Creek near Anaconda MT",
+    "river": "Warm Springs Creek",
+    "lat": 46.1337,
+    "lon": -112.9032,
+    "type": "stream"
+  },
+  {
+    "site_no": "12323770",
+    "name": "Warm Springs Creek at Warm Springs MT",
+    "river": "Warm Springs Creek",
+    "lat": 46.1804,
+    "lon": -112.7851,
+    "type": "stream"
+  },
+  {
+    "site_no": "12323800",
+    "name": "Clark Fork near Galen MT",
+    "river": "Clark Fork",
+    "lat": 46.2082,
+    "lon": -112.7673,
+    "type": "stream"
+  },
+  {
+    "site_no": "12323840",
+    "name": "Lost Creek near Anaconda MT",
+    "river": "Lost Creek",
+    "lat": 46.1613,
+    "lon": -112.8938,
+    "type": "stream"
+  },
+  {
+    "site_no": "12323850",
+    "name": "Lost Creek near Galen, MT",
+    "river": "Lost Creek",
+    "lat": 46.2186,
+    "lon": -112.7742,
+    "type": "stream"
+  },
+  {
+    "site_no": "12324200",
+    "name": "Clark Fork at Deer Lodge MT",
+    "river": "Clark Fork",
+    "lat": 46.3977,
+    "lon": -112.7425,
+    "type": "stream"
+  },
+  {
+    "site_no": "12324400",
+    "name": "Clark Fork ab Little Blackfoot R nr Garrison MT",
+    "river": "Clark Fork",
+    "lat": 46.5109,
+    "lon": -112.7897,
+    "type": "stream"
+  },
+  {
+    "site_no": "12324590",
+    "name": "Little Blackfoot River near Garrison MT",
+    "river": "Little Blackfoot River",
+    "lat": 46.5195,
+    "lon": -112.7932,
+    "type": "stream"
+  },
+  {
+    "site_no": "12324680",
+    "name": "Clark Fork at Goldcreek MT",
+    "river": "Clark Fork",
+    "lat": 46.59,
+    "lon": -112.9287,
+    "type": "stream"
+  },
+  {
+    "site_no": "12325500",
+    "name": "Flint Creek near Southern Cross MT",
+    "river": "Flint Creek",
+    "lat": 46.2327,
+    "lon": -113.2999,
+    "type": "stream"
+  },
+  {
+    "site_no": "12329500",
+    "name": "Flint Creek at Maxville MT",
+    "river": "Flint Creek",
+    "lat": 46.4638,
+    "lon": -113.2403,
+    "type": "stream"
+  },
+  {
+    "site_no": "12330000",
+    "name": "Boulder Creek at Maxville MT",
+    "river": "Boulder Creek",
+    "lat": 46.4717,
+    "lon": -113.2358,
+    "type": "stream"
+  },
+  {
+    "site_no": "12331500",
+    "name": "Flint Creek near Drummond MT",
+    "river": "Flint Creek",
+    "lat": 46.6287,
+    "lon": -113.1507,
+    "type": "stream"
+  },
+  {
+    "site_no": "12331800",
+    "name": "Clark Fork near Drummond MT",
+    "river": "Clark Fork",
+    "lat": 46.7119,
+    "lon": -113.3308,
+    "type": "stream"
+  },
+  {
+    "site_no": "12332000",
+    "name": "Middle Fork Rock Cr nr Philipsburg MT",
+    "river": "Middle Fork Rock Creek",
+    "lat": 46.1846,
+    "lon": -113.5016,
+    "type": "stream"
+  },
+  {
+    "site_no": "12334510",
+    "name": "Rock Creek near Clinton MT",
+    "river": "Rock Creek",
+    "lat": 46.7223,
+    "lon": -113.6831,
+    "type": "stream"
+  },
+  {
+    "site_no": "12334550",
+    "name": "Clark Fork at Turah Bridge nr Bonner MT",
+    "river": "Clark Fork",
+    "lat": 46.8259,
+    "lon": -113.814,
+    "type": "stream"
+  },
+  {
+    "site_no": "12335100",
+    "name": "Blackfoot R ab Nevada Cr nr Helmville MT",
+    "river": "Blackfoot River",
+    "lat": 46.9188,
+    "lon": -113.015,
+    "type": "stream"
+  },
+  {
+    "site_no": "12338300",
+    "name": "NF Blackfoot R ab Dry Gulch nr Ovando MT",
+    "river": "North Fork Blackfoot River",
+    "lat": 46.9795,
+    "lon": -113.0922,
+    "type": "stream"
+  },
+  {
+    "site_no": "12340000",
+    "name": "Blackfoot River near Bonner MT",
+    "river": "Blackfoot River",
+    "lat": 46.8994,
+    "lon": -113.7563,
+    "type": "stream"
+  },
+  {
+    "site_no": "12340500",
+    "name": "Clark Fork above Missoula MT",
+    "river": "Clark Fork",
+    "lat": 46.8768,
+    "lon": -113.9321,
+    "type": "stream"
+  },
+  {
+    "site_no": "12342500",
+    "name": "West Fork Bitterroot River nr Conner MT",
+    "river": "West Fork Bitterroot River",
+    "lat": 45.7248,
+    "lon": -114.2823,
+    "type": "stream"
+  },
+  {
+    "site_no": "12344000",
+    "name": "Bitterroot River near Darby MT",
+    "river": "Bitterroot River",
+    "lat": 45.9721,
+    "lon": -114.1412,
+    "type": "stream"
+  },
+  {
+    "site_no": "12344501",
+    "name": "Lake Como Spillway near Darby, MT",
+    "river": "Lake Como Spillway",
+    "lat": 46.068,
+    "lon": -114.2388,
+    "type": "stream"
+  },
+  {
+    "site_no": "12345510",
+    "name": "Rock Cr bl canal diversion, near Darby, MT",
+    "river": "Rock Creek",
+    "lat": 46.0686,
+    "lon": -114.218,
+    "type": "stream"
+  },
+  {
+    "site_no": "12350250",
+    "name": "Bitterroot River at Bell Crossing nr Victor MT",
+    "river": "Bitterroot River",
+    "lat": 46.4432,
+    "lon": -114.1238,
+    "type": "stream"
+  },
+  {
+    "site_no": "12352500",
+    "name": "Bitterroot River near Missoula MT",
+    "river": "Bitterroot River",
+    "lat": 46.8317,
+    "lon": -114.0549,
+    "type": "stream"
+  },
+  {
+    "site_no": "12353000",
+    "name": "Clark Fork below Missoula MT",
+    "river": "Clark Fork",
+    "lat": 46.8686,
+    "lon": -114.1277,
+    "type": "stream"
+  },
+  {
+    "site_no": "12354000",
+    "name": "St. Regis River near St. Regis, MT",
+    "river": "St. Regis River",
+    "lat": 47.2967,
+    "lon": -115.1226,
+    "type": "stream"
+  },
+  {
+    "site_no": "12354500",
+    "name": "Clark Fork at St. Regis MT",
+    "river": "Clark Fork",
+    "lat": 47.3016,
+    "lon": -115.0869,
+    "type": "stream"
+  },
+  {
+    "site_no": "12355500",
+    "name": "N F Flathead River nr Columbia Falls MT",
+    "river": "North F Flathead River",
+    "lat": 48.4958,
+    "lon": -114.1268,
+    "type": "stream"
+  },
+  {
+    "site_no": "12358000",
+    "name": "McDonald Creek at Apgar, MT",
+    "river": "McDonald Creek",
+    "lat": 48.5262,
+    "lon": -113.9974,
+    "type": "stream"
+  },
+  {
+    "site_no": "12358500",
+    "name": "M F Flathead River near West Glacier MT",
+    "river": "M F Flathead River",
+    "lat": 48.4955,
+    "lon": -114.0102,
+    "type": "stream"
+  },
+  {
+    "site_no": "12359800",
+    "name": "S F Flathead R ab Twin C nr Hungry Horse MT",
+    "river": "South F Flathead River",
+    "lat": 47.9791,
+    "lon": -113.5607,
+    "type": "stream"
+  },
+  {
+    "site_no": "12362500",
+    "name": "S F Flathead River nr Columbia Falls MT",
+    "river": "South F Flathead River",
+    "lat": 48.3566,
+    "lon": -114.0379,
+    "type": "stream"
+  },
+  {
+    "site_no": "12363000",
+    "name": "Flathead River at Columbia Falls MT",
+    "river": "Flathead River",
+    "lat": 48.3618,
+    "lon": -114.1849,
+    "type": "stream"
+  },
+  {
+    "site_no": "12365700",
+    "name": "Stillwater River at Lawrence Park, at Kalispell",
+    "river": "Stillwater River",
+    "lat": 48.2173,
+    "lon": -114.3137,
+    "type": "stream"
+  },
+  {
+    "site_no": "12366000",
+    "name": "Whitefish River near Kalispell MT",
+    "river": "Whitefish River",
+    "lat": 48.3202,
+    "lon": -114.2786,
+    "type": "stream"
+  },
+  {
+    "site_no": "12370000",
+    "name": "Swan River near Bigfork, MT",
+    "river": "Swan River",
+    "lat": 48.0242,
+    "lon": -113.9788,
+    "type": "stream"
+  },
+  {
+    "site_no": "12372000",
+    "name": "Flathead River near Polson MT",
+    "river": "Flathead River",
+    "lat": 47.6803,
+    "lon": -114.2467,
+    "type": "stream"
+  },
+  {
+    "site_no": "12377150",
+    "name": "Mission Creek ab reservoir nr St. Ignatius MT",
+    "river": "Mission Creek",
+    "lat": 47.3202,
+    "lon": -113.9879,
+    "type": "stream"
+  },
+  {
+    "site_no": "12381400",
+    "name": "South Fork Jocko River near Arlee MT",
+    "river": "South Fork Jocko River",
+    "lat": 47.1956,
+    "lon": -113.8507,
+    "type": "stream"
+  },
+  {
+    "site_no": "12388700",
+    "name": "Flathead River at Perma MT",
+    "river": "Flathead River",
+    "lat": 47.3668,
+    "lon": -114.585,
+    "type": "stream"
+  },
+  {
+    "site_no": "12389000",
+    "name": "Clark Fork near Plains MT",
+    "river": "Clark Fork",
+    "lat": 47.4292,
+    "lon": -114.8565,
+    "type": "stream"
+  },
+  {
+    "site_no": "12389500",
+    "name": "Thompson River near Thompson Falls MT",
+    "river": "Thompson River",
+    "lat": 47.5919,
+    "lon": -115.2295,
+    "type": "stream"
+  },
+  {
+    "site_no": "12390700",
+    "name": "Prospect Creek at Thompson Falls MT",
+    "river": "Prospect Creek",
+    "lat": 47.5861,
+    "lon": -115.3551,
+    "type": "stream"
+  },
+  {
+    "site_no": "480608115242901",
+    "name": "Libby Wetland Site bl Schrieber Lake nr Libby, MT",
+    "river": "Libby Wetland Site",
+    "lat": 48.1022,
+    "lon": -115.4089,
+    "type": "stream"
+  }
+]

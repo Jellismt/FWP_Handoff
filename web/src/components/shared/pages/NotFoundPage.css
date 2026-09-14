@@ -1,0 +1,35 @@
+/**
+ * @file NotFoundPage.css
+ * @module engage-mt/shared
+ * @description Page shell + centered layout for the 404.
+ *              The card chrome itself is rendered by `<EmptyStateCard>`;
+ *              only the page padding + max-width live here.
+ * @author Jamie Ellis / Engage MT
+ * @created 2026-06-02
+ * @updated 2026-07-03
+ * @version 1.0.0
+ *
+ * FWP Engage MT — Montana's Official Gateway to the Outdoors
+ * Licensed under the MIT License.
+ */
+
+.not-found-page {
+  padding: var(--fwp-space-8) var(--fwp-space-5);
+  max-width: 720px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+}
+
+.not-found-page code {
+  display: inline-block;
+  padding: 2px 6px;
+  background: var(--fwp-bg-surface-sunken);
+  border-radius: var(--fwp-radius-sm);
+  font-family: var(--fwp-font-mono, ui-monospace, SFMono-Regular, monospace);
+  font-size: 0.9em;
+  color: var(--fwp-text-primary);
+}

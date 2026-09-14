@@ -1,0 +1,33 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        // AGP 8.9.x is required to compile against android-36, which the
+        // Capacitor 8.4 plugins demand (e.g. @capacitor/camera pulls
+        // androidx.core:core-ktx:1.17.0 → compileSdk 36). AGP 8.9 needs
+        // Gradle 8.11.1+ (see gradle-wrapper.properties).
+        classpath 'com.android.tools.build:gradle:8.9.1'
+        classpath 'com.google.gms:google-services:4.4.2'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+apply from: "variables.gradle"
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

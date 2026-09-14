@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <!-- Theme-color matches the FWP-blue Capacitor splash
+         (#002855 per ADR-0018) and the PWA manifest so the browser top
+         bar visually continues into the app shell. -->
+    <meta name="theme-color" content="#002855" />
+    <meta
+      name="description"
+      content="Engage MT — Montana's Official Gateway to the Outdoors. Hunt, fish, explore, manage access, and view your FWP wallet."
+    />
+    <title>Engage MT — Montana's Official Gateway to the Outdoors</title>
+    <!-- PWA manifest + add-to-home-screen icons.
+         Web manifest renders the install banner in modern Chrome /
+         Edge; the apple-* meta tags + apple-touch-icon are how iOS
+         Safari home-screens the app (Safari ignores manifest icons). -->
+    <!-- Self-hosted display serif (no CDN per privacy rule).
+         Preloaded because hero headlines are typically the LCP element. -->
+    <link rel="preload" href="/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Engage MT" />
+    <!-- ArcGIS map chrome stylesheet. The version segment is stamped at build
+         time from the installed @arcgis/core (see vite.config.ts) so it can
+         never drift from the SDK the bundle actually runs. -->
+    <link rel="preconnect" href="https://js.arcgis.com" crossorigin />
+    <link
+      id="arcgis-theme"
+      rel="stylesheet"
+      href="https://js.arcgis.com/%ARCGIS_MAJOR_MINOR%/@arcgis/core/assets/esri/themes/light/main.css"
+    />
+  </head>
+  <body>
+    <a href="#main" class="skip-link">Skip to main content</a>
+    <!-- Honeypot: decoy link only a link-following scraper reaches. Kept
+         out of the tab order and the accessibility tree, and visually
+         hidden, so real users + assistive tech never hit it; nginx returns
+         444 for /trap/ and robots.txt Disallows it. See docs/security/anti-abuse.md. -->
+    <a
+      href="/trap/"
+      rel="nofollow noindex"
+      aria-hidden="true"
+      tabindex="-1"
+      style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;"
+      >Do not follow this link</a
+    >
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,69 @@
+/**
+ * @file ManagePage.css
+ * @module engage-mt/manage
+ * @description "My FWP" page layout — hero sign-in seam, wallet listing
+ *              groups, and the device-card grid.
+ * @author Jamie Ellis / Engage MT
+ * @created 2026-05-29
+ * @updated 2026-07-16
+ * @version 2.0.0
+ *
+ * FWP Engage MT — Montana's Official Gateway to the Outdoors
+ * Licensed under the MIT License.
+ */
+
+.manage-page {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  /* Standard page container — same padding + full-width span as the
+     module landings so every hero reads at the same width. */
+  padding: var(--fwp-space-6) var(--fwp-space-7);
+  margin: 0 auto;
+  width: 100%;
+}
+
+@media (max-width: 767px) {
+  .manage-page {
+    padding: var(--fwp-space-4);
+  }
+}
+
+.manage-wallet__signin-cta {
+  margin-top: var(--fwp-space-4);
+}
+
+.manage-wallet__empty {
+  margin: var(--fwp-space-4) 0 var(--fwp-space-5);
+  color: var(--fwp-text-secondary);
+  font-size: var(--fwp-text-base);
+  line-height: 1.5;
+  max-width: 60ch;
+}
+
+.manage-wallet__group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fwp-space-3);
+  margin-bottom: var(--fwp-space-5);
+}
+
+.manage-wallet__group > h2 {
+  font-size: var(--fwp-text-lg);
+  font-weight: var(--fwp-weight-bold);
+  margin: 0;
+  color: var(--fwp-text-primary);
+  letter-spacing: var(--fwp-letter-spacing-heading);
+}
+
+.manage-page__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--fwp-space-3);
+}
+
+.manage-page__device {
+  margin-top: var(--fwp-space-4);
+}

@@ -1,0 +1,95 @@
+/**
+ * @file EmptyStateCard.css
+ * @module engage-mt/shared
+ * @description EmptyStateCard styling. Centered card,
+ *              soft module-tinted icon halo, breathing-room layout
+ *              matching the shared widget aesthetic.
+ * @author Jamie Ellis / Engage MT
+ * @created 2026-06-01
+ * @updated 2026-07-03
+ * @version 1.0.0
+ *
+ * FWP Engage MT — Montana's Official Gateway to the Outdoors
+ * Licensed under the MIT License.
+ */
+
+.fwp-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: var(--fwp-space-3);
+  padding: var(--fwp-space-7) var(--fwp-space-5);
+  background: var(--fwp-bg-surface);
+  border: 1px solid var(--fwp-border-subtle);
+  border-radius: var(--fwp-radius-lg);
+  max-width: 480px;
+  margin: var(--fwp-space-5) auto;
+}
+
+.fwp-empty-state--compact {
+  padding: var(--fwp-space-5) var(--fwp-space-4);
+  border-radius: var(--fwp-radius-md);
+  max-width: 360px;
+}
+
+.fwp-empty-state[data-module="hunt"] {
+  --module-accent: var(--fwp-accent-hunt);
+}
+.fwp-empty-state[data-module="fish"] {
+  --module-accent: var(--fwp-accent-fish);
+}
+.fwp-empty-state[data-module="explore"] {
+  --module-accent: var(--fwp-accent-explore);
+}
+.fwp-empty-state[data-module="access"] {
+  --module-accent: var(--fwp-accent-access);
+}
+.fwp-empty-state[data-module="manage"] {
+  --module-accent: var(--fwp-accent-manage);
+}
+.fwp-empty-state[data-module="shared"] {
+  --module-accent: var(--fwp-blue-mid);
+}
+
+.fwp-empty-state__halo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--module-accent, var(--fwp-blue-mid)) 14%, transparent);
+  color: var(--module-accent, var(--fwp-blue-mid));
+  margin-bottom: var(--fwp-space-2);
+}
+
+.fwp-empty-state--compact .fwp-empty-state__halo {
+  width: 44px;
+  height: 44px;
+}
+
+.fwp-empty-state__title {
+  font-size: var(--fwp-text-lg);
+  font-weight: var(--fwp-weight-bold);
+  color: var(--fwp-text-primary);
+  margin: 0;
+  letter-spacing: var(--fwp-letter-spacing-heading);
+}
+
+.fwp-empty-state__body {
+  font-size: var(--fwp-text-sm);
+  color: var(--fwp-text-secondary);
+  line-height: 1.5;
+  margin: 0;
+  max-width: 360px;
+}
+
+.fwp-empty-state__suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--fwp-space-2);
+  margin-top: var(--fwp-space-2);
+}

@@ -1,0 +1,10 @@
+# Copy to Appfile (gitignored) and fill in the values.
+
+app_identifier("gov.mt.fwp.engagemt")
+apple_id("REPLACE_WITH_APPLE_ID")
+team_id("REPLACE_WITH_TEAM_ID")
+
+# App Store Connect API key — set via env vars in CI:
+#   APP_STORE_CONNECT_API_KEY_ID
+#   APP_STORE_CONNECT_API_KEY_ISSUER_ID
+#   APP_STORE_CONNECT_API_KEY_CONTENT (base64)

@@ -1,0 +1,6 @@
+# Generated Tier-2 data — written by scripts/build-data (build_all.mjs +
+# annotate-provenance.mjs), which computes each file's sha256 into
+# data-manifest.json. Prettier reformatting these (e.g. adding a trailing
+# newline) changes the bytes and breaks the `check:data-freshness` sha256 gate.
+# They are build artifacts, not source — never lint/format them.
+web/public/data/

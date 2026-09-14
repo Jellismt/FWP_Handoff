@@ -1,0 +1,77 @@
+/**
+ * @file ErrorBoundary.css
+ * @module engage-mt/shared
+ * @description Styling for app/route/panel error fallbacks.
+ * @author Jamie Ellis / Engage MT
+ * @created 2026-05-29
+ * @updated 2026-07-03
+ * @version 1.0.0
+ *
+ * FWP Engage MT — Montana's Official Gateway to the Outdoors
+ * Licensed under the MIT License.
+ */
+
+.error-boundary--app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: var(--fwp-space-6);
+  background: var(--fwp-bg);
+}
+
+.error-boundary__inner {
+  max-width: 560px;
+  background: var(--fwp-bg-surface);
+  border-radius: var(--fwp-radius-lg);
+  padding: var(--fwp-space-6);
+  border-left: 6px solid var(--fwp-gold);
+  box-shadow: var(--fwp-shadow-2);
+}
+
+.error-boundary__heading {
+  margin-top: 0;
+  margin-bottom: var(--fwp-space-3);
+}
+
+.error-boundary__body {
+  color: var(--fwp-text-secondary);
+  margin-bottom: var(--fwp-space-4);
+}
+
+.error-boundary__actions {
+  margin-bottom: var(--fwp-space-4);
+}
+
+.error-boundary__details {
+  font-size: var(--fwp-text-sm);
+  color: var(--fwp-text-secondary);
+}
+
+.error-boundary__details pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+  background: var(--fwp-surface-elevated);
+  padding: var(--fwp-space-3);
+  border-radius: var(--fwp-radius-sm);
+  overflow-x: auto;
+}
+
+.error-boundary--route,
+.error-boundary--panel {
+  margin: var(--fwp-space-3);
+}
+
+.error-boundary__retry {
+  background: none;
+  border: none;
+  color: var(--fwp-green-mid);
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+  font-weight: 600;
+}
+
+.error-boundary__retry:hover {
+  color: var(--fwp-green-dark);
+}

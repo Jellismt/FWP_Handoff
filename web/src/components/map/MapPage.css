@@ -1,0 +1,71 @@
+/**
+ * @file MapPage.css
+ * @module engage-mt/map
+ * @description Layout for the map canvas, floating overlays, horizontal map-tool strip,
+ *              and tap-query result panel.
+ * @author Jamie Ellis / Engage MT
+ * @created 2026-05-29
+ * @updated 2026-06-12
+ * @version 1.1.0
+ *
+ * FWP Engage MT — Montana's Official Gateway to the Outdoors
+ * Licensed under the MIT License.
+ */
+
+.map-page {
+  position: relative;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.map-page__canvas {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  background: var(--fwp-surface-elevated);
+}
+
+/* Horizontal map-tool strip sits between the map canvas and the
+   bottom tab bar (mobile) / footer (desktop). White surface so the icons
+   read crisp against satellite or terrain basemaps. Scrolls horizontally
+   when the rail outgrows the viewport width; thumbable on phones, mouse-
+   wheel-pannable on desktop. */
+.map-page__tool-strip {
+  flex: 0 0 auto;
+  /* Flat solid navy chrome (shared --fwp-chrome-bg) — no glass or border so it
+     flows into the header + sidebar as one color. */
+  background: var(--fwp-chrome-bg);
+}
+
+.map-page__canvas arcgis-map,
+.map-page__canvas arcgis-scene {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.map-page__overlay {
+  position: absolute;
+  z-index: 2;
+  max-width: min(360px, calc(100% - 24px));
+  /* Keep overlay children above the bottom tab bar on mobile.
+     Bottom tab bar (~56px) + safe-area inset + breathing room. */
+  max-height: calc(100% - var(--fwp-space-6) - env(safe-area-inset-bottom, 0));
+  pointer-events: none;
+}
+
+.map-page__overlay > * {
+  pointer-events: auto;
+}
+
+.map-page__overlay--top-right {
+  top: var(--fwp-space-3);
+  right: var(--fwp-space-3);
+}
+
+.map-page__overlay--top-left {
+  top: var(--fwp-space-3);
+  left: var(--fwp-space-3);
+}

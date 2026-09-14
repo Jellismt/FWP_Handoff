@@ -1,0 +1,112 @@
+/**
+ * @file BasemapPicker.css
+ * @module engage-mt/map
+ * @description — Styling for the rail basemap picker popover. The
+ *              trigger reuses `.map-tool-rail__button` (see MapToolRail.css);
+ *              only the popover + option rows are styled here. The popover is
+ *              portaled to <body> with fixed coords computed from the trigger
+ *              (see BasemapPicker.tsx) — the rail clips its own overflow, so an
+ *              in-flow popover would be cut off. Position lives in the inline
+ *              style; this file owns only the look.
+ * @author Jamie Ellis / Engage MT
+ * @created 2026-06-29
+ * @updated 2026-06-29
+ * @version 1.0.0
+ *
+ * FWP Engage MT — Montana's Official Gateway to the Outdoors
+ * Licensed under the MIT License.
+ */
+
+.basemap-picker {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.basemap-picker__popover {
+  /* position: fixed + top/right/bottom coords are set inline from the
+     trigger's bounding rect (portaled to <body>). */
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: var(--fwp-space-1);
+  min-width: 240px;
+  padding: var(--fwp-space-2);
+  background: var(--fwp-bg-surface);
+  border: 1px solid var(--fwp-border-default);
+  border-radius: var(--fwp-radius-md);
+  box-shadow: var(--fwp-shadow-4);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .basemap-picker__popover {
+    animation: basemap-picker-in var(--fwp-motion-soft);
+  }
+}
+
+@keyframes basemap-picker-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.basemap-picker__option {
+  display: flex;
+  align-items: center;
+  gap: var(--fwp-space-3);
+  width: 100%;
+  min-height: 44px;
+  padding: var(--fwp-space-2) var(--fwp-space-3);
+  border: 1px solid transparent;
+  border-radius: var(--fwp-radius-sm);
+  background: transparent;
+  color: var(--fwp-text-primary);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background var(--fwp-motion-quick),
+    border-color var(--fwp-motion-quick);
+}
+
+.basemap-picker__option:hover {
+  background: var(--fwp-state-hover-overlay);
+}
+
+.basemap-picker__option--on {
+  background: var(--fwp-state-selected-bg);
+  border-color: var(--fwp-state-selected-border);
+}
+
+.basemap-picker__option-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: var(--fwp-accent-fish);
+}
+
+.basemap-picker__option-text {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.basemap-picker__option-label {
+  font-size: var(--fwp-text-md);
+  font-weight: var(--fwp-weight-medium);
+  color: var(--fwp-text-primary);
+}
+
+.basemap-picker__option-hint {
+  font-size: var(--fwp-text-sm);
+  color: var(--fwp-text-secondary);
+}
+
+.basemap-picker__option-check {
+  flex-shrink: 0;
+  color: var(--fwp-accent-fish);
+}

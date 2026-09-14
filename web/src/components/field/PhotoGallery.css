@@ -1,0 +1,145 @@
+/**
+ * @file PhotoGallery.css
+ * @module engage-mt/field
+ * @description Photo-gallery lightbox styles.
+ * @author Jamie Ellis / Engage MT
+ * @created 2026-06-09
+ * @updated 2026-06-10
+ * @version 1.0.0
+ *
+ * FWP Engage MT — Montana's Official Gateway to the Outdoors
+ * Licensed under the MIT License.
+ */
+
+.photo-gallery {
+  inset: 0;
+  position: fixed;
+  z-index: 1100;
+}
+
+.photo-gallery__backdrop {
+  background: rgb(0 0 0 / 0.92);
+  inset: 0;
+  position: absolute;
+}
+
+.photo-gallery__shell {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  inset: 0;
+  position: absolute;
+}
+
+.photo-gallery__header {
+  align-items: center;
+  color: var(--fwp-neutral-0);
+  display: flex;
+  justify-content: space-between;
+  padding: var(--fwp-space-4) var(--fwp-space-5);
+  width: 100%;
+}
+
+.photo-gallery__caption {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fwp-space-1);
+}
+
+.photo-gallery__caption strong {
+  color: var(--fwp-neutral-0);
+  font-size: var(--fwp-text-md);
+}
+
+.photo-gallery__ts,
+.photo-gallery__pager {
+  color: rgb(255 255 255 / 0.7);
+  font-size: var(--fwp-text-sm);
+}
+
+.photo-gallery__header-actions {
+  display: flex;
+  gap: var(--fwp-space-2);
+}
+
+.photo-gallery__icon-btn {
+  align-items: center;
+  appearance: none;
+  background: rgb(255 255 255 / 0.12);
+  border: none;
+  border-radius: 50%;
+  color: var(--fwp-neutral-0);
+  cursor: pointer;
+  display: inline-flex;
+  height: 44px;
+  justify-content: center;
+  padding: 0;
+  width: 44px;
+}
+
+.photo-gallery__icon-btn:hover {
+  background: rgb(255 255 255 / 0.22);
+}
+
+.photo-gallery__icon-btn:focus-visible {
+  outline: 2px solid var(--fwp-focus);
+  outline-offset: 2px;
+}
+
+.photo-gallery__figure {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  margin: 0;
+  padding: var(--fwp-space-4);
+  width: 100%;
+}
+
+.photo-gallery__figure img {
+  display: block;
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.photo-gallery__nav {
+  align-items: center;
+  appearance: none;
+  background: rgb(255 255 255 / 0.12);
+  border: none;
+  border-radius: 50%;
+  color: var(--fwp-neutral-0);
+  cursor: pointer;
+  display: inline-flex;
+  height: 56px;
+  justify-content: center;
+  padding: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 56px;
+}
+
+.photo-gallery__nav--prev {
+  left: var(--fwp-space-4);
+}
+
+.photo-gallery__nav--next {
+  right: var(--fwp-space-4);
+}
+
+.photo-gallery__nav:hover:not(:disabled) {
+  background: rgb(255 255 255 / 0.22);
+}
+
+.photo-gallery__nav:disabled {
+  cursor: default;
+  opacity: 0.2;
+}
+
+.photo-gallery__nav:focus-visible {
+  outline: 2px solid var(--fwp-focus);
+  outline-offset: 2px;
+}

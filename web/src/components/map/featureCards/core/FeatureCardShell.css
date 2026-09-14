@@ -1,0 +1,330 @@
+/**
+ * @file FeatureCardShell.css
+ * @module engage-mt/map/featureCards
+ * @description Shared card chrome. Panel preset: white surface + 4px module accent stripe +
+ *              shadow-1. Takeover preset: 6px stripe, larger type, shadow-5 (modal-level), tabs strip.
+ *              Dividers are 1px solid border-subtle (replaces draft-feeling dashed lines).
+ * @author Jamie Ellis / Engage MT
+ * @created 2026-05-29
+ * @updated 2026-07-03
+ * @version 1.2.0
+ *
+ * FWP Engage MT — Montana's Official Gateway to the Outdoors
+ * Licensed under the MIT License.
+ */
+
+.feature-card {
+  --module-accent: var(--fwp-cta-primary);
+  /* Two-color card — the theme surface (grey in light, brand blue in dark) with
+     a 1px inverse-ink outline (blue in light, grey in dark) so the same-on-same
+     card still separates from the panel + map. Text + icons inherit the theme
+     ink; cardPrimitives.css reads --fwp-text-primary etc. unchanged. */
+  position: relative;
+  background: var(--fwp-bg-surface);
+  border: 1px solid var(--fwp-card-outline);
+  border-radius: var(--fwp-radius-md);
+  margin-bottom: var(--fwp-space-3);
+  overflow: hidden;
+  color: var(--fwp-text-primary);
+}
+
+/* Multi-feature compact mode — applied to every card when TapQueryPanel
+   renders >1 result inline. Shrinks every section of chrome (header
+   padding, body padding, action row, action count) so 3+ siblings stack
+   readably on a 375 px mobile viewport. Single-feature taps + the
+   takeover modal keep the original generous spacing. */
+.feature-card[data-multi-feature="true"] {
+  border-radius: var(--fwp-radius-md);
+  margin-bottom: var(--fwp-space-2);
+}
+
+.feature-card[data-multi-feature="true"] .feature-card__header {
+  padding: var(--fwp-space-2) var(--fwp-space-3);
+  gap: var(--fwp-space-2);
+}
+
+.feature-card[data-multi-feature="true"] .feature-card__heading {
+  gap: 2px;
+}
+
+.feature-card[data-multi-feature="true"] .feature-card__title {
+  font-size: var(--fwp-text-md);
+  line-height: 1.2;
+}
+
+.feature-card[data-multi-feature="true"] .feature-card__meta-row {
+  /* The compact body itself names the layer + date; collapse the
+     header's meta strip so it doesn't restate the same context. */
+  display: none;
+}
+
+.feature-card[data-multi-feature="true"] .feature-card__body {
+  padding: var(--fwp-space-2) var(--fwp-space-3);
+  gap: var(--fwp-space-2);
+}
+
+.feature-card[data-multi-feature="true"] .feature-card__actions {
+  padding: var(--fwp-space-2) var(--fwp-space-3)
+    calc(var(--fwp-space-2) + env(safe-area-inset-bottom, 0px));
+  position: static; /* no sticky footer needed when the row is short */
+  background: transparent;
+  border-top: none;
+}
+
+/* Two-line header layout.
+   ┌──────────────────────────────────────────────┐
+   │ [BADGE] Feature title                        │  ← line 1
+   │ Layer · subtitle · freshness · source        │  ← line 2 (compact)
+   └──────────────────────────────────────────────┘
+   Previously the badge was a third flex item and the freshness chip
+   sat on its own row, eating vertical space + producing wraps like
+   "STATIC REFERENCE · FWP PUBLIC HUB" mid-phrase. The new layout
+   keeps everything tight + single-line. */
+.feature-card__header {
+  display: flex;
+  gap: var(--fwp-space-3);
+  padding: var(--fwp-space-4);
+  border-bottom: 1px solid var(--fwp-border-subtle);
+  align-items: flex-start;
+}
+
+.feature-card__heading {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--fwp-space-2);
+}
+
+.feature-card__title-row {
+  display: flex;
+  align-items: center;
+  gap: var(--fwp-space-2);
+  min-width: 0;
+}
+
+.feature-card__title {
+  /* Feature names carry the editorial serif, mirroring the
+     atlas-style popup headings (place names read like a field guide). */
+  font-family: var(--fwp-font-display);
+  font-size: var(--fwp-text-lg);
+  margin: 0;
+  color: var(--fwp-text-primary);
+  font-weight: var(--fwp-weight-display);
+  line-height: 1.25;
+  letter-spacing: var(--fwp-letter-spacing-heading);
+  /* Title can be long; allow wrap rather than truncate so users see the
+     full feature name. The freshness chip below it now handles its own
+     truncation. */
+  min-width: 0;
+}
+
+/* Static chevron next to the title that signals "more available
+   via the action buttons" (Open detail / Expand). Purely visual; does not
+   change with state. */
+.feature-card__title-chevron {
+  color: var(--fwp-text-secondary);
+  flex-shrink: 0;
+  margin-left: var(--fwp-space-1);
+}
+
+/* Metadata strip — single horizontal line of layer · subtitle · chip.
+   `flex-wrap: wrap` is intentional fallback for very narrow widths
+   (mobile portrait) but in normal popup widths everything stays inline. */
+.feature-card__meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--fwp-space-2);
+  min-width: 0;
+  font-size: var(--fwp-text-xs);
+  color: var(--fwp-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: var(--fwp-letter-spacing-label);
+  font-weight: var(--fwp-weight-medium);
+}
+
+.feature-card__meta-layer,
+.feature-card__meta-sub {
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.feature-card__meta-sep {
+  opacity: 0.6;
+  flex: 0 0 auto;
+}
+
+/* Subtitle class for renderers that compose their own; the shell itself
+   does not emit this element. */
+.feature-card__subtitle {
+  font-size: var(--fwp-text-xs);
+  margin: 0;
+  color: var(--fwp-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: var(--fwp-letter-spacing-label);
+  font-weight: var(--fwp-weight-medium);
+}
+
+.feature-card__body {
+  padding: var(--fwp-space-4);
+  /* Vertical rhythm between body sections. Without this,
+     renderers that compose MetricGrid + BadgeRow + Paragraph + TipBlock
+     can render their pieces flush against each other in multi-card
+     panels. Gap-based spacing also means
+     renderers don't need to add per-element margins. */
+  display: flex;
+  flex-direction: column;
+  gap: var(--fwp-space-3);
+}
+
+/* Each top-level Body child has a guaranteed visible margin
+   even if some Paragraphs or BadgeRows ship empty children. Combined
+   with the flex gap above, this prevents the multi-card stack from
+   collapsing into a strip of pure action rows on narrow viewports.   */
+.feature-card__body > * {
+  min-height: 0;
+}
+
+.feature-card__enrichment {
+  border-top: 1px solid var(--fwp-border-subtle);
+}
+
+/* Shared "link-row" class for popup enrichment buttons. Replaces
+   inline style={display:flex,...} blocks that lived in FasCard +
+   StateParkCard + WmaCard. Centered horizontally + correctly spaced so
+   the pill row never looks left-cramped. */
+.feature-card__link-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--fwp-space-2);
+  padding: var(--fwp-space-3) var(--fwp-space-4);
+}
+
+.feature-card__link-row > .fwp-pill-button,
+.feature-card__link-row > a.fwp-pill-button {
+  flex: 0 0 auto;
+}
+
+.feature-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--fwp-space-2);
+  /* Sticky footer so Open detail / Switch to Module / Expand
+     stays pinned to the bottom of the panel while card content scrolls
+     above. Without sticky, the actions sat inside the scroll region and
+     ran off the bottom when content filled the viewport. */
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+  padding: var(--fwp-space-3) var(--fwp-space-4)
+    calc(var(--fwp-space-3) + env(safe-area-inset-bottom, 0px));
+  border-top: 1px solid var(--fwp-border-subtle);
+  background: var(--fwp-bg-surface-sunken);
+}
+
+/* Tabs strip — used by multi-section popups. */
+.feature-card__tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--fwp-border-subtle);
+  background: var(--fwp-bg-surface-sunken);
+  overflow-x: auto;
+}
+
+.feature-card__tab {
+  flex: 1 1 auto;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  padding: var(--fwp-space-3) var(--fwp-space-4);
+  font: inherit;
+  font-weight: var(--fwp-weight-medium);
+  font-size: var(--fwp-text-base);
+  color: var(--fwp-text-secondary);
+  cursor: pointer;
+  white-space: nowrap;
+  min-height: var(--fwp-touch-target);
+  transition:
+    color var(--fwp-motion-quick),
+    border-bottom-color var(--fwp-motion-quick),
+    background var(--fwp-motion-quick);
+}
+
+.feature-card__tab:hover {
+  color: var(--fwp-text-primary);
+  background: var(--fwp-state-hover-overlay);
+}
+
+.feature-card__tab:focus-visible {
+  outline: 2px solid var(--fwp-focus);
+  outline-offset: -2px;
+}
+
+.feature-card__tab--active {
+  color: var(--module-accent);
+  border-bottom-color: var(--module-accent);
+  background: var(--fwp-bg-surface);
+  font-weight: var(--fwp-weight-bold);
+}
+
+/* Takeover preset — wider chrome, larger type, more breathing room.
+   Lives inside CalciteDialog via TakeoverPopupPortal; the dialog itself
+   handles backdrop + focus trap + Esc. */
+.feature-card--takeover {
+  margin-bottom: 0;
+  border: none;
+  border-radius: var(--fwp-radius-xl);
+}
+
+.feature-card--takeover .feature-card__header {
+  padding: var(--fwp-space-5);
+  gap: var(--fwp-space-4);
+}
+
+.feature-card--takeover .feature-card__title {
+  font-size: var(--fwp-text-2xl);
+  line-height: 1.2;
+}
+
+.feature-card--takeover .feature-card__subtitle {
+  font-size: var(--fwp-text-sm);
+}
+
+.feature-card--takeover .feature-card__body {
+  padding: var(--fwp-space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--fwp-space-4);
+}
+
+.feature-card--takeover .feature-card__chart {
+  padding: var(--fwp-space-4) var(--fwp-space-5);
+  border-bottom: 1px solid var(--fwp-border-subtle);
+  background: var(--fwp-bg-surface-sunken);
+}
+
+.feature-card--takeover .feature-card__actions {
+  padding: var(--fwp-space-4) var(--fwp-space-5);
+}
+
+@media (max-width: 767px) {
+  .feature-card--takeover {
+    border-radius: var(--fwp-radius-lg);
+  }
+  .feature-card--takeover .feature-card__title {
+    font-size: var(--fwp-text-xl);
+  }
+  .feature-card--takeover .feature-card__header,
+  .feature-card--takeover .feature-card__body,
+  .feature-card--takeover .feature-card__actions {
+    padding: var(--fwp-space-4);
+  }
+  /* Keep the home-indicator inset on the actions row so the Close/Save
+     buttons clear the notch on a tall, scrolled takeover card. */
+  .feature-card--takeover .feature-card__actions {
+    padding-bottom: calc(var(--fwp-space-4) + env(safe-area-inset-bottom, 0px));
+  }
+}
